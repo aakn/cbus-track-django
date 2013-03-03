@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>Debug Page</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>Time</td>
+			<td>Lat</td>
+			<td>Lon</td>
+			<td>Speed</td>
+		</tr>
+		<tbody id="table-contents">
+		</tbody>
+	</table>
+	<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+	<script>
+		var bus_id = {{ bus }};
+		var pusher = new Pusher('38c410e14df2239c04ab');
+		var channel = pusher.subscribe('track-channel');
+		channel.bind('bus-moved', function(data) {
+			if(data.bus_id == bus_id)
+				push_data(data);	// Checks if the data is for the same bus route.
+		});
+		function push_data(data) {
+			var t = document.getElementById("table-contents");
+			row = "<tr><td>"+data.time+"</td><td>"+data.lat+"</td><td>"+data.lon+"</td><td>"+data.speed+"</td></tr>";
+			t.innerHTML = row + t.innerHTML;
+		}
+	</script>
+</body>
+</html>
