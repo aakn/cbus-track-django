@@ -44,7 +44,7 @@ def deploy(request):
 	text = ""
 	import subprocess
 	for command in commands:
-		result = subprocess.check_output(command, shell=True)
+		result = subprocess.Popen(command, shell=True)
 		text += str(result)+"<br/>"
 
 	return HttpResponse("%s" % text)
