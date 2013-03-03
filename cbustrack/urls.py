@@ -12,5 +12,6 @@ urlpatterns += patterns('track.views',
 	# for updating via git
 	url(r'^deploy/$', 'deploy'),
 	url(r'^$', 'stats'),
+	url(r'^stats/$', 'stats'),
     url(r'^add/(?P<bus>\d+)/(?P<lat>(\d*[.])?\d+)/(?P<lon>(\d*[.])?\d+)/(?P<speed>(\d*[.])?\d+)/(?P<balance>[\d\w\.\$]+)/$', 'add'),
 )
