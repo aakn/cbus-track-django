@@ -16,7 +16,7 @@ framework.
 import os
 import sys
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cbustrack.settings")
-os.environ["DJANGO_SETTINGS_MODULE"] = "cbustrack.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "cbustrack.settings_production"
 
 sys.path.append('/var/www/django/')
 sys.path.append('/var/www/django/cbustrack/')
