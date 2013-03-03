@@ -77,6 +77,7 @@ STATIC_URL = '/static/'
 import os.path
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), '../static').replace('\\','/'),
+    os.path.join(os.path.dirname(__file__), '../admin_bootstrap/static').replace('\\','/'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -130,6 +131,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'track',
+    'admin_bootstrap',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
