@@ -11,6 +11,6 @@ urlpatterns += patterns('track.views',
 	url(r'^php/log.php/$', 'php_add'),
 	# for updating via git
 	url(r'^deploy/$', 'deploy'),
-	url(r'^stats/$', 'stats'),
+	url(r'^$', 'stats'),
     url(r'^add/(?P<bus>\d+)/(?P<lat>(\d*[.])?\d+)/(?P<lon>(\d*[.])?\d+)/(?P<speed>(\d*[.])?\d+)/(?P<balance>[\d\w\.\$]+)/$', 'add'),
 )
