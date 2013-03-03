@@ -30,6 +30,25 @@ def add(request, bus, lat, lon, speed, balance):
 
 	return HttpResponse("Success")
 
+def deploy(request):
+	# Commands
+	commands = [
+		'echo $PWD',
+		'whoami',
+		# 'git pull',
+		'git status',
+		'git submodule sync',
+		'git submodule update',
+		'git submodule status',
+	]
+	text = ""
+	import subprocess
+	for command in commands:
+		result = subprocess.check_output(command, shell=True)
+		text += str(result)+"<br/>"
+
+	return HttpResponse("%s" % text)
+
 def php_add(request):
 	if 'id' in request.GET:
 		bus = request.GET['id']
