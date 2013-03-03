@@ -7,4 +7,5 @@ def last_trip(request, bus = '1'):
 	return HttpResponse("%s" % last)
 
 def current_trip(request, bus = '1'):
-	return render_to_response('current_coord.html', {'bus': bus})
+	# somevalues = BusTravelLog.objects.all().order_by('-time')[:20]
+	return render_to_response('current_trip.html', {'bus': bus})

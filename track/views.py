@@ -8,6 +8,9 @@ def stats(request):
 	return render_to_response('index.html', { 'page': 'home' })
 
 def add(request, bus, lat, lon, speed, balance):
+	speed = float(speed)
+	speed = speed*1.852
+
 	route = RouteDetail.objects.get(pk=bus)
 	log = BusTravelLog(bus=route, lat=lat, lon=lon, speed=speed)
 	log.save()
@@ -22,7 +25,7 @@ def add(request, bus, lat, lon, speed, balance):
 		'bus_id': bus,
 		'lat': lat,
 		'lon': lon,
-		'time': str(datetime.datetime.now()),
+		'time': str(datetime.datetime.now())[:19],
 		'speed': speed
 	}
 	p = pusher.Pusher()
