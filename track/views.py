@@ -8,15 +8,18 @@ import pusher, datetime
 def stats(request):
 	return render_to_response('index.html', { 'page': 'home' })
 
-def add(request, bus, lat, lon, speed, balance):
+def add(request, bus, lat, lon, speed, balance, valid='A'):
 	speed = float(speed)
 	speed = round(speed*1.852)
+
+	if valid[-1:] == '/':
+		valid = valid[:-1]
 
 	lat = convert(lat)
 	lon = convert(lon)
 
 	route = RouteDetail.objects.get(pk=bus)
-	log = BusTravelLog(bus=route, lat=lat, lon=lon, speed=speed)
+	log = BusTravelLog(bus=route, lat=lat, lon=lon, speed=speed, valid=valid)
 	log.save()
 	bal = Balance(bus=route, balance=balance)
 	bal.save()
@@ -75,10 +78,15 @@ def php_add(request):
 		balance = request.GET['bal']
 	else:
 		balance = ""
+	if 'v' in request.GET:
+		valid = request.GET['bal']
+	else:
+		valid = "A"
+
 
 	text = text.split('$')
 	lat = text[0]
 	lon = text[1]
 
-	add(request, bus, lat, lon, speed, balance)
+	add(request, bus, lat, lon, speed, balance, valid)
 	return HttpResponse("1")	
