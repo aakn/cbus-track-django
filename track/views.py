@@ -55,8 +55,17 @@ def deploy(request):
 	text = ""
 	import subprocess
 	for command in commands:
-		result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT,)
-		text += str(result)+"<br/>"
+		proc = subprocess.Popen(command,
+			shell=True,
+			stdin=subprocess.PIPE,
+			stdout=subprocess.PIPE,
+			stderr=subprocess.STDOUT
+		)
+		stdout_value, stderr_value = proc.communicate('through stdin to stdout')
+		text+=str(repr(stdout_value)) + "<br/>"
+		text+=str(repr(stderr_value)) + "<br/>"
+		# print '\tstderr      :', repr(stderr_value)
+		# text += str(result)+"<br/>"
 
 	return HttpResponse("%s" % text)
 
