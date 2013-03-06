@@ -13,5 +13,5 @@ urlpatterns += patterns('track.views',
 	url(r'^deploy/$', 'deploy'),
 	url(r'^$', 'stats'),
 	url(r'^stats/$', 'stats'),
-    url(r'^add/(?P<bus>\d+)/(?P<lat>(\d*[.])?\d+)/(?P<lon>(\d*[.])?\d+)/(?P<speed>(\d*[.])?\d+)/(?P<balance>[\d\w\.\$]+)/$', 'add'),
+    url(r'^add/(?P<bus>\d+)/(?P<lat>(\d*[.])?\d+([A-Za-z])?)/(?P<lon>(\d*[.])?\d+([A-Za-z])?)/(?P<speed>(\d*[.])?\d+)/(?P<balance>[\d\w\.\$]+)/$', 'add'),
 )

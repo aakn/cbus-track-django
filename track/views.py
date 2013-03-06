@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from track.models import Balance, BusTravelLog, RouteDetail
 from django.shortcuts import render_to_response
+from track.models import Balance, BusTravelLog, RouteDetail
+from track.convert_coordinates import convert
 import pusher, datetime
 
 
@@ -11,16 +12,16 @@ def add(request, bus, lat, lon, speed, balance):
 	speed = float(speed)
 	speed = speed*1.852
 
+	lat = convert(lat)
+	lon = convert(lon)
+
 	route = RouteDetail.objects.get(pk=bus)
 	log = BusTravelLog(bus=route, lat=lat, lon=lon, speed=speed)
 	log.save()
 	bal = Balance(bus=route, balance=balance)
 	bal.save()
 
-	pusher.app_id = '37147'
-	pusher.key = '38c410e14df2239c04ab'
-	pusher.secret = '1d1ce5aa951f5eb5350a'
-
+	# PUSHER CODE
 	data = {
 		'bus_id': bus,
 		'lat': lat,
@@ -28,6 +29,10 @@ def add(request, bus, lat, lon, speed, balance):
 		'time': str(datetime.datetime.now())[:19],
 		'speed': speed
 	}
+
+	pusher.app_id = '37147'
+	pusher.key = '38c410e14df2239c04ab'
+	pusher.secret = '1d1ce5aa951f5eb5350a'
 	p = pusher.Pusher()
 	p['track-channel'].trigger('bus-moved', data)
 
@@ -76,4 +81,4 @@ def php_add(request):
 	lon = text[1]
 
 	add(request, bus, lat, lon, speed, balance)
-	return HttpResponse("1")
+	return HttpResponse("1")	
