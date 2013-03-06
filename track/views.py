@@ -46,7 +46,7 @@ def deploy(request):
 	commands = [
 		'echo $PWD',
 		'whoami',
-		'git pull',
+		# 'git pull',
 		'git status',
 		'git submodule sync',
 		'git submodule update',
@@ -55,7 +55,7 @@ def deploy(request):
 	text = ""
 	import subprocess
 	for command in commands:
-		result = subprocess.check_output(command, shell=True)
+		result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT,)
 		text += str(result)+"<br/>"
 
 	return HttpResponse("%s" % text)
