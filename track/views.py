@@ -10,7 +10,7 @@ def stats(request):
 
 def add(request, bus, lat, lon, speed, balance):
 	speed = float(speed)
-	speed = speed*1.852
+	speed = round(speed*1.852)
 
 	lat = convert(lat)
 	lon = convert(lon)

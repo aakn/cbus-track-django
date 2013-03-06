@@ -130,6 +130,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # south is used for database migration
+    'south',
     'track',
     'admin_bootstrap',
     # Uncomment the next line to enable the admin:

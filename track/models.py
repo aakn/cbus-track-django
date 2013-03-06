@@ -27,9 +27,9 @@ class BusTravelLog(models.Model):
     bus = models.ForeignKey(RouteDetail)
     lat = models.CharField(max_length=90)
     lon = models.CharField(max_length=90)
+    valid = models.CharField(max_length=30, default="YES")
     speed = models.CharField(max_length=150)
     time = models.DateTimeField(auto_now_add = True)
-    bal = models.CharField(max_length=15000)
     objects = BusTravelLogManager()
 
     def __unicode__(self):

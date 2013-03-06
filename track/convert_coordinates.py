@@ -15,7 +15,7 @@ def convert(old):
 
 	decimal = DMStoDEC(degree, minute, second)
 
-	if direction == 'N' or direction == 'W':
+	if direction == 'S' or direction == 'W':
 		decimal *= -1
 
 
