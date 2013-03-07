@@ -12,6 +12,8 @@ class BusTravelLogAdmin(admin.ModelAdmin):
 
 class BalanceAdmin(admin.ModelAdmin):
 	list_display = ('bus', 'time', 'balance')
+	list_filter = ('time',)
+	date_hierarchy = 'time'
 	ordering = ('-time',)
 
 class BusStopAdmin(admin.ModelAdmin):
