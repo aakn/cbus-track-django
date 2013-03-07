@@ -96,18 +96,22 @@ $(function(){
 
 	// Updates the address by getting doing a reverse geolocation
 	function update_address(lat,lon) {
-		var latlng = new google.maps.LatLng(lat, lon);
+		// var latlng = new google.maps.LatLng(lat, lon);
 
-		geocoder.geocode({'latLng': latlng}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				console.log(results)
-				if (results[0]) {
-					$("#address").html(results[0].formatted_address);
+		// geocoder.geocode({'latLng': latlng}, function(results, status) {
+		// 	if (status == google.maps.GeocoderStatus.OK) {
+		// 		console.log(results)
+		// 		if (results[0]) {
+		// 			$("#address").html(results[0].formatted_address);
 
-				}
-			} else {
-				console.log("Geocoder failed due to: " + status);
-			}
+		// 		}
+		// 	} else {
+		// 		console.log("Geocoder failed due to: " + status);
+		// 	}
+		// });
+		$.getJSON("/geocode/"+lat+"/"+lon+"/", function(result){
+			console.log(result);
+			$("#address").html(result["address"]);
 		});
 	}
 
