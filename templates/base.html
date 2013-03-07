@@ -41,6 +41,10 @@
 						<li class="{% active request stats %}"><a href="{{stats}}">Stats</a></li>
 						<li class="{% active request about %}"><a href="{{about}}">About</a></li>
 						{% endblock %}
+						{% block nav_extra_links %} {% endblock %}
+					</ul>
+					<ul class="nav pull-right">
+						{% block nav_pull_right_links %} {% endblock %}
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>

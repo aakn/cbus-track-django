@@ -5,10 +5,12 @@ from track.convert_coordinates import convert
 import pusher, datetime
 
 def stats(request):
-	return render_to_response('stats.html', { 'page': 'stats', 'request': request })
+	routes = RouteDetail.objects.all()
+	return render_to_response('stats.html', { 'page': 'stats', 'request': request, 'routes': routes, })
 
 def index(request):
-	return render_to_response('index.html', { 'page': 'home', 'request': request })
+	routes = RouteDetail.objects.all()
+	return render_to_response('index.html', { 'page': 'home', 'request': request, 'routes': routes, })
 
 def about(request):
 	return render_to_response('about.html', { 'page': 'about', 'request': request })
@@ -38,7 +40,7 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 		'speed': speed
 	}
 
-	pusher.app_id = '37147'
+	pusher.app_id = 'tis37147'
 	pusher.key = '38c410e14df2239c04ab'
 	pusher.secret = '1d1ce5aa951f5eb5350a'
 	p = pusher.Pusher()
