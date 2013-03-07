@@ -16,6 +16,12 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 	{# Nav Bar #}
+	{% load tags %}
+
+	{% url 'track.views.index' as home %}
+	{% url 'track.views.stats' as stats %}
+	{% url 'track.views.about' as about %}
+
 	<div class="navbar navbar-static-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -30,7 +36,10 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						{% block nav_bar_link %}
-						<li class="active"><a href="{% ifequal page 'home' %}#{% else %}/{% endifequal %}">Home</a></li>
+						{# <li class="active"><a href="{% ifequal page 'home' %}#{% else %}/{% endifequal %}">Home</a></li> #}
+						<li class="{% active request home %}"><a href="{{home}}">Home</a></li>
+						<li class="{% active request stats %}"><a href="{{stats}}">Stats</a></li>
+						<li class="{% active request about %}"><a href="{{about}}">About</a></li>
 						{% endblock %}
 					</ul>
 				</div><!--/.nav-collapse -->

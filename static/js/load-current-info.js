@@ -1,0 +1,123 @@
+$(function(){
+
+	var bus_id = 1;
+
+	var lat,lon;
+	var geocoder;
+	var map,marker,currentCenter,currentPath;
+
+	var coord_array = new Array();
+
+	var i=0;
+	var hidden = true;
+
+	/* PUSHER CODE */
+	var pusher = new Pusher('38c410e14df2239c04ab');
+	var channel = pusher.subscribe('track-channel');
+	channel.bind('bus-moved', function(data) {
+		if(data.bus_id == bus_id)
+			push_data(data);	// Checks if the data is for the same bus route.
+	});
+	/* PUSHER CODE END */
+
+	// Initialization Code for Google Maps
+	function initialize()
+	{
+		geocoder = new google.maps.Geocoder();
+		currentCenter = coord_array[i-1];
+		var mapProp = {
+			center: currentCenter,
+			zoom:15,
+			mapTypeId:google.maps.MapTypeId.ROADMAP
+		};
+		map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+		marker=new google.maps.Marker({
+			position: currentCenter,
+			animation:google.maps.Animation.BOUNCE
+		});
+		marker.setMap(map);
+
+		currentPath=new google.maps.Polyline({
+			path:coord_array,
+			strokeColor:"#0000FF",
+			strokeOpacity:0.8,
+			strokeWeight:2
+		});
+
+		currentPath.setMap(map);
+		done_loading();
+	}
+	function setMarker(pos) {
+		currentPath.setPath(coord_array);
+		map.setCenter(pos);
+		marker.setPosition(pos);
+	}
+	
+	google.maps.event.addDomListener(window, 'load', initialize);
+	
+	// Called after the maps is loaded...
+	// Shows the table, and hides the loading bar.
+	function done_loading() {
+		if(hidden) {
+			$("#loading-bar").hide();
+			$(".stats-table").show();
+			hidden = false;
+
+		}
+	}
+
+
+	// This is called whenever a new value enters the database.
+	// 
+	function push_data(data) {
+		console.log(data);
+
+		var oldlat = lat;
+		var oldlon = lon;
+
+		lat = data.lat;
+		lon = data.lon;
+		speed = data.speed;
+		time = data.time;
+		
+
+		if( lat == oldlat && lon == oldlon ) 
+			update_table(lat,lon,time,"Stationary",speed);
+		else {
+			var pos = new google.maps.LatLng(lat,lon);
+			coord_array[i] = pos;
+			setMarker(pos);
+			i++;
+			update_table(lat,lon,time,"Moving",speed);
+			update_address(lat,lon);
+		}
+	}	
+
+	// Updates the address by getting doing a reverse geolocation
+	function update_address(lat,lon) {
+		var latlng = new google.maps.LatLng(lat, lon);
+
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				console.log(results)
+				if (results[0]) {
+					$("#address").html(results[0].formatted_address);
+
+				}
+			} else {
+				console.log("Geocoder failed due to: " + status);
+			}
+		});
+	}
+
+	// Adds some data to the table
+	function update_table(lat,lon,time,moved,speed) {
+		$("#lat").html(lat);
+		$("#lon").html(lon);
+		$("#time").html(time);
+		$("#move").html(moved+" KMPH");
+		$("#speed").html(speed);
+	}
+
+});

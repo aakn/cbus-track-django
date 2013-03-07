@@ -18,6 +18,24 @@ class Balance(models.Model):
     def __unicode__(self):
         return "%s %s %s" % (self.bus, self.balance, self.time)
 
+class BusStop(models.Model):
+    bus = models.ForeignKey(RouteDetail)
+    lat = models.CharField(max_length=90)
+    lon = models.CharField(max_length=90)
+    name = models.CharField(max_length=150)
+    address = models.CharField(max_length=1000)
+
+    def __unicode__(self):
+        return "%s" % (self.name)
+
+class User(models.Model):
+    stop = models.ForeignKey(BusStop)
+    name = models.CharField(max_length=200)
+    gcm = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return "%s %s" % (self.name, self.stop)
+
 class BusTravelLogManager(models.Manager):
     def get_last_trip(self, bus):
         from track.last_trip import my_calc_func
