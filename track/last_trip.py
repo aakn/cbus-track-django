@@ -2,12 +2,15 @@
 from track.models import BusTravelLog
 from django.utils import simplejson
 
-def my_calc_func(bus):
+def my_calc_func(bus, limit):
 	timeset = BusTravelLog.objects.filter(bus=bus).order_by('-time')[:1]
 	for item in timeset:
 		time = item.time
 	time = time.date()
-	logs = BusTravelLog.objects.filter(time__startswith=time).filter(bus=bus).order_by('-time')
+	if limit == 0:
+		logs = BusTravelLog.objects.filter(time__startswith=time).filter(bus=bus).order_by('-time')
+	else:
+		logs = BusTravelLog.objects.filter(time__startswith=time).filter(bus=bus).order_by('-time')[:limit]
 
 	log_list = []
 	prev_time = ""
@@ -18,7 +21,7 @@ def my_calc_func(bus):
 			'lon': o.lon, 
 			'time': str(o.time)[:19],
 		}
-		hour = 60*60;
+		hour = 1*60*60;
 		if prev_time == "":
 			prev_time = o.time
 		elif (prev_time - o.time).seconds >= hour :

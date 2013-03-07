@@ -3,7 +3,6 @@ $(function(){
 	var bus_id = 1;
 
 	var lat,lon;
-	var geocoder;
 	var map,marker,currentCenter,currentPath;
 
 	var coord_array = new Array();
@@ -23,7 +22,6 @@ $(function(){
 	// Initialization Code for Google Maps
 	function initialize()
 	{
-		geocoder = new google.maps.Geocoder();
 		currentCenter = coord_array[i-1];
 		var mapProp = {
 			center: currentCenter,
@@ -54,6 +52,34 @@ $(function(){
 		marker.setPosition(pos);
 	}
 	
+	$.ajax({
+		async: false,
+		dataType: "json",
+		url: "/ajax/last_trip/"+bus_id,
+		success: function(data) {
+			console.log("Data from the Previous coordinates...");
+
+			data = data.reverse();
+			console.log(data); 
+			var speed, time, lat, lon;
+			$.each(data, function(key,value) {
+				var pos = new google.maps.LatLng(value.lat,value.lon);
+				coord_array[i++] = pos;
+
+				var data=value;
+
+				lat = data.lat;
+				lon = data.lon;
+				speed = data.speed;
+				time = data.time;
+			});	
+			update_table(lat,lon,time,"Last Trip",speed);
+			update_address(lat,lon);
+			console.log(coord_array); 
+		}
+	});
+
+	console.log("after the synchronous ajax call...");
 	google.maps.event.addDomListener(window, 'load', initialize);
 	
 	// Called after the maps is loaded...
@@ -69,7 +95,6 @@ $(function(){
 
 
 	// This is called whenever a new value enters the database.
-	// 
 	function push_data(data) {
 		console.log(data);
 
@@ -96,19 +121,6 @@ $(function(){
 
 	// Updates the address by getting doing a reverse geolocation
 	function update_address(lat,lon) {
-		// var latlng = new google.maps.LatLng(lat, lon);
-
-		// geocoder.geocode({'latLng': latlng}, function(results, status) {
-		// 	if (status == google.maps.GeocoderStatus.OK) {
-		// 		console.log(results)
-		// 		if (results[0]) {
-		// 			$("#address").html(results[0].formatted_address);
-
-		// 		}
-		// 	} else {
-		// 		console.log("Geocoder failed due to: " + status);
-		// 	}
-		// });
 		$.getJSON("/geocode/"+lat+"/"+lon+"/", function(result){
 			console.log(result);
 			$("#address").html(result["address"]);

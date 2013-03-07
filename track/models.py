@@ -37,9 +37,9 @@ class User(models.Model):
         return "%s %s" % (self.name, self.stop)
 
 class BusTravelLogManager(models.Manager):
-    def get_last_trip(self, bus):
+    def get_last_trip(self, bus, limit):
         from track.last_trip import my_calc_func
-        return my_calc_func(bus)
+        return my_calc_func(bus, limit)
 
 class BusTravelLog(models.Model):
     bus = models.ForeignKey(RouteDetail)
