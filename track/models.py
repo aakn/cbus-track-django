@@ -34,7 +34,7 @@ class User(models.Model):
     gcm = models.CharField(max_length=200, blank=True, null=True)
 
     def __unicode__(self):
-        return "%s %s" % (self.name, self.stop)
+        return "%s@%s" % (self.name, self.stop)
 
 class BusTravelLogManager(models.Manager):
     def get_last_trip(self, bus, limit):
