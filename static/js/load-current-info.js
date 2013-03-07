@@ -116,8 +116,8 @@ $(function(){
 		$("#lat").html(lat);
 		$("#lon").html(lon);
 		$("#time").html(time);
-		$("#move").html(moved+" KMPH");
-		$("#speed").html(speed);
+		$("#move").html(moved);
+		$("#speed").html(speed+" KMPH");
 	}
 
 });
