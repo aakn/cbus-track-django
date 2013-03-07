@@ -3,7 +3,7 @@
 
 {% block scripts %}
 	<script src="/static/js/load-current-info.js"></script>
-	
+	<script src="/static/js/vendor/date.js"></script>
 	<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
 	<!-- <script src="/static/js/index-scrollbar.js"></script> -->
 	<script>
@@ -37,32 +37,32 @@
 	<div class="span6">
 		<div class="stats">
 			<div class="page-header">
-				<h2>Current Stats</h2>
+				<h2>Current State</h2>
 			</div>
 			<table class="table table-striped table-bordered table-hover">
 				<tbody>
 					<tr>
-						<td>Address</td>
+						<th>Address</th>
 						<td id="address">Some Address</td>
 					</tr>
 					<tr>
-						<td>Speed</td>
+						<th>Speed</th>
 						<td id="speed">Some Speed</td>
 					</tr>
 					<tr>
-						<td>Last Update Time</td>
+						<th>Last Update Time</th>
 						<td id="time">Some Time</td>
 					</tr>
 					<tr>
-						<td>Status</td>
+						<th>Status</th>
 						<td id="move">Some Status</td>
 					</tr>
 					<tr>
-						<td>Latitude</td>
+						<th>Latitude</th>
 						<td id="lat">Some Lat</td>
 					</tr>
 					<tr>
-						<td>Longitude</td>
+						<th>Longitude</th>
 						<td id="lon">Some Lon</td>
 					</tr>
 				</tbody>
