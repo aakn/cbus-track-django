@@ -130,7 +130,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions',
     # south is used for database migration
     'south',
     'track',
