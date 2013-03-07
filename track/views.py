@@ -12,7 +12,7 @@ def index(request):
 	return render_to_response('index.html', { 'page': 'home', 'request': request })
 
 def about(request):
-	return render_to_response('index.html', { 'page': 'home', 'request': request })
+	return render_to_response('about.html', { 'page': 'about', 'request': request })
 
 def add(request, bus, lat, lon, speed, balance, valid='A'):
 	speed = float(speed)
