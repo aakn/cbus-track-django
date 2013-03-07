@@ -3,7 +3,6 @@ from django.shortcuts import render_to_response
 from track.models import Balance, BusTravelLog, RouteDetail
 from track.convert_coordinates import convert
 import pusher, datetime
-import json, urllib2
 
 def stats(request):
 	return render_to_response('stats.html', { 'page': 'stats', 'request': request })
@@ -13,12 +12,6 @@ def index(request):
 
 def about(request):
 	return render_to_response('about.html', { 'page': 'about', 'request': request })
-
-def geocode(request, lat, lng):
-	jsondata = json.load(urllib2.urlopen('http://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&sensor=true' % (lat, lng)))
-	from django.utils import simplejson
-	jsonreturn = simplejson.dumps({'address': jsondata['results'][0]['formatted_address']})
-	return HttpResponse(jsonreturn)
 
 def add(request, bus, lat, lon, speed, balance, valid='A'):
 	speed = float(speed)

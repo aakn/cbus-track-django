@@ -31,7 +31,7 @@ class BusStop(models.Model):
 class User(models.Model):
     stop = models.ForeignKey(BusStop)
     name = models.CharField(max_length=200)
-    gcm = models.CharField(max_length=200)
+    gcm = models.CharField(max_length=200, blank=True, null=True)
 
     def __unicode__(self):
         return "%s %s" % (self.name, self.stop)
