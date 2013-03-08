@@ -12,7 +12,7 @@ class RouteDetail(models.Model):
 
 class Balance(models.Model):
     bus = models.ForeignKey(RouteDetail)
-    time = models.DateTimeField(auto_now_add = True)
+    time = models.DateTimeField(auto_now_add=True)
     balance = models.CharField(max_length=150)
 
     def __unicode__(self):

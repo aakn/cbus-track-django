@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     # south is used for database migration
     'south',
     'track',
+    'mapsapi',
     'track.templatetags',
     'admin_bootstrap',
     # Uncomment the next line to enable the admin:

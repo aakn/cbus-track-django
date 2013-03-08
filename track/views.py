@@ -40,7 +40,7 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 		'speed': speed
 	}
 
-	pusher.app_id = 'tis37147'
+	pusher.app_id = '37147'
 	pusher.key = '38c410e14df2239c04ab'
 	pusher.secret = '1d1ce5aa951f5eb5350a'
 	p = pusher.Pusher()

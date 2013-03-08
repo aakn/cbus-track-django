@@ -121,7 +121,7 @@ $(function(){
 
 	// Updates the address by getting doing a reverse geolocation
 	function update_address(lat,lon) {
-		$.getJSON("/ajax/get_address/"+lat+"/"+lon+"/", function(result){
+		$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
 			console.log(result);
 			$("#address").html(result["address"]);
 		});
