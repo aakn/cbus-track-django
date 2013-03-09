@@ -29,6 +29,8 @@ def my_calc_func(bus, limit):
 			break
 		log_list.append(curr)
 
+	return "%s %s" % (len(logs), len(log_list))
+
 	return create_json(log_list)
 
 	json = simplejson.dumps(log_list, check_circular=False)
@@ -64,8 +66,6 @@ def create_json(array_of_objects):
 			break
 
 	json_string = "[%s]" % ", ".join(json_array)
-
-	return "%s %s" % (len(array_of_objects), len(json_array))
 
 	return json_string
 
