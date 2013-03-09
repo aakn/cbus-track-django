@@ -1,0 +1,93 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+	{# All the Basic Stuff - like including CSS and a few meta tags #}
+	{% include 'track/includes/head.html' %}
+
+	<title> {% block title %} {% endblock %}</title>
+
+	{% block meta %}{% endblock %}
+	{% block css %}{% endblock %}
+	{% block head_scripts %} {% endblock %}
+</head>
+
+<body>
+	<!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+	{# Nav Bar #}
+	{% load tags %}
+
+	{% url 'track.views.index' as home %}
+	{% url 'track.views.stats' as stats %}
+	{% url 'track.views.about' as about %}
+
+	<div class="navbar navbar-static-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="{% block brand_link %}/{% endblock %}">
+					 {% block brand_name %}Tracker{% endblock %}
+				</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						{% block nav_bar_link %}
+						{# <li class="active"><a href="{% ifequal page 'home' %}#{% else %}/{% endifequal %}">Home</a></li> #}
+						<li class="{% active request home %}"><a href="{{home}}">Home</a></li>
+						<li class="{% active request stats %}"><a href="{{stats}}">Stats</a></li>
+						<li class="{% active request about %}"><a href="{{about}}">About</a></li>
+						{% endblock %}
+						{% block nav_extra_links %} {% endblock %}
+					</ul>
+					<ul class="nav pull-right">
+						{% block nav_pull_right_links %} {% endblock %}
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+
+	{# Body Container #}
+	<div class="container-fluid">
+		{# Page Header #}
+		<div class = "row-fluid">
+			{% block page_header %}
+				<div class = "{% block page_header_class %}span10 offset1{% endblock %}">
+					<div class="well well-large page-header">
+						<h1>
+							{% block page_header_title %}
+								PESIT BSC College Bus Tracking System
+							{% endblock %}
+						</h1>
+					</div>
+				</div>
+			{% endblock %}
+		</div>
+		{# Content Block #}
+		{% block content %} 
+		<div class = "row-fluid">
+			<div class = "{% block content_class %}span10 offset1{% endblock %}">
+				{% block content_inner %} {% endblock %}
+			</div>
+		</div>
+		{% endblock %}
+		{# Footer Lines and Line #}
+		<br/>
+		<br/>
+		<hr/>
+		{# Page Footer #}
+		<footer>
+			{% block footer %}
+			<p><center>College Bus Track - Beta</center></p>
+			{% endblock %}
+		</footer>
+	</div> <!-- Container end -->
+
+	{% include 'track/includes/scripts.html' %}
+	{% block scripts %}{% endblock %}
+</body>
+</html>

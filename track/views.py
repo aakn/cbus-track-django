@@ -6,14 +6,14 @@ import pusher, datetime
 
 def stats(request):
 	routes = RouteDetail.objects.all()
-	return render_to_response('stats.html', { 'page': 'stats', 'request': request, 'routes': routes, })
+	return render_to_response('track/stats.html', { 'page': 'stats', 'request': request, 'routes': routes, })
 
 def index(request):
 	routes = RouteDetail.objects.all()
-	return render_to_response('index.html', { 'page': 'home', 'request': request, 'routes': routes, })
+	return render_to_response('track/index.html', { 'page': 'home', 'request': request, 'routes': routes, })
 
 def about(request):
-	return render_to_response('about.html', { 'page': 'about', 'request': request })
+	return render_to_response('track/about.html', { 'page': 'about', 'request': request })
 
 def add(request, bus, lat, lon, speed, balance, valid='A'):
 	speed = float(speed)

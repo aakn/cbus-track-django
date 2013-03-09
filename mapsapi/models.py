@@ -16,8 +16,8 @@ class CacheManager(models.Manager):
 		return check_cache(lat, lng)
 
 class MapsAddressCache(models.Model):
-	lat = models.CharField(max_length=90)
-	lng = models.CharField(max_length=90)
+	lat = models.DecimalField(max_digits=10, decimal_places=7)
+	lng = models.DecimalField(max_digits=10, decimal_places=7)
 	time = models.DateTimeField(auto_now_add=True)
 	address = models.CharField(max_length=1000)
 	objects = CacheManager()
@@ -30,6 +30,7 @@ class MapsAddressCache(models.Model):
 		verbose_name_plural="Maps API Cache"
 		ordering = ['-time']
 		# Remember to update it in the database by using 
+		# from south.db import db
 		# db.create_index('mapsapi_mapsaddresscache', ['lat', 'lng'], unique=True)
 		index_together = [
 			["lat", "lng"],
