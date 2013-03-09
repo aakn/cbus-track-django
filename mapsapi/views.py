@@ -9,7 +9,7 @@ def get_address(request, lat, lng):
 	counter.save()
 	from django.utils import simplejson
 	jsonreturn = simplejson.dumps({'address': jsondata['results'][0]['formatted_address']})
-	return HttpResponse(jsonreturn)
+	return HttpResponse(jsonreturn, content_type="application/json")
 
 def get_time_and_distance(request, lat1, lng1, lat2, lng2):
 	jsondata = json.load(urllib2.urlopen('http://maps.googleapis.com/maps/api/directions/json?origin=%s,%s&destination=%s,%s&sensor=true' % (lat1, lng1, lat2, lng2)))
@@ -20,7 +20,7 @@ def get_time_and_distance(request, lat1, lng1, lat2, lng2):
 		'distance': jsondata['routes'][0]['legs']['distance']['text'],
 		'duration': jsondata['routes'][0]['legs']['duration']['text'],
 		})
-	return HttpResponse(jsonreturn)	
+	return HttpResponse(jsonreturn, content_type="application/json")	
 
 def get_counter(request):
 	from django.db.models import Count

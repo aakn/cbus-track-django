@@ -28,7 +28,11 @@ def my_calc_func(bus, limit):
 			break
 		log_list.append(curr)
 
-	json = simplejson.dumps(log_list, check_circular=False)
+	items = {
+		'logs': log_list,
+	}
+
+	json = simplejson.dumps(items, check_circular=False)
 	return json
 
 def my_calc_func_old(bus):
