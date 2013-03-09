@@ -60,7 +60,7 @@ def create_json(array_of_objects):
 		obj_string = "{%s}" % ", ".join(obj_array)
 		json_array.append(obj_string)
 		ct = ct+1
-		if ct == 10:
+		if ct == 3:
 			break
 
 	json_string = "[%s]" % ", ".join(json_array)
