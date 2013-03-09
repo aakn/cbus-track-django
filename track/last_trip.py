@@ -32,10 +32,10 @@ def my_calc_func(bus, limit):
 	# len2 = len(logs)
 	# return "%s %s" % (len1, len2)
 
-	json = simplejson.dumps(log_list)
-	items = simplejson.loads(json)
+	json = simplejson.dumps(log_list, sort_keys=True, indent=4 * ' ')
+	# items = simplejson.loads(json)
 
-	return len(items)
+	# return len(items)
 
 	return json
 
