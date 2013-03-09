@@ -32,7 +32,7 @@ def my_calc_func(bus, limit):
 		'logs': log_list,
 	}
 
-	json = simplejson.dumps(items, check_circular = False, indent = 4 * ' ')
+	json = simplejson.dumps(items, check_circular = False, indent = 4)
 	return json
 
 def my_calc_func_old(bus):
