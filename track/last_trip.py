@@ -51,6 +51,7 @@ def my_calc_func_old(bus):
 
 def create_json(array_of_objects):
 	json_array = []
+	ct = 0
 	for obj in array_of_objects:
 		obj_array = []
 		for key in obj.keys():
@@ -58,6 +59,9 @@ def create_json(array_of_objects):
 
 		obj_string = "{%s}" % ", ".join(obj_array)
 		json_array.append(obj_string)
+		ct = ct+1
+		if ct == 10:
+			break
 
 	json_string = "[%s]" % ", ".join(json_array)
 
