@@ -27,8 +27,10 @@ def my_calc_func(bus, limit):
 		if prev_time == "":
 			prev_time = o.time
 		elif (prev_time - o.time).seconds >= hour :
-			return (prev_time - o.time).seconds
+			# return (str(o.time),(prev_time - o.time).seconds)
 			break
+		else:
+			prev_time = o.time
 		log_list.append(curr)
 
 	# return create_json(log_list)
