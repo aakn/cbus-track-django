@@ -12,7 +12,7 @@ def my_calc_func(bus, limit):
 	else:
 		logs = BusTravelLog.objects.filter(time__startswith=time).filter(bus=bus).order_by('-time')[:limit]
 
-	len1 = len(logs)
+	# len1 = len(logs)
 	log_list = []
 	prev_time = ""
 	for o in logs:
@@ -29,10 +29,14 @@ def my_calc_func(bus, limit):
 			break
 		log_list.append(curr)
 
-	len2 = len(logs)
+	# len2 = len(logs)
 	# return "%s %s" % (len1, len2)
 
 	json = simplejson.dumps(log_list)
+	items = simplejson.loads(json)
+
+	return len(items)
+
 	return json
 
 def my_calc_func_old(bus):
