@@ -22,6 +22,11 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	if valid[-1:] == '/':
 		valid = valid[:-1]
 
+	if valid == "A":
+		valid = "YES"
+	else:
+		valid = "NO"
+
 	lat = convert(lat)
 	lon = convert(lon)
 
