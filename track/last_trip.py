@@ -33,8 +33,6 @@ def my_calc_func(bus, limit):
 			prev_time = o.time
 		log_list.append(curr)
 
-	# return create_json(log_list)
-
 	json = simplejson.dumps(log_list, check_circular=False)
 	return json
 
@@ -52,22 +50,3 @@ def my_calc_func_old(bus):
 		} 
 		for o in logs])
 	return json
-
-def create_json(array_of_objects):
-	json_array = []
-	ct = 0
-	for obj in array_of_objects:
-		obj_array = []
-		for key in obj.keys():
-			obj_array.append( "\"%s\": \"%s\"" % (key, obj[key]))
-
-		obj_string = "{%s}" % ", ".join(obj_array)
-		json_array.append(obj_string)
-		ct = ct+1
-		if ct == 10:
-			break
-
-	json_string = "[%s]" % ", ".join(json_array)
-
-	return json_string
-
