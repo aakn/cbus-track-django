@@ -5,7 +5,7 @@ class RouteDetailAdmin(admin.ModelAdmin):
     list_display = ('id', 'number')
 
 class BusTravelLogAdmin(admin.ModelAdmin):
-	list_display = ('bus', 'lat', 'lon', 'speed', 'time')
+	list_display = ('bus', 'lat', 'lon', 'speed', 'time', 'valid')
 	list_filter = ('time',)
 	date_hierarchy = 'time'
 	ordering = ('-time',)
