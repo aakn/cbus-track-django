@@ -13,6 +13,7 @@ def my_calc_func(bus, limit):
 		logs = BusTravelLog.objects.filter(time__startswith=time).filter(bus=bus).order_by('-time')[:limit]
 
 	log_list = []
+	hour = 1*60*60
 
 	prev_time = ""
 	for o in logs:
@@ -22,16 +23,15 @@ def my_calc_func(bus, limit):
 			'lon': o.lon, 
 			'time': str(o.time)[:19],
 		}
-		hour = 1*60*60;
+		
 		if prev_time == "":
 			prev_time = o.time
 		elif (prev_time - o.time).seconds >= hour :
+			return (prev_time - o.time).seconds
 			break
 		log_list.append(curr)
 
-	return "%s %s" % (len(logs), len(log_list))
-
-	return create_json(log_list)
+	# return create_json(log_list)
 
 	json = simplejson.dumps(log_list, check_circular=False)
 	return json
