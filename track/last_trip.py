@@ -30,7 +30,7 @@ def my_calc_func(bus, limit):
 		log_list.append(curr)
 
 	len2 = len(logs)
-	return "%s %s" % (len1, len2)
+	# return "%s %s" % (len1, len2)
 
 	json = simplejson.dumps(log_list)
 	return json
