@@ -18,6 +18,10 @@ class Balance(models.Model):
     def __unicode__(self):
         return "%s %s %s" % (self.bus, self.balance, self.time)
 
+    class Meta:
+        verbose_name="SIM Balance"
+        verbose_name_plural="SIM Balance"
+
 class BusStop(models.Model):
     bus = models.ForeignKey(RouteDetail)
     lat = models.CharField(max_length=90)

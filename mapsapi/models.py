@@ -1,10 +1,14 @@
 from django.db import models
 
 class MapsAPIUsageCounter(models.Model):
-    time = models.DateTimeField(auto_now_add=True)
+	time = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
-        return "%s" % ( self.time )
+	def __unicode__(self):
+		return "%s" % ( self.time )
+
+	class Meta:
+		verbose_name="Maps API Usage Counter"
+		verbose_name_plural="Maps API Usage Counter"
 
 class CacheManager(models.Manager):
 	def get_address(self, lat, lng):
@@ -20,3 +24,13 @@ class MapsAddressCache(models.Model):
 
 	def __unicode__(self):
 		return "%s %s - %s" % ( self.lat, self.lng, self.address )
+
+	class Meta:
+		verbose_name="Maps API Cache"
+		verbose_name_plural="Maps API Cache"
+		ordering = ['-time']
+		# Remember to update it in the database by using 
+		# db.create_index('mapsapi_mapsaddresscache', ['lat', 'lng'], unique=True)
+		index_together = [
+			["lat", "lng"],
+		]
