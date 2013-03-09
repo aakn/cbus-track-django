@@ -13,6 +13,7 @@ def my_calc_func(bus, limit):
 		logs = BusTravelLog.objects.filter(time__startswith=time).filter(bus=bus).order_by('-time')[:limit]
 
 	log_list = []
+
 	prev_time = ""
 	for o in logs:
 		curr = {
@@ -27,6 +28,8 @@ def my_calc_func(bus, limit):
 		elif (prev_time - o.time).seconds >= hour :
 			break
 		log_list.append(curr)
+
+	return create_json(log_list)
 
 	json = simplejson.dumps(log_list, check_circular=False)
 	return json
@@ -45,3 +48,18 @@ def my_calc_func_old(bus):
 		} 
 		for o in logs])
 	return json
+
+def create_json(array_of_objects):
+	json_array = []
+	for obj in array_of_objects:
+		obj_array = []
+		for key in obj.keys():
+			obj_array.append( "\"%s\": \"%s\"" % (key, obj[key]))
+
+		obj_string = "{%s}" % ", ".join(obj_array)
+		json_array.append(obj_string)
+
+	json_string = "[%s]" % ", ".join(json_array)
+
+	return json_string
+
