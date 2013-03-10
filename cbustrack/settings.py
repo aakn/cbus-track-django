@@ -10,8 +10,8 @@ ADMINS = (
 # Email setup
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'support@closerly.com'
-EMAIL_HOST_PASSWORD = 'booyah'
+EMAIL_HOST_USER = 'pesit.bsc.tracker@gmail.com'
+EMAIL_HOST_PASSWORD = 'aliasgar'
 EMAIL_PORT = 587
 
 MANAGERS = ADMINS
