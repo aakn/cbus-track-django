@@ -19,7 +19,6 @@ def get_time_and_distance(request, lat1, lng1, lat2, lng2):
 	return HttpResponse(jsonreturn)	
 
 def get_counter(request):
-	burp
 	from django.db.models import Count
 	count = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
 
