@@ -35,3 +35,6 @@ class MapsAddressCache(models.Model):
 		index_together = [
 			["lat", "lng"],
 		]
+		unique_together = [
+			["lat", "lng"],
+		]
