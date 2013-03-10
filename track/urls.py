@@ -8,5 +8,5 @@ urlpatterns = patterns('track.views',
 	url(r'^$', 'index', {}, name='home_url_name'),
 	url(r'^stats/$', 'stats', {}, name='stats_url_name'),
 	url(r'^about/$', 'about', {}, name='about_url_name'),
-    url(r'^add/(?P<bus>\d+)/(?P<lat>(\d*[.])?\d+([A-Za-z])?)/(?P<lon>(\d*[.])?\d+([A-Za-z])?)/(?P<speed>(\d*[.])?\d+)/(?P<balance>[\d\w\.\$]+)/(?P<valid>([A-Z]/)?)$', 'add'),
+    url(r'^add/(?P<bus>\d+)/(?P<lat>(\d*[.])?\d+([A-Za-z])?)/(?P<lon>(\d*[.])?\d+([A-Za-z])?)/(?P<speed>(\d*[.])?\d+)/(?P<valid>[A-Z]?)/(?P<balance>[\d\w\.\$]*)/$', 'add'),
 )

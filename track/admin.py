@@ -17,7 +17,7 @@ class BalanceAdmin(admin.ModelAdmin):
 	ordering = ('-time',)
 
 class BusStopAdmin(admin.ModelAdmin):
-	list_display = ('bus', 'name', 'lat', 'lon', 'address')
+	list_display = ('bus', 'name', 'lat', 'lon')
 
 class UserAdmin(admin.ModelAdmin):
 	list_display = ('name', 'stop', 'gcm')
