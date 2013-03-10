@@ -15,15 +15,13 @@ def check_cache(lat, lng):
 		address = get_address_from_maps_api(lat, lng)
 		entry = MapsAddressCache(lat=lat, lng=lng, address=address)
 		entry.save()
-		flag = "from api"
 	else:
 		address = address_arr[0].address
-		flag = "from db"
 	 
 	from django.utils import simplejson
 	address_json = simplejson.dumps({'address': address})
 
-	return flag+address_json
+	return address_json
 
 
 def get_address_from_maps_api(lat, lng):
