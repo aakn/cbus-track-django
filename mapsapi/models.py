@@ -16,8 +16,8 @@ class CacheManager(models.Manager):
 		return check_cache(lat, lng)
 
 class MapsAddressCache(models.Model):
-	lat = models.DecimalField(max_digits=10, decimal_places=7)
-	lng = models.DecimalField(max_digits=10, decimal_places=7)
+	lat = models.DecimalField(max_digits=10, decimal_places=3)
+	lng = models.DecimalField(max_digits=10, decimal_places=3)
 	time = models.DateTimeField(auto_now_add=True)
 	address = models.CharField(max_length=1000)
 	objects = CacheManager()
