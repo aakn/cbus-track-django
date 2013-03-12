@@ -33,12 +33,14 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 
 	route = RouteDetail.objects.get(pk=bus)
 	log = BusTravelLog(bus=route, lat=lat, lon=lon, speed=speed, valid=valid)
-
-	MapsAddressCache.objects.get_address(lat, lon)
-
 	log.save()
 	bal = Balance(bus=route, balance=balance)
 	bal.save()
+
+	if valid == 'NO':
+		return HttpResponse("Invalid")
+
+	address = MapsAddressCache.objects.get_address(lat, lon)
 
 	# PUSHER CODE
 	data = {
@@ -46,7 +48,8 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 		'lat': lat,
 		'lon': lon,
 		'time': str(datetime.datetime.now())[:19],
-		'speed': speed
+		'speed': speed,
+		'address': address,
 	}
 
 	pusher.app_id = '37147'
