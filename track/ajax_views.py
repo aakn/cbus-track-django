@@ -1,7 +1,7 @@
 from track.models import BusTravelLog,DailyRequestCounter
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from datetime import datetime
+import datetime
 def last_trip(request, bus = '1', limit = '0'):
 	last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	return HttpResponse(last)
