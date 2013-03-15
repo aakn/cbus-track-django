@@ -16,10 +16,10 @@ def daily_req(request):
 	from django.db.models import Count
 	count = DailyRequestCounter.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
 	#return render_to_response('dailyrequests/count.html', {'counter': count,})
-	timeset = BusTravelLog.objects.filter(bus=1).filter(.order_by('-time')[:1]
-	for item in timeset: 
-		time = item.time
-	time = time.date()
+	#timeset = BusTravelLog.objects.filter(bus=1).filter(.order_by('-time')[:1]
+	#for item in timeset: 
+	#	time = item.time
+	#time = time.date()
 	dateobj=datetime.datetime.now()
 	currdate=dateobj.date()
 	return render_to_response("The Date now is "+ str(currdate))
