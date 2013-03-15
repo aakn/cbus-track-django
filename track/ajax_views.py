@@ -20,4 +20,4 @@ def daily_req(request):
 	for item in timeset: 
 		time = item.time
 	time = time.date()
-	return render("The Time now is "+ str(time))
+	return render_to_response("The Time now is "+ str(time))
