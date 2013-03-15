@@ -23,18 +23,23 @@ def daily_req(request):
 	#count =BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
 	log = []
 	delta = datetime.timedelta(days=-1)
-	dateobj=datetime.datetime.now()
+	dateobj = datetime.datetime.now()
 
 	for i in range(5):
-		mornlowerdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
-		mornupperdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
-		evenlowerdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
-		evenupperdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)	
+		mornlowerdate = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
+		mornupperdate = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
+		evenlowerdate = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
+		evenupperdate = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
 		count1 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=mornlowerdate).filter(time__lt=mornupperdate).annotate(counter=Count('id'))
 		count2 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evenlowerdate).filter(time__lt=evenupperdate).annotate(counter=Count('id'))
 		count3 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
-		data= {'morning' : count1,'evening' : count2 , 'total' : count3}
+		data = {
+			'morning' : count1,
+			'evening' : count2,
+			'total' : count3,
+		}
 		log.append(data)
-		dateobj=dateobj+delta
-
+		dateobj = dateobj + delta
+	
+	return HttpResponse(log)
 	return render_to_response('dailyrequests/count.html', {'counter': log,})
