@@ -27,16 +27,10 @@
 				{% for count in counter %}
 				<tr>
 					{% for ctr in count %}
-					{% for ctr2 in ctr %}
-					<td>{{ctr2.date}}</td>
-					<td>{{ctr2.counter}}</td>
-					{% endfor %}
-					{% for ctr2 in ctr %}
-					<td>{{ctr.counter}}</td>
-					{% endfor %}
-					{% for ctr2 in ctr %}
-					<td>{{ctr.counter}}</td>
-					{% endfor %}
+					<td>{{ctr.date}}</td>
+					<td>{{ctr.morning.counter}}</td>
+					<td>{{ctr.evening.counter}}</td>
+					<td>{{ctr.total.counter}}</td>
 					{% endfor %}
 				</tr>
 				{% endfor %}
