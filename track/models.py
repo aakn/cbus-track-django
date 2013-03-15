@@ -4,6 +4,18 @@
 from django.db import models
 # import datetime
 
+#prash added
+class DailyRequestCounter(models.Model):
+	time = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+		return "%s" % ( self.time )
+
+	class Meta:
+		verbose_name="Daily Request Counter"
+		verbose_name_plural="Daily Request Counter"
+		
+
 class RouteDetail(models.Model):
     number = models.CharField(max_length=150)
 

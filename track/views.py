@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from track.models import Balance, BusTravelLog, RouteDetail
+from track.models import Balance, BusTravelLog, RouteDetail,DailyRequestCounter
 from mapsapi.models import MapsAddressCache
 from track.convert_coordinates import convert
 import pusher, datetime
@@ -36,7 +36,9 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	log.save()
 	bal = Balance(bus=route, balance=balance)
 	bal.save()
-
+	#prash add
+	counter = DailyRequestCounter()
+	counter.save()
 	if valid == 'NO':
 		return HttpResponse("Invalid")
 

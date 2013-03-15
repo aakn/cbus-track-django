@@ -10,6 +10,8 @@ class MapsAPIUsageCounter(models.Model):
 		verbose_name="Maps API Usage Counter"
 		verbose_name_plural="Maps API Usage Counter"
 
+
+
 class CacheManager(models.Manager):
 	def get_address(self, lat, lng):
 		from mapsapi.cache import check_cache
