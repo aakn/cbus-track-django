@@ -30,8 +30,10 @@ def daily_req(request):
 		mornupperdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
 		evenlowerdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
 		evenupperdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)	
-		count = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=mornlowerdate).filter(time__lt=mornupperdate).annotate(counter=Count('id'))
-		log_list.append(count)
+		count1 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=mornlowerdate).filter(time__lt=mornupperdate).annotate(counter=Count('id'))
+		count2 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evenlowerdate).filter(time__lt=evenupperdate).annotate(counter=Count('id'))
+		log_list.append(count1)
+		log_list.append(count2)
 		dateobj=dateobj+delta
 
 	return render_to_response('dailyrequests/count.html', {'counter': log_list,})

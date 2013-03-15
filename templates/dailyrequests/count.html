@@ -18,17 +18,29 @@
 			<thead>
 				<tr>
 					<th>Date</th>
-					<th>Count </th>
+					<th>Morning Count </th>
+					<th>Evening Count </th>
+					<th>Total Count </th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for count1 in counter %}
+				{% for mc in morningcounter %}
+				{% for ec in eveningcounter %}
+				{% for tc in totalcounter %}
 				<tr>
-					{% for count2 in count1 %}
-					<td>{{count2.date}}</td>
-					<td>{{count2.counter}}</td>
+					{% for count in mc %}
+					<td>{{count.date}}</td>
+					<td>{{count.counter}}</td>
+					{% endfor %}
+					{% for count in ec %}
+					<td>{{count.counter}}</td>
+					{% endfor %}
+					{% for count in tc %}
+					<td>{{count.counter}}</td>
 					{% endfor %}
 				</tr>
+				{% endfor %}
+				{% endfor %}
 				{% endfor %}
 			</tbody>
 		</table>
