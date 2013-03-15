@@ -27,10 +27,16 @@
 				{% for count in counter %}
 				<tr>
 					{% for ctr in count %}
-					<td>{{ctr.date}}</td>
+					{% for ctr2 in ctr %}
+					<td>{{ctr2.date}}</td>
+					<td>{{ctr2.counter}}</td>
+					{% endfor %}
+					{% for ctr2 in ctr %}
 					<td>{{ctr.counter}}</td>
+					{% endfor %}
+					{% for ctr2 in ctr %}
 					<td>{{ctr.counter}}</td>
-					<td>{{ctr.counter}}</td>
+					{% endfor %}
 					{% endfor %}
 				</tr>
 				{% endfor %}
