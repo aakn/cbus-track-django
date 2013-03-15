@@ -22,5 +22,4 @@ def daily_req(request):
 	#time = time.date()
 	dateobj=datetime.datetime.now()
 	currdate=dateobj.date()
-	starttime=
 	return render_to_response("The Date now is "+ str(currdate))
