@@ -24,7 +24,7 @@ def daily_req(request):
 	dateobj=datetime.datetime.now()
 	currdate=dateobj.date()
 	t=datetime.time(07,00)
-	finaldate=datetime.combine(currdate,t)
+	finaldate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,07,00)
 	count = BusTravelLog.objects.filter(time__gt=finaldate)
 	#return render_to_response("The Date now is "+ str(currdate))
 	return render_to_response('dailyrequests/count.html', {'counter': count,})
