@@ -1,4 +1,4 @@
-from track.models import BusTravelLog,DailyRequestCounter
+from track.models import BusTravelLog
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 import datetime
@@ -14,7 +14,7 @@ def daily_req(request):
 	#last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	#return HttpResponse("%s" % last)
 	from django.db.models import Count
-	count = DailyRequestCounter.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
+	#count = DailyRequestCounter.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
 	#return render_to_response('dailyrequests/count.html', {'counter': count,})
 	#timeset = BusTravelLog.objects.filter(bus=1).filter(.order_by('-time')[:1]
 	#for item in timeset: 
@@ -22,4 +22,5 @@ def daily_req(request):
 	#time = time.date()
 	dateobj=datetime.datetime.now()
 	currdate=dateobj.date()
+	starttime=
 	return render_to_response("The Date now is "+ str(currdate))
