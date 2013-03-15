@@ -24,8 +24,8 @@ def daily_req(request):
 	dateobj=datetime.datetime.now()
 	currdate=dateobj.date()
 	t=datetime.time(07,00)
-	lowerdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
-	upperdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
+	lowerdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day-2,05,00)
+	upperdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day-2,9,00)
 
 	count = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=lowerdate).filter(time__lt=upperdate).annotate(counter=Count('id'))
 	#return render_to_response("The Date now is "+ str(currdate))
