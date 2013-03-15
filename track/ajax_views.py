@@ -23,6 +23,7 @@ def daily_req(request):
 	#count =BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
     dateobj=datetime.datetime.now()
     currdate=dateobj.date()
+    
 	count = BusTravelLog.objects.filter(time__startswith=currdate)
 	#return render_to_response("The Date now is "+ str(currdate))
 	return render_to_response('dailyrequests/count.html', {'counter': count,})
