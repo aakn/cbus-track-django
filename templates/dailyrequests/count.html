@@ -24,23 +24,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for mc in morningcounter %}
-				{% for ec in eveningcounter %}
-				{% for tc in totalcounter %}
+				{% for count in counter %}
 				<tr>
-					{% for count in mc %}
-					<td>{{count.date}}</td>
-					<td>{{count.counter}}</td>
-					{% endfor %}
-					{% for count in ec %}
-					<td>{{count.counter}}</td>
-					{% endfor %}
-					{% for count in tc %}
-					<td>{{count.counter}}</td>
+					{% for ctr in count %}
+					<td>{{ctr.morning.date}}</td>
+					<td>{{ctr.morning.count}}</td>
+					<td>{{ctr.evening.count}}</td>
+					<td>{{ctr.total.count}}</td>
 					{% endfor %}
 				</tr>
-				{% endfor %}
-				{% endfor %}
 				{% endfor %}
 			</tbody>
 		</table>
