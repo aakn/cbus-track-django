@@ -21,4 +21,4 @@ def daily_req(request):
 		time = item.time
 	time = time.date()
 	date=datetime.date()
-	return render_to_response("The Date  now is "+ str(date))
+	return render_to_response(" The Date now is "+ str(date))
