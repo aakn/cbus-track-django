@@ -34,6 +34,7 @@ def daily_req(request):
 		count2 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evenlowerdate).filter(time__lt=evenupperdate).annotate(counter=Count('id'))
 		count3 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
 		data.morning=count1
+		
 		data.evening=count2
 		data.total=count3
 		log.append(data)
