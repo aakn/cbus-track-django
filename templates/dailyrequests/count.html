@@ -24,8 +24,10 @@
 			<tbody>
 				{% for count1 in counter %}
 				<tr>
-					<td>{{count1[0].date}}</td>
-					<td>{{count1[0].counter}}</td>
+					{% for count2 in count1 %}
+					<td>{{count2.date}}</td>
+					<td>{{count2.counter}}</td>
+					{% endfor %}
 				</tr>
 				{% endfor %}
 			</tbody>
