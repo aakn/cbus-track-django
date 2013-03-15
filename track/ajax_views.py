@@ -26,20 +26,32 @@ def daily_req(request):
 	dateobj = datetime.datetime.now()
 
 	for i in range(5):
-		mornlowerdate = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
-		mornupperdate = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
-		evenlowerdate = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
-		evenupperdate = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
-		count1 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=mornlowerdate).filter(time__lt=mornupperdate).annotate(counter=Count('id'))
-		count2 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evenlowerdate).filter(time__lt=evenupperdate).annotate(counter=Count('id'))
-		count3 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
+		morning_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
+		morning_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
+		evening_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
+		evening_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
+
+		morning_query = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).annotate(counter=Count('id'))
+		evening_query = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).annotate(counter=Count('id'))
+
+		if(len(morning_query) > 0):
+			morning_count = morning_query[0]['counter']
+		else:
+			morning_count = 0
+
+		if(len(evening_query) > 0):
+			evening_count = evening_query[0]["counter"]
+		else:
+			evening_count = 0
+
+		total_count = morning_count+ evening_count
 		data = {
-			'morning' : count1,
-			'evening' : count2,
-			'total' : count3,
+			'date' : str(evening_upper_threshold.date()),
+			'morning' : morning_count,
+			'evening' : evening_count,
+			'total' : total_count,
 		}
 		log.append(data)
 		dateobj = dateobj + delta
 	
-	return HttpResponse(log)
 	return render_to_response('dailyrequests/count.html', {'counter': log,})

@@ -26,9 +26,10 @@
 			<tbody>
 				{% for count in counter %}
 				<tr>
-					{% for item in count %}
-					<td>{{item.counter}}</td>
-					{%endfor%}
+					<td> {{count.date}}</td>
+					<td> {{count.morning}}</td>
+					<td> {{count.evening}}</td>
+					<td> {{count.total}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
