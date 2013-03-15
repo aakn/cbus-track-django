@@ -23,9 +23,9 @@ def daily_req(request):
 	#count =BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))
 	log_list = []
 	delta = datetime.timedelta(days=-1)
+	dateobj=datetime.datetime.now()
 
 	for i in range(5):
-		dateobj=datetime.datetime.now()
 		mornlowerdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
 		mornupperdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
 		evenlowerdate=datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
