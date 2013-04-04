@@ -9,4 +9,5 @@ urlpatterns = patterns('track.views',
 	url(r'^stats/$', 'stats', {}, name='stats_url_name'),
 	url(r'^about/$', 'about', {}, name='about_url_name'),
     url(r'^add/(?P<bus>\d+)/(?P<lat>(\d*[.])?\d+([A-Za-z])?)/(?P<lon>(\d*[.])?\d+([A-Za-z])?)/(?P<speed>(\d*[.])?\d+)/(?P<valid>[A-Z]?)/(?P<balance>[\d\w\.\$% ]*)/$', 'add'),
+    url(r'^dailyreq/$', 'daily_req'),
 )
