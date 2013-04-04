@@ -141,7 +141,7 @@ $(function(){
 		$(".stats-table-body").html(to_append+$(".stats-table-body").html());
 	}
 
-	function update_route(new_id) {
+	window.update_route =function(new_id) {
 		bus_id = new_id;
 		get_some_default_values();
 		google.maps.event.addDomListener(window, 'load', initialize);

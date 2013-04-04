@@ -52,33 +52,40 @@ $(function(){
 		marker.setPosition(pos);
 	}
 	
-	$.ajax({
-		async: false,
-		dataType: "json",
-		url: "/ajax/last_trip/"+bus_id,
-		success: function(data) {
-			console.log("Data from the Previous coordinates...");
+	
+	function get_some_default_values() {
+		// Fills the table during the first run.
+		//Gets around 50 last values from the table.
+		$.ajax({
+			async: false,
+			dataType: "json",
+			url: "/ajax/last_trip/"+bus_id,
+			success: function(data) {
+				console.log("Data from the Previous coordinates...");
 
-			data = data.reverse();
-			console.log(data); 
-			var speed, time, lat, lon;
-			$.each(data, function(key,value) {
-				var pos = new google.maps.LatLng(value.lat,value.lon);
-				coord_array[i++] = pos;
+				data = data.reverse();
+				console.log(data); 
 
-				var data=value;
+				$.each(data, function(key,value) {
+					var pos = new google.maps.LatLng(value.lat,value.lon);
+					coord_array[i++] = pos;
 
-				lat = data.lat;
-				lon = data.lon;
-				speed = data.speed;
-				time = data.time;
-			});	
-			update_table(lat,lon,time,"Last Trip",speed);
-			update_address(lat,lon);
-			console.log(coord_array); 
-		}
-	});
+					var data=value;
 
+					lat = data.lat;
+					lon = data.lon;
+					speed = data.speed;
+					time = data.time;
+
+					append_table(lat,lon,time,"last-trip",speed);
+
+				});	
+				console.log(coord_array); 
+			}
+		});
+	}
+
+	get_some_default_values();
 	console.log("after the synchronous ajax call...");
 	google.maps.event.addDomListener(window, 'load', initialize);
 	
@@ -139,4 +146,9 @@ $(function(){
 		$("#speed").html(speed+" KMPH");
 	}
 
+	window.update_route =function(new_id) {
+		bus_id = new_id;
+		get_some_default_values();
+		google.maps.event.addDomListener(window, 'load', initialize);
+	}
 });
