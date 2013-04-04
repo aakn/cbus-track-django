@@ -53,36 +53,39 @@ $(function(){
 		marker.setPosition(pos);
 	}
 	
-	// Fills the table during the first run.
-	//Gets around 50 last values from the table.
-	$.ajax({
-		async: false,
-		dataType: "json",
-		url: "/ajax/last_trip/"+bus_id,
-		success: function(data) {
-			console.log("Data from the Previous coordinates...");
+	function get_some_default_values() {
+		// Fills the table during the first run.
+		//Gets around 50 last values from the table.
+		$.ajax({
+			async: false,
+			dataType: "json",
+			url: "/ajax/last_trip/"+bus_id,
+			success: function(data) {
+				console.log("Data from the Previous coordinates...");
 
-			data = data.reverse();
-			console.log(data); 
+				data = data.reverse();
+				console.log(data); 
 
-			$.each(data, function(key,value) {
-				var pos = new google.maps.LatLng(value.lat,value.lon);
-				coord_array[i++] = pos;
+				$.each(data, function(key,value) {
+					var pos = new google.maps.LatLng(value.lat,value.lon);
+					coord_array[i++] = pos;
 
-				var data=value;
+					var data=value;
 
-				lat = data.lat;
-				lon = data.lon;
-				speed = data.speed;
-				time = data.time;
+					lat = data.lat;
+					lon = data.lon;
+					speed = data.speed;
+					time = data.time;
 
-				append_table(lat,lon,time,"last-trip",speed);
+					append_table(lat,lon,time,"last-trip",speed);
 
-			});	
-			console.log(coord_array); 
-		}
-	});
+				});	
+				console.log(coord_array); 
+			}
+		});
+	}
 
+	get_some_default_values();
 	console.log("after the synchronous ajax call...");
 	google.maps.event.addDomListener(window, 'load', initialize);
 	
@@ -136,6 +139,12 @@ $(function(){
 		var to_append = "<tr><td>"+lat+"</td><td>"+lon+"</td><td>"+time+"</td><td>"+speed+"</td><td>"+mv+"</td></tr>";
 
 		$(".stats-table-body").html(to_append+$(".stats-table-body").html());
+	}
+
+	function update_route(new_id) {
+		bus_id = new_id;
+		get_some_default_values();
+		google.maps.event.addDomListener(window, 'load', initialize);
 	}
 
 });

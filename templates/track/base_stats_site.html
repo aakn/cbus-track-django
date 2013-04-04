@@ -9,7 +9,7 @@
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Route<b class="caret"></b></a>
 	<ul class="dropdown-menu" id="route-list">
 		{% for route in routes %}
-		<li><a onclick='route_changed(this.id);' id='{{route.id}}' href="#">{{route.number}}</a></li>
+		<li><a onclick='update_route(this.id);' id='{{route.id}}' href="#">{{route.number}}</a></li>
 		{% endfor %}
 	</ul>
 </li>
