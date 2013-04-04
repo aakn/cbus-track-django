@@ -67,7 +67,7 @@ $(function(){
 				console.log(data); 
 
 				$(".stats-table-body").html("");
-				coord_array = new Array();
+				coord_array = [];
 
 				$.each(data, function(key,value) {
 					var pos = new google.maps.LatLng(value.lat,value.lon);
