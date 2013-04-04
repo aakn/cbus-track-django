@@ -154,4 +154,4 @@ def daily_req(request):
 		log.append(data)
 		dateobj = dateobj + delta
 	
-	return render_to_response('track/daily-count.html', {'counter': log, 'request':request,})
+	return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
