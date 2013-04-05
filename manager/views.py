@@ -12,7 +12,8 @@ def show_stats(request):
 	#count = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id')).order_by('-id')[:5]
 
 	#return render_to_response('manager/count.html', {'counter': count,})
-	log = []
+	log_bus_1 = []
+	log_bus_2 = []
 	log_maps =[]
 	delta = datetime.timedelta(days=-1)
 	dateobj = datetime.datetime.now()
