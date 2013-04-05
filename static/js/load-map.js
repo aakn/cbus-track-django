@@ -53,6 +53,7 @@ $(function(){
 		marker.setPosition(pos);
 	}
 	
+	
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
@@ -81,7 +82,7 @@ $(function(){
 					speed = data.speed;
 					time = data.time;
 
-					append_table(lat,lon,time,"last-trip",speed);
+					update_table(lat,lon,time,"last-trip",speed);
 
 				});	
 				console.log(coord_array); 
@@ -120,32 +121,17 @@ $(function(){
 		
 
 		if( lat == oldlat && lon == oldlon ) 
-			append_table(lat,lon,time,"not-moved",speed);
+			update_table(lat,lon,time,"not-moved",speed);
 		else {
 			var pos = new google.maps.LatLng(lat,lon);
 			coord_array[i] = pos;
 			setMarker(pos);
 			i++;
-			append_table(lat,lon,time,"moved",speed);
+			update_table(lat,lon,time,"moved",speed);
 		}
 	}	
 
-	// Adds some data to the table
-	function append_table(lat,lon,time,moved,speed) {
-		var mv = "<p style='color: red;'>Not Moved</p>";
-
-		if(moved == "moved") 
-			mv = "<p style='color: green;'>Moved</p>";
-		else if(moved == "last-trip") 
-			mv = "<p style='color: orange;'>Last trip</p>";
-
-
-		var to_append = "<tr><td>"+lat+"</td><td>"+lon+"</td><td>"+time+"</td><td>"+speed+"</td><td>"+mv+"</td></tr>";
-
-		$(".stats-table-body").html(to_append+$(".stats-table-body").html());
-	}
-
-	window.update_route =function(new_id) {
+	window.update_route = function(new_id) {
 		bus_id = new_id;
 		get_some_default_values();
 		google.maps.event.addDomListener(window, 'load', initialize);
