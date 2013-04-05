@@ -9,7 +9,7 @@ import pusher, datetime
 
 def show_stats(request):
 	from django.db.models import Count
-	count = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id'))[:5]
+	count = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id')).order_by('-id')[:5]
 
 	#return render_to_response('manager/count.html', {'counter': count,})
 	log = []
