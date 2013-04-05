@@ -14,6 +14,4 @@ $(function(){
 
 		$(".stats-table-body").html(to_append+$(".stats-table-body").html());
 	}
-
-
 });
