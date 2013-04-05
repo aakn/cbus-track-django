@@ -24,11 +24,11 @@ def show_stats(request):
 		evening_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
 		evening_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
 
-		bus_1_name=RouteDetail.objects.filter(id=1)
+		bus_1_name=RouteDetail.objects.get(pk=1)
 		morning_query_bus_1 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).annotate(counter=Count('id')).filter(bus_id=1)
 		evening_query_bus_1 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).annotate(counter=Count('id')).filter(bus_id=1)
 
-		bus_2_name=RouteDetail.objects.filter(id=2)
+		bus_2_name=RouteDetail.objects.get(pk=2)
 		morning_query_bus_2 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).annotate(counter=Count('id')).filter(bus_id=2)
 		evening_query_bus_2 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).annotate(counter=Count('id')).filter(bus_id=2)
 		
