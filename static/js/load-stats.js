@@ -12,7 +12,6 @@ $(function(){
 		else if(moved == "last-trip") 
 			mv = "<p style='color: orange;'>Last trip</p>";
 
-
 		var to_append = "<tr><td>"+lat+"</td><td>"+lon+"</td><td>"+time+"</td><td>"+speed+"</td><td>"+mv+"</td></tr>";
 
 		$(".stats-table-body").html(to_append+$(".stats-table-body").html());
