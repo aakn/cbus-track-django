@@ -52,7 +52,7 @@ def show_stats(request):
 		}
 		log_bus_1.append(data)
 
-				if(len(morning_query_bus_2) > 0):
+		if(len(morning_query_bus_2) > 0):
 			morning_count_bus_2 = morning_query_bus_2[0]['counter']
 		else:
 			morning_count_bus_2 = 0
