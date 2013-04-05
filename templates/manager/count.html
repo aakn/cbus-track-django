@@ -36,19 +36,23 @@
 		<h2>Daily Maps Usage</h2>
 		<table class="table table-bordered table-striped">
 			<thead>
-				<tr>
-					<th>Date</th>
-					<th>Count</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for count in counter2 %}
-				<tr>
-					<td>{{count.date}}</td>
-					<td>{{count.counter}}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
+					<tr>
+						<th>Date</th>
+						<th>Morning Count </th>
+						<th>Evening Count </th>
+						<th>Total Count </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for count in counter2 %}
+					<tr>
+						<td> {{count.date}}</td>
+						<td> {{count.morning}}</td>
+						<td> {{count.evening}}</td>
+						<td> {{count.total}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
 		</table>
 	</div>
 </div>
