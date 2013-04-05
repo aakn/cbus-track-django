@@ -37,7 +37,8 @@ def show_stats(request):
 
 		total_count = morning_count+ evening_count
 		data = {
-			'date' : str(evening_upper_threshold.date()),
+			#'date' : str(evening_upper_threshold.date()),
+			'date' : morning_query.date,
 			'morning' : morning_count,
 			'evening' : evening_count,
 			'total' : total_count,
