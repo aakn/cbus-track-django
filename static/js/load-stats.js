@@ -1,7 +1,10 @@
 $(function(){
 
+	// Just a placeholder function
+	window.update_table = function() {}
+
 	// Adds some data to the table
-	window.update_table = function(lat,lon,time,moved,speed) {
+	window.append_table = function(lat,lon,time,moved,speed) {
 		var mv = "<p style='color: red;'>Not Moved</p>";
 
 		if(moved == "moved") 

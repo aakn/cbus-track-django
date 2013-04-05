@@ -1,5 +1,8 @@
 $(function(){
 
+		// Just a placeholder function
+	window.append_table = function() {}
+
 	// Adds some data to the table
 	window.update_table = function(lat,lon,time,moved,speed) {
 		update_address(lat,lon);
