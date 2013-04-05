@@ -42,4 +42,4 @@ def show_stats(request):
 		dateobj = dateobj + delta
 	
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
-	return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
+	return render_to_response('manager/count.html', {'counter': log, 'request':request,'counter2' : count})
