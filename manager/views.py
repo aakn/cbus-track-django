@@ -24,9 +24,11 @@ def show_stats(request):
 		evening_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
 		evening_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
 
+		bus_1_name=RouteDetail.objects.filter(id=1)
 		morning_query_bus_1 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).annotate(counter=Count('id')).filter(bus_id=1)
 		evening_query_bus_1 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).annotate(counter=Count('id')).filter(bus_id=1)
 
+		bus_2_name=RouteDetail.objects.filter(id=2)
 		morning_query_bus_2 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).annotate(counter=Count('id')).filter(bus_id=2)
 		evening_query_bus_2 = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).annotate(counter=Count('id')).filter(bus_id=2)
 		
@@ -50,6 +52,7 @@ def show_stats(request):
 			'evening' : evening_count_bus_1,
 			'total' : total_count_bus_1,
 		}
+
 		log_bus_1.append(data)
 
 		if(len(morning_query_bus_2) > 0):
@@ -92,4 +95,4 @@ def show_stats(request):
 		dateobj = dateobj + delta
 	
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
-	return render_to_response('manager/count.html', {'counter_bus_1': log_bus_1,'counter_bus_2': log_bus_2, 'request':request,'counter2' : log_maps})
+	return render_to_response('manager/count.html', {'bus1name' : bus_1_name ,'counter_bus_1': log_bus_1,'bus2name' : bus_2_name ,'counter_bus_2': log_bus_2, 'request':request,'counter2' : log_maps})
