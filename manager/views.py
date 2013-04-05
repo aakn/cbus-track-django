@@ -46,7 +46,6 @@ def show_stats(request):
 			'total' : total_count,
 		}
 		log.append(data)
-		dateobj = dateobj + delta
 
 		if(len(morning_maps_query) > 0):
 			morning_maps_count = morning_maps_query[0]['counter']
