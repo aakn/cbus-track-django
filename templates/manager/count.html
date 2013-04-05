@@ -20,7 +20,27 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for count in counter %}
+					{% for count in counter_bus_1 %}
+					<tr>
+						<td> {{count.date}}</td>
+						<td> {{count.morning}}</td>
+						<td> {{count.evening}}</td>
+						<td> {{count.total}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Morning Count </th>
+						<th>Evening Count </th>
+						<th>Total Count </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for count in counter_bus_2 %}
 					<tr>
 						<td> {{count.date}}</td>
 						<td> {{count.morning}}</td>
