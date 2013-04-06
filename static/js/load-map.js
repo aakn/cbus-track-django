@@ -135,7 +135,8 @@ $(function(){
 	window.update_route = function(new_id) {
 		bus_id = new_id;
 		get_some_default_values();
-		google.maps.event.addDomListener(window, 'load', initialize);
+		//google.maps.event.addDomListener(window, 'load', initialize);
+		initialize();
 	}
 
 });
