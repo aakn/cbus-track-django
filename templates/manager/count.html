@@ -11,7 +11,7 @@
 				<h2>Daily Requests Counter</h2>
 			</div>
 			{% for count in buslog %} 
-			<!--	<p>BUS : {{ctr.name}}</p> -->
+				<p>BUS : {{count.name}}</p> 
 					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
@@ -23,7 +23,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% for ctr in count %}
+							{% for ctr in count.buslog %}
 								<tr>
 									<td> {{ctr.name}}</td>
 									<td> {{ctr.date}}</td>
