@@ -20,7 +20,7 @@ def show_stats(request):
 
 	num_of_buses=RouteDetail.objects.count()
 
-	#for ctr in range(1,num_of_buses+1):
+	for ctr in range(1,num_of_buses):
 
 		dateobj = datetime.datetime.now()
 		for i in range(5):
