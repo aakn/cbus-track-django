@@ -87,7 +87,6 @@ def show_stats(request):
 			'evening' : evening_maps_count,
 			'total' : total_maps_count,
 		}
-		test=str(evening_upper_threshold.strftime("%B %d, %Y"))
 		log_maps.append(data_maps)
 		dateobj = dateobj + delta
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
