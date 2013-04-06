@@ -91,4 +91,4 @@ def show_stats(request):
 		log_maps.append(data_maps)
 		dateobj = dateobj + delta
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
-	return render_to_response('manager/count.html', {'testvar' : test,'mapslog' : log_maps ,'buslog': log_per_bus, 'request':request,})
+	return render_to_response('manager/count.html', {'mapslog' : log_maps ,'buslog': log_per_bus, 'request':request,})
