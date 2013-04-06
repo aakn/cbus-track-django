@@ -61,6 +61,34 @@ def show_stats(request):
 		}
 		log_per_bus.append(final_log)
 
-	
+	# maps api code
+	dateobj = datetime.datetime.now()
+	for i in range(5):
+		morning_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
+		morning_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
+		evening_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
+		evening_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
+		morning_maps_query = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).annotate(counter=Count('id')).order_by('-id')[:5]
+		evening_maps_query = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).annotate(counter=Count('id')).order_by('-id')[:5]
+		if(len(morning_maps_query) > 0):
+			morning_maps_count = morning_maps_query[0]['counter']
+		else:
+			morning_maps_count = 0
+
+		if(len(evening_maps_query) > 0):
+			evening_maps_count = evening_maps_query[0]["counter"]
+		else:
+			evening_maps_count = 0
+
+		total_maps_count = morning_maps_count+ evening_maps_count
+		data_maps = {
+			'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
+			'morning' : morning_maps_count,
+			'evening' : evening_maps_count,
+			'total' : total_maps_count,
+		}
+		test=str(evening_upper_threshold.strftime("%B %d, %Y"))
+		log_maps.append(data_maps)
+		dateobj = dateobj + delta
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
-	return render_to_response('manager/count.html', {'busnum' : num_of_buses ,'buslog': log_per_bus, 'request':request,})
+	return render_to_response('manager/count.html', {'testvar' : test,'mapslog' : log_maps ,'buslog': log_per_bus, 'request':request,})
