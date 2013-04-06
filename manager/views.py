@@ -20,7 +20,7 @@ def show_stats(request):
 
 	num_of_buses=RouteDetail.objects.count()
 
-	for ctr in range(1,num_of_buses):
+	for ctr in range(1,num_of_buses+1):
 
 		dateobj = datetime.datetime.now()
 		for i in range(5):
@@ -57,4 +57,4 @@ def show_stats(request):
 
 	
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
-	return render_to_response('manager/count.html', {'busnum' : num_of_buses ,'buslog': log_per_bus, 'request':request,})
+	return render_to_response('manager/count.html', {'busnum' : num_of_buses ,'buslog': log_per_day, 'request':request,})
