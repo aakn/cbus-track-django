@@ -52,7 +52,7 @@ def show_stats(request):
 				'total' : total_count,
 			}
 			dateobj = dateobj + delta
-			log_per_bus.append(data)
+			log_per_day.append(data)
 		log.append(log_per_bus)
 
 	
