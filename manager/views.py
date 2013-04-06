@@ -16,12 +16,13 @@ def show_stats(request):
 	log_per_bus=[]
 	log_maps =[]
 	delta = datetime.timedelta(days=-1)
-	dateobj = datetime.datetime.now()
+	
 
 	num_of_buses=RouteDetail.objects.count()
 
 	for ctr in range(1,num_of_buses+1):
 
+		dateobj = datetime.datetime.now()
 		for i in range(5):
 			morning_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
 			morning_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
