@@ -20,7 +20,7 @@ def show_stats(request):
 
 	num_of_buses=RouteDetail.objects.count()
 
-	for ctr in range(num_of_buses):
+	for ctr in range(1,num_of_buses+1):
 
 		for i in range(5):
 			morning_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
