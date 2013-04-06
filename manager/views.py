@@ -57,4 +57,4 @@ def show_stats(request):
 
 	
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
-	return render_to_response('manager/count.html', {'busnum' : num_of_buses ,'buslog': log_per_day, 'request':request,})
+	return render_to_response('manager/count.html', {'busnum' : num_of_buses ,'buslog': log_per_bus, 'request':request,})
