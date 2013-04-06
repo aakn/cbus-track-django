@@ -52,8 +52,8 @@ def show_stats(request):
 				'total' : total_count,
 			}
 			dateobj = dateobj + delta
-			log_per_day.append(data)
-		log_per_bus.append(log_per_day)
+		log_per_day.append(data)
+	log_per_bus.append(log_per_day)
 
 	
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
