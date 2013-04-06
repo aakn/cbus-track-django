@@ -23,6 +23,7 @@ def show_stats(request):
 	for ctr in range(1,num_of_buses+1):
 
 		dateobj = datetime.datetime.now()
+		log_per_day = []
 		for i in range(5):
 			morning_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
 			morning_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
@@ -57,4 +58,5 @@ def show_stats(request):
 
 	
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
-	return render_to_response('manager/count.html', {'busnum' : num_of_buses ,'buslog': log_per_bus, 'request':request,})
+	return render_to_response('manager/count.html', {'busnum' : num_of_buses ,'buslog': log_per_bus
+		][, 'request':request,})
