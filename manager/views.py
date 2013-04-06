@@ -55,7 +55,7 @@ def show_stats(request):
 			dateobj = dateobj + delta
 			log_per_day.append(data)
 		finallog = {
-				'buslogger' : log_per_day
+				'buslogger' : log_per_day ,
 				'name' : str(bus_name.number)
 
 		}
