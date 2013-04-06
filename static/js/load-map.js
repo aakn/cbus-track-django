@@ -1,6 +1,6 @@
 $(function(){
 
-	var bus_id = 1;
+	var bus_id = 2;
 
 	var lat,lon;
 	var map,marker,currentCenter,currentPath;
