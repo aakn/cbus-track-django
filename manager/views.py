@@ -12,9 +12,9 @@ def show_stats(request):
 	#count = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').annotate(counter=Count('id')).order_by('-id')[:5]
 
 	#return render_to_response('manager/count.html', {'counter': count,})
-	log= []
-	log_per_bus=[]
-	log_maps =[]
+	log_per_day = []
+	log_per_bus = []
+	log_maps = []
 	delta = datetime.timedelta(days=-1)
 	
 
@@ -53,8 +53,8 @@ def show_stats(request):
 			}
 			dateobj = dateobj + delta
 			log_per_day.append(data)
-		log.append(log_per_bus)
+		log_per_bus.append(log_per_day)
 
 	
 	#return render_to_response('track/daily_count.html', {'counter': log, 'request':request,})
-	return render_to_response('manager/count.html', {'buslog': log, 'request':request,})
+	return render_to_response('manager/count.html', {'buslog': log_per_bus, 'request':request,})
