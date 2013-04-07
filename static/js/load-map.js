@@ -137,12 +137,18 @@ $(function(){
 		else
 		{
 			alert("BUS ID="+bus_id);
+			$.ajaxSetup({
+				async: false
+			});
 			$.getJSON('/ajax/list_of_routes', function(data) {
 		 
 			  $.each(data, function(key, val) {
 			  if(val.id==bus_id)
 			  	bus_number=val.route_number;
 			  });
+			});
+			$.ajaxSetup({
+				async: true
 			});
 			//alert("BUS NUMBER"+bus_number);
 			$.ajax({
