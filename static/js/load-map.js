@@ -112,7 +112,7 @@ $(function(){
 					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
 					coord_array[i++] = pos;
 					temp=JSON.parse(value.status);
-					alert("key="+key+"value="+temp[0])
+					alert("key="+key+"value="+temp[0].lat)
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
