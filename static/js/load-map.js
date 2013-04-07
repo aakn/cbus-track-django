@@ -185,7 +185,7 @@ $(function(){
 					speed = data.speed;
 					time = data.time;
 
-					append_table(lat,lon,time,"last-trip",speed);
+					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
 				update_table(lat,lon,time,"last-trip",speed);
