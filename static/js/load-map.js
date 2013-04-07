@@ -41,6 +41,7 @@ $(function(){
 				animation:google.maps.Animation.BOUNCE,
 				title : msg_array[ctr]
 			});
+				alert(msg_array[ctr]);
 			marker.setMap(map);	
 			}
 			
