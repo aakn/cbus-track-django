@@ -243,6 +243,8 @@ $(function(){
 		{
 			$('.stats').hide();
 			$('.allstats').show();			
+			$('#allstatsbody').html("");
+
 		}
 		else
 		{
