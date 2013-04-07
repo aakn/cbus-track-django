@@ -1,7 +1,7 @@
 $(function(){
 
 	var bus_id = 0;
-
+	var bus_number;
 	var lat,lon;
 	var map,marker,currentCenter,currentPath;
 
@@ -134,7 +134,15 @@ $(function(){
 			}	
 			else
 		{
-					$.ajax({
+			$.getJSON('/ajax/list_all_routes', function(data) {
+		 
+			  $.each(data, function(key, val) {
+			  if(val.id==bus_id)
+			  	bus_number=val.route_number;
+			  });
+			});
+			alert("BUS NUMBER"+bus_number);
+			$.ajax({
 			async: false,
 			dataType: "json",
 			url: "/ajax/last_trip/"+bus_id,
