@@ -142,7 +142,7 @@ $(function(){
 			  	bus_number=val.route_number;
 			  });
 			});
-			alert("BUS NUMBER"+bus_number);
+			//alert("BUS NUMBER"+bus_number);
 			$.ajax({
 			async: false,
 			dataType: "json",
