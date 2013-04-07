@@ -238,7 +238,7 @@ $(function(){
 						$.getJSON('/ajax/list_of_routes', function(data) {
 					 
 						  $.each(data, function(key, val) {
-						  if(val.id==bus_id)
+						  if(val.id==data.bus_id)
 						  	{
 							  	//bus_number=val.route_number;
 							  	alert("inhere");
