@@ -23,29 +23,64 @@ $(function(){
 	// Initialization Code for Google Maps
 	function initialize()
 	{
-		currentCenter = coord_array[i-1];
-		var mapProp = {
-			center: currentCenter,
-			zoom:15,
-			mapTypeId:google.maps.MapTypeId.ROADMAP
-		};
-		map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+		if(bus_id==0)
+		{
+			//currentCenter = coord_array[i-1];
+			var mapProp = {
+				//center: currentCenter,
+				zoom:15,
+				mapTypeId:google.maps.MapTypeId.ROADMAP
+			};
+			map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+			for(var ctr=0;ctr<i;ctr++)
+			{
+				marker=new google.maps.Marker({
+				position: coord_array[ctr],
+				animation:google.maps.Animation.BOUNCE
+			});
+			marker.setMap(map);	
+			}
+			
 
-		marker=new google.maps.Marker({
-			position: currentCenter,
-			animation:google.maps.Animation.BOUNCE
-		});
-		marker.setMap(map);
+			/*currentPath=new google.maps.Polyline({
+				path:coord_array,
+				strokeColor:"#0000FF",
+				strokeOpacity:0.8,
+				strokeWeight:2
+			});
 
-		currentPath=new google.maps.Polyline({
-			path:coord_array,
-			strokeColor:"#0000FF",
-			strokeOpacity:0.8,
-			strokeWeight:2
-		});
+			currentPath.setMap(map);*/
+			done_loading();
 
-		currentPath.setMap(map);
-		done_loading();
+		}
+		else
+		{
+			currentCenter = coord_array[i-1];
+			var mapProp = {
+				center: currentCenter,
+				zoom:15,
+				mapTypeId:google.maps.MapTypeId.ROADMAP
+			};
+			map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+			marker=new google.maps.Marker({
+				position: currentCenter,
+				animation:google.maps.Animation.BOUNCE
+			});
+			marker.setMap(map);
+
+			currentPath=new google.maps.Polyline({
+				path:coord_array,
+				strokeColor:"#0000FF",
+				strokeOpacity:0.8,
+				strokeWeight:2
+			});
+
+			currentPath.setMap(map);
+			done_loading();
+
+		}
+
 	}
 	function setMarker(pos) {
 		currentPath.setPath(coord_array);
@@ -84,10 +119,10 @@ $(function(){
 					speed = data.status.speed;
 					time = data.status.time;
 
-					append_table(lat,lon,time,"last-trip",speed);
+					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
-				update_table(lat,lon,time,"last-trip",speed);
+				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
 			}
 		});
