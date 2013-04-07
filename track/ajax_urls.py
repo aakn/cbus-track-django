@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('track.ajax_views',
     url(r'^last_trip/(?P<bus>\d+)/$', 'last_trip'),
+    url(r'^buses_status/$', 'buses_status'),    
     url(r'^last_trip/(?P<bus>\d+)/(?P<limit>\d+)/$', 'last_trip'),
     url(r'^current_trip/(?P<bus>\d+)/$', 'current_trip'),
     url(r'^list_of_stops/(?P<bus_number>\d+)/$', 'list_of_stops'),
