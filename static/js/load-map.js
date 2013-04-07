@@ -20,18 +20,8 @@ $(function(){
 			push_data(data);	// Checks if the data is for the same bus route.
 	});
 	/* PUSHER CODE END */
-	var infowindow;
+
 	// Initialization Code for Google Maps
-	function attachSecretMessage(marker, message) 
-	{
-	  infowindow = new google.maps.InfoWindow(
-	      { 
-	      	content: message
-	      });
-	  google.maps.event.addListener(marker, 'click', function() {
-	    infowindow.open(map,marker);
-	  });
-}
 	function initialize()
 	{
 		if(bus_id==0)
@@ -51,7 +41,6 @@ $(function(){
 				//animation:google.maps.Animation.BOUNCE,
 				title : msg_array[ctr]
 			});
-			attachSecretMessage(marker, msg_array[ctr]);				
 			marker.setMap(map);	
 			}
 			
