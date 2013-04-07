@@ -136,20 +136,18 @@ $(function(){
 		}	
 		else
 		{
-			alert("BUS ID="+bus_id);
-			$.ajaxSetup({
-				async: false
-			});
+			//alert("BUS ID="+bus_id);
 			$.getJSON('/ajax/list_of_routes', function(data) {
 		 
 			  $.each(data, function(key, val) {
 			  if(val.id==bus_id)
-			  	bus_number=val.route_number;
+			  	{
+				  	bus_number=val.route_number;
+			  		$("#busnum").html(bus_number);
+			  	}
 			  });
 			});
-			$.ajaxSetup({
-				async: true
-			});
+			
 			//alert("BUS NUMBER"+bus_number);
 			$.ajax({
 			async: false,
@@ -184,9 +182,8 @@ $(function(){
 				console.log(coord_array); 
 			}
 		});
-			alert(bus_number);
-			$("#busnum").html(bus_number);
-		}
+			//alert(bus_number);
+					}
 	}
 
 	get_some_default_values();
