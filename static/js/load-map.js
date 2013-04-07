@@ -1,6 +1,6 @@
 $(function(){
 
-	var bus_id = 1;
+	var bus_id = 0;
 
 	var lat,lon;
 	var map,marker,currentCenter,currentPath;
@@ -57,7 +57,46 @@ $(function(){
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
-		$.ajax({
+		if(bus_id==0)
+		{
+					$.ajax({
+			async: false,
+			dataType: "json",
+			url: "/ajax/buses_status",
+			success: function(data) {
+				console.log("Status of all buses...");
+
+				//data = data.reverse();
+				console.log(data); 
+
+				$(".stats-table-body").html("");
+				coord_array = [];
+				i=0;
+
+				$.each(data, function(key,value) {
+					var pos = new google.maps.LatLng(value.status.lat,value.status.lon);
+					coord_array[i++] = pos;
+
+					var data=value;
+
+					lat = data.status.lat;
+					lon = data.status.lon;
+					speed = data.status.speed;
+					time = data.status.time;
+
+					append_table(lat,lon,time,"last-trip",speed);
+
+				});	
+				update_table(lat,lon,time,"last-trip",speed);
+				console.log(coord_array); 
+			}
+		});
+
+
+		}
+		else
+		{
+					$.ajax({
 			async: false,
 			dataType: "json",
 			url: "/ajax/last_trip/"+bus_id,
@@ -89,6 +128,8 @@ $(function(){
 				console.log(coord_array); 
 			}
 		});
+
+		}
 	}
 
 	get_some_default_values();
