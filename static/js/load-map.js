@@ -109,7 +109,7 @@ $(function(){
 				i=0;
 
 				$.each(data, function(key,value) {
-					//var pos = new google.maps.LatLng(value.status[0],value.status[1]);
+					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
 					coord_array[i++] = pos;
 
 					alert("key="+key+"value="+value)
