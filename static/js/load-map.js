@@ -16,7 +16,7 @@ $(function(){
 	var pusher = new Pusher('38c410e14df2239c04ab');
 	var channel = pusher.subscribe('track-channel');
 	channel.bind('bus-moved', function(data) {
-		if(data.bus_id == bus_id)
+		//if(data.bus_id == bus_id)
 			push_data(data);	// Checks if the data is for the same bus route.
 	});
 	/* PUSHER CODE END */
@@ -250,7 +250,8 @@ $(function(){
 				});
 				
 			}
-			else {
+			else if(data.bus_id==bus_id)
+			{
 					/*var pos = new google.maps.LatLng(lat,lon);
 					coord_array[data.bus_id-1] = pos;
 					setMarker(pos);*/
