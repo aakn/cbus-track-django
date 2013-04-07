@@ -11,7 +11,7 @@ $(function(){
 	var i=0;
 	var hidden = true;
 
-	$('#stats').hide();
+	$('.stats').hide();
 	/* PUSHER CODE */
 	var pusher = new Pusher('38c410e14df2239c04ab');
 	var channel = pusher.subscribe('track-channel');
@@ -236,8 +236,8 @@ $(function(){
 		}
 		else
 		{
-			$('#stats').show();
-			$('#allstats').hide();	
+			$('.stats').show();
+			$('.allstats').hide();	
 		}
 		get_some_default_values();
 		//google.maps.event.addDomListener(window, 'load', initialize);
