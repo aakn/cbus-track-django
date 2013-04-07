@@ -36,12 +36,12 @@ $(function(){
 			map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 			for(var ctr=0;ctr<i;ctr++)
 			{
-				marker=new google.maps.Marker({
+				marker[ctr]=new google.maps.Marker({
 				position: coord_array[ctr],
 				//animation:google.maps.Animation.BOUNCE,
 				title : msg_array[ctr]
 			});
-			marker.setMap(map);	
+			marker[ctr].setMap(map);	
 			}
 			
 
