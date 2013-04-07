@@ -104,7 +104,7 @@ $(function(){
 			success: function(data) 
 			{
 				console.log("Status of all buses...");
-
+		  		$(".page-header-all-stats").html("<h2>Current State Of All Buses </h2>");
 				//data = data.reverse();
 				console.log(data); 
 
@@ -153,7 +153,7 @@ $(function(){
 			  if(val.id==bus_id)
 			  	{
 				  	bus_number=val.route_number;
-			  		$("#busnum").html(bus_number);
+			  		$(".page-header-stats").html("<h2>Current State - "+bus_number+" </h2>");
 			  	}
 			  });
 			});
