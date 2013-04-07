@@ -122,7 +122,9 @@ $(function(){
 					lon = data.lon;
 					speed = data.speed;
 					time = data.time;
-		
+					var date = Date.parse(time);
+					time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
+					time = time.replace(/ - 00:/, " - 12:");
 					var pos = new google.maps.LatLng(lat,lon);
 					msg_array[i] = "BUS "+value.number+" was Last updated on "+time;
 					coord_array[i++] = pos;
@@ -130,9 +132,7 @@ $(function(){
 						console.log(result);
 						//$("#address").html(result["address"]);
 						address=results["address"];
-						var date = Date.parse(time);
-						time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
-						time = time.replace(/ - 00:/, " - 12:");
+						alert("inhere");						
 						$('#allstatsbody').append("<tr>"+bus_number+"<td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Last Trip</td></tr>");
 					});
 					
