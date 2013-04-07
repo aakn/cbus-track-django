@@ -112,8 +112,14 @@ $(function(){
 					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
 					coord_array[i++] = pos;
 
-					var data=JSON.parse(value.status);
-					alert("data="+data);
+					$.getJSON(value.status, function(data) {
+						  
+						 
+						  $.each(data, function(key, val) {
+						    alert("key="+key+"value="+val);
+						  });
+						 
+						});
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
