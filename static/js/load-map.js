@@ -29,6 +29,7 @@ $(function(){
 			var mapProp = {
 				center: currentCenter,
 				zoom:15,
+				zoomControl: true,
 				mapTypeId:google.maps.MapTypeId.ROADMAP
 			};
 			map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
