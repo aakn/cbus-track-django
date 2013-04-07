@@ -113,7 +113,7 @@ $(function(){
 					coord_array[i++] = pos;
 
 					var data=JSON.parse(value.status);
-					alert("lat="+data.lat)
+					alert("data="+data);
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
