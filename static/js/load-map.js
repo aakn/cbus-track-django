@@ -266,6 +266,7 @@ $(function(){
 						$.getJSON('/ajax/list_of_routes', function(data) {
 					 
 						  $.each(data, function(key, val) {
+						  	alert("VAL ID="+val.id+" BUS ID ="+data.bus_id);
 						  if(val.id==data.bus_id)
 						  	{
 						  		alert("inhere");
