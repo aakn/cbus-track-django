@@ -38,7 +38,7 @@ $(function(){
 			{
 				marker=new google.maps.Marker({
 				position: coord_array[ctr],
-				animation:google.maps.Animation.BOUNCE,
+				//animation:google.maps.Animation.BOUNCE,
 				//title : msg_array[ctr]
 			});
 				var infowindow = new google.maps.InfoWindow({
