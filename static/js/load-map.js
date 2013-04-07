@@ -6,6 +6,7 @@ $(function(){
 	var map,marker,currentCenter,currentPath;
 
 	var coord_array = new Array();
+	var msg_array = new Array();
 
 	var i=0;
 	var hidden = true;
@@ -38,6 +39,7 @@ $(function(){
 				marker=new google.maps.Marker({
 				position: coord_array[ctr],
 				animation:google.maps.Animation.BOUNCE
+				title : 
 			});
 			marker.setMap(map);	
 			}
