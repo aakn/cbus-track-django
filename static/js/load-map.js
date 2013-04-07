@@ -229,6 +229,7 @@ $(function(){
 
 	window.update_route = function(new_id) {
 		bus_id = new_id;
+		alert("NEW ID ="+new_id);
 		if(bus_id==0)
 		{
 			$('#stats').hide();
