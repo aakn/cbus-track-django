@@ -109,16 +109,16 @@ $(function(){
 				i=0;
 
 				$.each(data, function(key,value) {
-					var pos = new google.maps.LatLng(value.status.lat,value.status.lon);
+					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
 					coord_array[i++] = pos;
 
 					var data=value;
 
-					lat = data.status.lat;
-					lon = data.status.lon;
-					speed = data.status.speed;
-					time = data.status.time;
-					alert("value="+value.status);
+					lat = data.status[0];
+					lon = data.status[1];
+					speed = data.status[2];
+					time = data.status[3];
+					alert(""lat="+lat+"lon="+lon");
 					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
