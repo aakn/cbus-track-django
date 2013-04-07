@@ -241,6 +241,7 @@ $(function(){
 						  if(val.id==bus_id)
 						  	{
 							  	//bus_number=val.route_number;
+							  	alert("inhere");
 						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Not Moved</td>");						  		
 						  	}
 						  });
