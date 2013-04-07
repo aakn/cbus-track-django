@@ -20,11 +20,11 @@ $(function(){
 			push_data(data);	// Checks if the data is for the same bus route.
 	});
 	/* PUSHER CODE END */
-
+	var infowindow;
 	// Initialization Code for Google Maps
 	function attachSecretMessage(marker, message) 
 	{
-	  var infowindow = new google.maps.InfoWindow(
+	  infowindow = new google.maps.InfoWindow(
 	      { 
 	      	content: message
 	      });
