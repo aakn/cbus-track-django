@@ -126,8 +126,6 @@ $(function(){
 				console.log(coord_array); 
 			}
 		});
-
-
 		}
 		else
 		{
