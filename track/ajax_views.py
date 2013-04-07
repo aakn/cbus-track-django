@@ -43,7 +43,7 @@ def add_user(request, name, stop_id, gcm_id):
 	return HttpResponse("Done")
 
 def last_trip(request, bus = '1', limit = '0'):
-	last = BusTravelLog.objects.get_last_trip(bus, int(limit))[:5]
+	last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	return HttpResponse(last)
 
 def current_trip(request, bus = '1'):
