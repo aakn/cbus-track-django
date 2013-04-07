@@ -251,9 +251,9 @@ $(function(){
 				
 			}
 			else {
-					var pos = new google.maps.LatLng(lat,lon);
+					/*var pos = new google.maps.LatLng(lat,lon);
 					coord_array[data.bus_id-1] = pos;
-					setMarker(pos);
+					setMarker(pos);*/
 					//update_table(lat,lon,time,"moved",speed);
 					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
 						console.log(result);
