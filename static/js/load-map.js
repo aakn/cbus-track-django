@@ -7,6 +7,7 @@ $(function(){
 
 	var coord_array = new Array();
 	var msg_array = new Array();
+	var marker = new Array();
 
 	var i=0;
 	var hidden = true;
