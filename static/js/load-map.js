@@ -28,7 +28,7 @@ $(function(){
 			currentCenter = coord_array[i-2];
 			var mapProp = {
 				center: currentCenter,
-				zoom:10,
+				zoom:12,
 				zoomControl: true,
 				mapTypeId:google.maps.MapTypeId.ROADMAP
 			};
