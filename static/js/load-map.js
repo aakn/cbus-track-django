@@ -49,7 +49,7 @@ $(function(){
 				marker=new google.maps.Marker({
 				position: coord_array[ctr],
 				//animation:google.maps.Animation.BOUNCE,
-				//title : msg_array[ctr]
+				title : msg_array[ctr]
 			});
 			attachSecretMessage(marker, msg_array[ctr]);				
 			marker.setMap(map);	
