@@ -109,24 +109,17 @@ $(function(){
 				i=0;
 
 				$.each(data, function(key,value) {
-					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
+					//var pos = new google.maps.LatLng(value.status[0],value.status[1]);
 					coord_array[i++] = pos;
 
-					$.getJSON(value.status, function(data) {
-						  
-						 
-						  $.each(data, function(key, val) {
-						    alert("key="+key+"value="+val);
-						  });
-						 
-						});
+					alert("key="+key+"value="+value)
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
 			}
 		});
-		}	
-		else
+			}	
+			else
 		{
 					$.ajax({
 			async: false,
