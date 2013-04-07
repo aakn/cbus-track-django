@@ -42,14 +42,13 @@ $(function(){
 				//title : msg_array[ctr]
 			});
 				var infowindow = new google.maps.InfoWindow({
-    content: msg_array[ctr]
-    google.maps.event.addListener(marker, 'click', function() {
-  infowindow.open(map,marker);
-});
-});
-
+    				content: msg_array[ctr]
+    			});
+				google.maps.event.addListener(marker, 'click', function() {
+  				infowindow.open(map,marker);
+				});
 				alert(msg_array[ctr]);
-			marker.setMap(map);	
+				marker.setMap(map);	
 			}
 			
 
