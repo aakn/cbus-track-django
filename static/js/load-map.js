@@ -109,8 +109,6 @@ $(function(){
 				i=0;
 
 				$.each(data, function(key,value) {
-					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
-					coord_array[i++] = pos;
 					temp=JSON.parse(value.status);
 					data=temp[0];
 					//alert("key="+key+"value="+temp[0].lat)
@@ -118,6 +116,9 @@ $(function(){
 					lon = data.lon;
 					speed = data.speed;
 					time = data.time;
+		
+					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
+					coord_array[i++] = pos;
 					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
