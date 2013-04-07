@@ -132,8 +132,8 @@ $(function(){
 						console.log(result);
 						//$("#address").html(result["address"]);
 						address=result["address"];
-						alert("inhere");						
-						$('#allstatsbody').append("<tr>"+bus_number+"<td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Last Trip</td></tr>");
+						//alert("inhere");						
+						$('#allstatsbody').append("<tr><td>"+bus_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Last Trip</td></tr>");
 					});
 					
 					//append_table(lat,lon,time,"last-trip",speed);
