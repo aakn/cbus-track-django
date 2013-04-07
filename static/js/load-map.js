@@ -120,7 +120,7 @@ $(function(){
 					time = data.status[3];*/
 					alert("hi "+v);
 					//append_table(lat,lon,time,"last-trip",speed);
-
+					});	
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
