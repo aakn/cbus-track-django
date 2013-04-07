@@ -25,7 +25,7 @@ $(function(){
 	{
 		if(bus_id==0)
 		{
-			currentCenter = coord_array[i-1];
+			currentCenter = coord_array[i-2];
 			var mapProp = {
 				center: currentCenter,
 				zoom:15,
