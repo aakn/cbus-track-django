@@ -133,7 +133,7 @@ $(function(){
 						var date = Date.parse(time);
 						time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
 						time = time.replace(/ - 00:/, " - 12:");
-						$('#allstatsbody').append("<tr>"+bus_number+"<td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>last Trip</td></tr>");
+						$('#allstatsbody').append("<tr>"+bus_number+"<td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Last Trip</td></tr>");
 					});
 					
 					//append_table(lat,lon,time,"last-trip",speed);
