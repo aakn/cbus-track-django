@@ -113,20 +113,13 @@ $(function(){
 					coord_array[i++] = pos;
 
 					var data=value;
-					$.each(value.status, function(k,v) {
-					/*lat = data.status[0];
-					lon = data.status[1];
-					speed = data.status[2];
-					time = data.status[3];*/
-					alert("hi "+v);
-					//append_table(lat,lon,time,"last-trip",speed);
-					});	
+					alert("lat="+value.status[0].lat)
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
 			}
 		});
-		}
+		}	
 		else
 		{
 					$.ajax({
