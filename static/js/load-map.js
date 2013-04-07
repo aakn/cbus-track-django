@@ -39,8 +39,15 @@ $(function(){
 				marker=new google.maps.Marker({
 				position: coord_array[ctr],
 				animation:google.maps.Animation.BOUNCE,
-				title : msg_array[ctr]
+				//title : msg_array[ctr]
 			});
+				var infowindow = new google.maps.InfoWindow({
+    content: msg_array[ctr]
+    google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+});
+});
+
 				alert(msg_array[ctr]);
 			marker.setMap(map);	
 			}
