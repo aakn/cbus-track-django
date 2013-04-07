@@ -112,8 +112,8 @@ $(function(){
 					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
 					coord_array[i++] = pos;
 
-					var data=value;
-					alert("lat="+value.status[0].lat)
+					var data=JSON.parse(value.status);
+					alert("lat="+data.lat)
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
