@@ -11,7 +11,7 @@ $(function(){
 	var i=0;
 	var hidden = true;
 
-
+	$('#stats').hide();
 	/* PUSHER CODE */
 	var pusher = new Pusher('38c410e14df2239c04ab');
 	var channel = pusher.subscribe('track-channel');
