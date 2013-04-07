@@ -261,12 +261,14 @@ $(function(){
 						console.log(result);
 						//$("#address").html(result["address"]);
 						address=result["address"];
-						//alert("inhere");						
+						alert("inhere");		
+
 						$.getJSON('/ajax/list_of_routes', function(data) {
 					 
 						  $.each(data, function(key, val) {
 						  if(val.id==data.bus_id)
 						  	{
+						  		alert("inhere");
 							  	//bus_number=val.route_number;
 						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Moved</td>");						  		
 						  	}
