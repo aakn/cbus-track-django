@@ -117,7 +117,7 @@ $(function(){
 					speed = data.speed;
 					time = data.time;
 		
-					var pos = new google.maps.LatLng(value.status[0],value.status[1]);
+					var pos = new google.maps.LatLng(lat,lon);
 					coord_array[i++] = pos;
 					//append_table(lat,lon,time,"last-trip",speed);
 
