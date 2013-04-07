@@ -2,7 +2,7 @@ $(function(){
 
 	// Just a placeholder function
 	window.update_table = function() {}
-
+	$("#0").hide();
 	// Adds some data to the table
 	window.append_table = function(lat,lon,time,moved,speed) {
 		var mv = "<p style='color: red;'>Not Moved</p>";
