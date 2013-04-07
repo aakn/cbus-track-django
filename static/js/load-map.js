@@ -251,7 +251,7 @@ $(function(){
 				});
 				
 			}
-			else if(data.bus_id==bus_id)
+			else 
 			{
 					/*var pos = new google.maps.LatLng(lat,lon);
 					coord_array[data.bus_id-1] = pos;
@@ -265,7 +265,7 @@ $(function(){
 						$.getJSON('/ajax/list_of_routes', function(data) {
 					 
 						  $.each(data, function(key, val) {
-						  if(val.id==bus_id)
+						  if(val.id==data.bus_id)
 						  	{
 							  	//bus_number=val.route_number;
 						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Moved</td>");						  		
@@ -277,7 +277,7 @@ $(function(){
 				});
 				}
 		}
-		else
+		else if(data.bus_id==bus_id)
 		{
 			if( lat == oldlat && lon == oldlon ) 
 				update_table(lat,lon,time,"not-moved",speed);
