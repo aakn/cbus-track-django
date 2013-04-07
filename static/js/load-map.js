@@ -131,7 +131,7 @@ $(function(){
 					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
 						console.log(result);
 						//$("#address").html(result["address"]);
-						address=results["address"];
+						address=result["address"];
 						alert("inhere");						
 						$('#allstatsbody').append("<tr>"+bus_number+"<td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Last Trip</td></tr>");
 					});
