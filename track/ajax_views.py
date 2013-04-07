@@ -36,10 +36,10 @@ def buses_status(request):
 	bus_status = []
 	for route in routes:
 		last = BusTravelLog.objects.get_last_trip(route, int(1))	
-		last=simplejson.loads(last)
+		last2=simplejson.loads(last)
 		current_route = {
 			'id': route.id,
-			'status' : last.lat
+			'status' : last2.lat
 		}
 		bus_status.append(current_route)
 	json = simplejson.dumps(bus_status, check_circular=False)
