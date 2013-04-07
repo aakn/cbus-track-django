@@ -38,8 +38,8 @@ $(function(){
 			{
 				marker=new google.maps.Marker({
 				position: coord_array[ctr],
-				animation:google.maps.Animation.BOUNCE
-				title : 
+				animation:google.maps.Animation.BOUNCE,
+				title : msg_array[ctr]
 			});
 			marker.setMap(map);	
 			}
@@ -109,6 +109,7 @@ $(function(){
 
 				$(".stats-table-body").html("");
 				coord_array = [];
+				msg_array = [];
 				i=0;
 
 				$.each(data, function(key,value) {
@@ -121,8 +122,9 @@ $(function(){
 					time = data.time;
 		
 					var pos = new google.maps.LatLng(lat,lon);
+					msg_array[i] = "BUS "+value.number+" was Last updated on "+time;
 					coord_array[i++] = pos;
-					//append_table(lat,lon,time,"last-trip",speed);
+										//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
