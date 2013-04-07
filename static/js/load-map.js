@@ -113,12 +113,12 @@ $(function(){
 					coord_array[i++] = pos;
 
 					var data=value;
-
-					lat = data.status[0];
+					$.each(value, function(k,v) {
+					/*lat = data.status[0];
 					lon = data.status[1];
 					speed = data.status[2];
-					time = data.status[3];
-					alert("lat="+lat+"lon="+lon);
+					time = data.status[3];*/
+					alert("hi "+v);
 					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
