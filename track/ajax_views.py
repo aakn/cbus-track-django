@@ -2,6 +2,7 @@ from track.models import BusTravelLog, BusStop, RouteDetail, User
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.utils import simplejson
+import json
 
 def list_of_stops(request, bus_number):
 	route = RouteDetail.objects.get(pk=bus_number)
