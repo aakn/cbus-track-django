@@ -22,6 +22,16 @@ $(function(){
 	/* PUSHER CODE END */
 
 	// Initialization Code for Google Maps
+	function attachSecretMessage(marker, message) 
+	{
+	  var infowindow = new google.maps.InfoWindow(
+	      { 
+	      	content: message
+	      });
+	  google.maps.event.addListener(marker, 'click', function() {
+	    infowindow.open(map,marker);
+	  });
+}
 	function initialize()
 	{
 		if(bus_id==0)
@@ -36,19 +46,13 @@ $(function(){
 			map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 			for(var ctr=0;ctr<i;ctr++)
 			{
-				marker[ctr]=new google.maps.Marker({
+				marker=new google.maps.Marker({
 				position: coord_array[ctr],
 				//animation:google.maps.Animation.BOUNCE,
 				//title : msg_array[ctr]
 			});
-				var infowindow[ctr] = new google.maps.InfoWindow({
-    				content: msg_array[ctr]
-    			});
-				google.maps.event.addListener(marker[ctr], 'click', function() {
-  				infowindow.open(map,marker[ctr]);
-				});
-				alert(msg_array[ctr]);
-				marker.setMap(map);	
+			attachSecretMessage(marker, msg_array[ctr]);				
+			marker.setMap(map);	
 			}
 			
 
