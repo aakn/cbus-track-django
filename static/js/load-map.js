@@ -235,13 +235,13 @@ $(function(){
 						//$("#address").html(result["address"]);
 						address=result["address"];
 						//alert("inhere");						
-						$.getJSON('/ajax/list_of_routes', function(data) {
+						$.getJSON('/ajax/list_of_routes', function(data2) {
 					 
-						  $.each(data, function(key, val) {
+						  $.each(data2, function(key, val) {
 						  if(val.id==data.bus_id)
 						  	{
 							  	//bus_number=val.route_number;
-							  	alert("inhere");
+							  //	alert("inhere");
 						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Not Moved</td>");						  		
 						  	}
 						  });
@@ -261,15 +261,15 @@ $(function(){
 						console.log(result);
 						//$("#address").html(result["address"]);
 						address=result["address"];
-						alert("inhere");		
+						//alert("inhere");		
 
-						$.getJSON('/ajax/list_of_routes', function(data) {
+						$.getJSON('/ajax/list_of_routes', function(data2) {
 					 
-						  $.each(data, function(key, val) {
-						  	alert("VAL ID="+val.id+" BUS ID ="+data.bus_id);
+						  $.each(data2, function(key, val) {
+						  	//alert("VAL ID="+val.id+" BUS ID ="+data.bus_id);
 						  if(val.id==data.bus_id)
 						  	{
-						  		alert("inhere");
+						  		//alert("inhere");
 							  	//bus_number=val.route_number;
 						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Moved</td>");						  		
 						  	}
