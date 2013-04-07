@@ -134,6 +134,7 @@ $(function(){
 			}	
 			else
 		{
+			alert("BUS ID="+bus_id);
 			$.getJSON('/ajax/list_of_routes', function(data) {
 		 
 			  $.each(data, function(key, val) {
@@ -159,6 +160,7 @@ $(function(){
 				$.each(data, function(key,value) {
 					var pos = new google.maps.LatLng(value.lat,value.lon);
 					coord_array[i++] = pos;
+
 
 					var data=value;
 
