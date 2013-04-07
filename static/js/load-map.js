@@ -118,7 +118,7 @@ $(function(){
 					lon = data.status.lon;
 					speed = data.status.speed;
 					time = data.status.time;
-					alert("lat="+lat+"lon="+lon);
+					alert("value="+value);
 					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
