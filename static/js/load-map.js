@@ -258,6 +258,8 @@ $(function(){
 					coord_array[data.bus_id-1] = pos;
 					setMarker(pos);*/
 					//update_table(lat,lon,time,"moved",speed);
+					var newLatLng = new google.maps.LatLng(lat, lon);
+    				marker[data.bus_id-1].setPosition(newLatLng);
 					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
 						console.log(result);
 						//$("#address").html(result["address"]);
