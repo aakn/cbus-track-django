@@ -25,9 +25,9 @@ $(function(){
 	{
 		if(bus_id==0)
 		{
-			//currentCenter = coord_array[i-1];
+			currentCenter = coord_array[i-1];
 			var mapProp = {
-				//center: currentCenter,
+				center: currentCenter,
 				zoom:15,
 				mapTypeId:google.maps.MapTypeId.ROADMAP
 			};
