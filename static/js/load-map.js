@@ -134,7 +134,7 @@ $(function(){
 			}	
 			else
 		{
-			$.getJSON('/ajax/list_all_routes', function(data) {
+			$.getJSON('/ajax/list_of_routes', function(data) {
 		 
 			  $.each(data, function(key, val) {
 			  if(val.id==bus_id)
