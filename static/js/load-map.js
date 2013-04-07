@@ -36,16 +36,16 @@ $(function(){
 			map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 			for(var ctr=0;ctr<i;ctr++)
 			{
-				marker=new google.maps.Marker({
+				marker[ctr]=new google.maps.Marker({
 				position: coord_array[ctr],
 				//animation:google.maps.Animation.BOUNCE,
 				//title : msg_array[ctr]
 			});
-				var infowindow = new google.maps.InfoWindow({
+				var infowindow[ctr] = new google.maps.InfoWindow({
     				content: msg_array[ctr]
     			});
-				google.maps.event.addListener(marker, 'click', function() {
-  				infowindow.open(map,marker);
+				google.maps.event.addListener(marker[ctr], 'click', function() {
+  				infowindow.open(map,marker[ctr]);
 				});
 				alert(msg_array[ctr]);
 				marker.setMap(map);	
