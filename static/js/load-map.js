@@ -97,11 +97,12 @@ $(function(){
 		//Gets around 50 last values from the table.
 		if(bus_id==0)
 		{
-					$.ajax({
+			$.ajax({
 			async: false,
 			dataType: "json",
 			url: "/ajax/buses_status",
-			success: function(data) {
+			success: function(data) 
+			{
 				console.log("Status of all buses...");
 
 				//data = data.reverse();
@@ -112,7 +113,8 @@ $(function(){
 				msg_array = [];
 				i=0;
 
-				$.each(data, function(key,value) {
+				$.each(data, function(key,value)
+				 {
 					temp=JSON.parse(value.status);
 					data=temp[0];
 					//alert("key="+key+"value="+temp[0].lat)
@@ -124,15 +126,15 @@ $(function(){
 					var pos = new google.maps.LatLng(lat,lon);
 					msg_array[i] = "BUS "+value.number+" was Last updated on "+time;
 					coord_array[i++] = pos;
-										//append_table(lat,lon,time,"last-trip",speed);
+					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
 			}
 		});
-			}	
-			else
+		}	
+		else
 		{
 			alert("BUS ID="+bus_id);
 			$.getJSON('/ajax/list_of_routes', function(data) {
@@ -176,7 +178,8 @@ $(function(){
 				console.log(coord_array); 
 			}
 		});
-
+			alert(bus_number);
+			$("#busnum").html(bus_number);
 		}
 	}
 
