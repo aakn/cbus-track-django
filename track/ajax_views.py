@@ -38,7 +38,10 @@ def buses_status(request):
 		current_route = {
 			'id': route.id,
 			'number' : route.number,
-			'status': last,
+			'lat': last.lat,
+			'lon': last.lon,
+			'speed': last.speed,
+			'time': last.time,
 		}
 		bus_status.append(current_route)
 	json = simplejson.dumps(bus_status, check_circular=False)
