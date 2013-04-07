@@ -126,6 +126,16 @@ $(function(){
 					var pos = new google.maps.LatLng(lat,lon);
 					msg_array[i] = "BUS "+value.number+" was Last updated on "+time;
 					coord_array[i++] = pos;
+					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
+						console.log(result);
+						//$("#address").html(result["address"]);
+						address=results["address"];
+						var date = Date.parse(time);
+						time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
+						time = time.replace(/ - 00:/, " - 12:");
+						$('#allstatsbody').append("<tr>"+bus_number+"<td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>last Trip</td></tr>");
+					});
+					
 					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
