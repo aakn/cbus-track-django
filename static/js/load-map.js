@@ -133,7 +133,7 @@ $(function(){
 						//$("#address").html(result["address"]);
 						address=result["address"];
 						//alert("inhere");						
-						$('#allstatsbody').append("<tr onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Last Trip</td></tr>");
+						$('#allstatsbody').append("<tr id=\"bus"+value.id"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Last Trip</td></tr>");
 					});
 					
 					//append_table(lat,lon,time,"last-trip",speed);
@@ -188,7 +188,7 @@ $(function(){
 					//append_table(lat,lon,time,"last-trip",speed);
 
 				});	
-				update_table(lat,lon,time,"last-trip",speed);
+				update_table(lat,lon,time,"Last Trip",speed);
 				console.log(coord_array); 
 			}
 		});
@@ -225,15 +225,68 @@ $(function(){
 		speed = data.speed;
 		time = data.time;
 		
+		if(bus_id==0)
+		{
+			if( lat == oldlat && lon == oldlon ) 
+			{
+				//update_table(lat,lon,time,"not-moved",speed);				
+		  		$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
+						console.log(result);
+						//$("#address").html(result["address"]);
+						address=result["address"];
+						//alert("inhere");						
+						$.getJSON('/ajax/list_of_routes', function(data) {
+					 
+						  $.each(data, function(key, val) {
+						  if(val.id==bus_id)
+						  	{
+							  	//bus_number=val.route_number;
+						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Not Moved</td>");						  		
+						  	}
+						  });
+						});
 
-		if( lat == oldlat && lon == oldlon ) 
-			update_table(lat,lon,time,"not-moved",speed);
-		else {
-			var pos = new google.maps.LatLng(lat,lon);
-			coord_array[i] = pos;
-			setMarker(pos);
-			i++;
-			update_table(lat,lon,time,"moved",speed);
+						
+				});
+				
+			}
+			else {
+					var pos = new google.maps.LatLng(lat,lon);
+					coord_array[data.bus_id-1] = pos;
+					setMarker(pos);
+					//update_table(lat,lon,time,"moved",speed);
+					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
+						console.log(result);
+						//$("#address").html(result["address"]);
+						address=result["address"];
+						//alert("inhere");						
+						$.getJSON('/ajax/list_of_routes', function(data) {
+					 
+						  $.each(data, function(key, val) {
+						  if(val.id==bus_id)
+						  	{
+							  	//bus_number=val.route_number;
+						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Moved</td>");						  		
+						  	}
+						  });
+						});
+
+						
+				});
+				}
+		}
+		else
+		{
+			if( lat == oldlat && lon == oldlon ) 
+				update_table(lat,lon,time,"not-moved",speed);
+			else {
+				var pos = new google.maps.LatLng(lat,lon);
+				coord_array[i] = pos;
+				setMarker(pos);
+				i++;
+				update_table(lat,lon,time,"moved",speed);
+		}
+
 		}
 	}	
 
