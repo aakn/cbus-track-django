@@ -134,7 +134,7 @@ $(function(){
 						//$("#address").html(result["address"]);
 						address=result["address"];
 						//alert("inhere");						
-						$('#allstatsbody').append("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Last Trip</td></tr>");
+						$('#allstatsbody').append("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+time+"</td></tr>");
 					});
 					
 					//append_table(lat,lon,time,"last-trip",speed);
@@ -243,7 +243,7 @@ $(function(){
 						  	{
 							  	//bus_number=val.route_number;
 							  //	alert("inhere");
-						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Not Moved</td>");						  		
+						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+time+"</td>");						  		
 						  	}
 						  });
 						});
@@ -274,7 +274,7 @@ $(function(){
 						  	{
 						  		//alert("inhere");
 							  	//bus_number=val.route_number;
-						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+speed+"</td><td>"+time+"</td><td>Moved</td>");						  		
+						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+time+"</td>");						  		
 						  	}
 						  });
 						});
