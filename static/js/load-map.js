@@ -113,7 +113,7 @@ $(function(){
 					coord_array[i++] = pos;
 
 					var data=value;
-					$.each(value, function(k,v) {
+					$.each(value.status, function(k,v) {
 					/*lat = data.status[0];
 					lon = data.status[1];
 					speed = data.status[2];
