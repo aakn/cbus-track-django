@@ -126,6 +126,8 @@ $(function(){
 					var date = Date.parse(time);
 					time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
 					time = time.replace(/ - 00:/, " - 12:");
+					alert("time="+time);				
+
 					var pos = new google.maps.LatLng(lat,lon);
 					msg_array[i] = "BUS "+value.number+" was Last updated on "+time;
 					coord_array[i++] = pos;
@@ -134,7 +136,6 @@ $(function(){
 						//$("#address").html(result["address"]);
 						address=result["address"];
 						//alert("inhere");		
-						alert("time="+time);				
 						$('#allstatsbody').append("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+time+"</td></tr>");
 					});
 					
