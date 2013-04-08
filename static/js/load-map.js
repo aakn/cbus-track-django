@@ -123,10 +123,10 @@ $(function(){
 					lon = data.lon;
 					speed = data.speed;
 					time = data.time;
-					/*var date = Date.parse(time);
-					alert("inhere");
+					var date = Date.parse(time);
+					//alert("inhere");
 					time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
-					time = time.replace(/ - 00:/, " - 12:");*/
+					time = time.replace(/ - 00:/, " - 12:");
 					console.log("time="+time);				
 
 					var pos = new google.maps.LatLng(lat,lon);
