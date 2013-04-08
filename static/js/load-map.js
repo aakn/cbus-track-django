@@ -132,6 +132,9 @@ $(function(){
 					var pos = new google.maps.LatLng(lat,lon);
 					msg_array[i] = "BUS "+value.number+" was last updated on "+time;
 					coord_array[i++] = pos;
+					$.ajaxSetup({
+						async: false
+					});
 					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
 						console.log(result);
 						console.log("hello");
@@ -140,6 +143,9 @@ $(function(){
 						//alert("inhere");		
 						alert("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+time+"</td></tr>");
 						$('#allstatsbody').append("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+time+"</td></tr>");
+					});
+					$.ajaxSetup({
+						async: true
 					});
 					
 					//append_table(lat,lon,time,"last-trip",speed);
