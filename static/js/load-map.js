@@ -130,7 +130,7 @@ $(function(){
 					console.log("time="+time);				
 
 					var pos = new google.maps.LatLng(lat,lon);
-					msg_array[i] = "BUS "+value.number+" was Last updated on "+time;
+					msg_array[i] = "BUS "+value.number+" was last updated on "+time;
 					coord_array[i++] = pos;
 					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
 						console.log(result);
