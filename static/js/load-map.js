@@ -138,6 +138,7 @@ $(function(){
 						//$("#address").html(result["address"]);
 						address=result["address"];
 						//alert("inhere");		
+						alert("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+time+"</td></tr>");
 						$('#allstatsbody').append("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+time+"</td></tr>");
 					});
 					
