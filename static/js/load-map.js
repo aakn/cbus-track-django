@@ -134,6 +134,7 @@ $(function(){
 					coord_array[i++] = pos;
 					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
 						console.log(result);
+						console.log("hello");
 						//$("#address").html(result["address"]);
 						address=result["address"];
 						//alert("inhere");		
