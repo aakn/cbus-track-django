@@ -61,16 +61,9 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	#custom socket code starts
 	#data.address=address.address;
 	#data['address']=address['address'];
-	data2 = {
-		'bus_id': bus,
-		'lat': lat,
-		'lon': lon,
-		'time': str(datetime.datetime.now())[:19],
-		'speed': speed,
-		#'address': address,
-	}
+	
 	tosend={};
-	tosend["data"]=data2;
+	tosend["data"]=data;
 	tosend["channel"]="cbustrack";
 	tosend["event"]="busmoved";
 	url_values = urllib.urlencode(tosend)
