@@ -1,6 +1,3 @@
-<script src="http://50.62.76.127:3000/socket.io/socket.io.js"></script>
-
-<script>
   var socket = io.connect('http://50.62.76.127:3000');
   socket.on('cbustrack-busmoved', function (data) {
 
@@ -15,4 +12,3 @@
     console.log("Time="+data.time);	   
     
   });
-</script>
