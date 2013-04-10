@@ -296,13 +296,13 @@ $(function(){
 		else if(data.bus_id==bus_id)
 		{
 			if( lat == oldlat && lon == oldlon ) 
-				update_table(lat,lon,time,"not-moved",speed);
+				update_table(lat,lon,time,"Not Moved",speed);
 			else {
 				var pos = new google.maps.LatLng(lat,lon);
 				coord_array[i] = pos;
 				setMarker(pos);
 				i++;
-				update_table(lat,lon,time,"moved",speed);
+				update_table(lat,lon,time,"Moved",speed);
 		}
 
 		}
