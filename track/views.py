@@ -4,7 +4,8 @@ from track.models import Balance, BusTravelLog, RouteDetail
 from mapsapi.models import MapsAddressCache
 from track.convert_coordinates import convert
 import pusher, datetime
-
+import urllib
+import urllib2
 def stats(request):
 	routes = RouteDetail.objects.all()
 	return render_to_response('track/stats.html', { 'page': 'stats', 'request': request, 'routes': routes, })
@@ -57,6 +58,16 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	p = pusher.Pusher()
 	p['track-channel'].trigger('bus-moved', data)
 
+	#custom socket code starts
+	tosend={};
+	tosend["data"]=data;
+	tosend["channel"]="cbustrack";
+	tosend["event"]="busmoved";
+	url_values = urllib.urlencode(tosend)
+	url='http://50.62.76.127:3000/';
+	full_url = url + '?' + url_values
+	data = urllib2.urlopen(full_url)
+	#custom socket code ends
 	return HttpResponse("Success")
 
 def deploy(request):
