@@ -35,8 +35,8 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	route = RouteDetail.objects.get(pk=bus)
 	log = BusTravelLog(bus=route, lat=lat, lon=lon, speed=speed, valid=valid)
 	log.save()
-	bal = Balance(bus=route, balance=balance)
-	bal.save()
+	#bal = Balance(bus=route, balance=balance)
+	#bal.save()
 	if valid == 'NO':
 		return HttpResponse("Invalid")
 

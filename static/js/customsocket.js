@@ -7,7 +7,7 @@
     console.log("BUS ID="+data.bus_id);
     console.log("Latitude="+data.lat);
     console.log("Longitude="+data.lon);
-    console.log("Address="+data.address);
+    console.log("Address="+data.address.address);
     console.log("Speed="+data.speed);
     console.log("Time="+data.time);	   
     
