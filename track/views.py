@@ -60,6 +60,7 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 
 	#custom socket code starts
 	#data.address=address.address;
+	data['address']=address['address'];
 	tosend={};
 	tosend["data"]=data;
 	tosend["channel"]="cbustrack";
