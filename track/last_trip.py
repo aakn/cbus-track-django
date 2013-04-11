@@ -3,14 +3,14 @@ from track.models import BusTravelLog
 from django.utils import simplejson
 
 def my_calc_func(bus, limit, return_as_object=False):
-	timeset = BusTravelLog.objects.filter(bus=bus).order_by('-time')[:1]
+	timeset = BusTravelLog.objects.filter(bus=bus).exclude(valid="NO").order_by('-time')[:1]
 	for item in timeset:
 		time = item.time
 	time = time.date()
 	if limit == 0:
-		logs = BusTravelLog.objects.filter(time__startswith=time).filter(bus=bus).order_by('-time')
+		logs = BusTravelLog.objects.filter(time__startswith=time).exclude(valid="NO").filter(bus=bus).order_by('-time')
 	else:
-		logs = BusTravelLog.objects.filter(time__startswith=time).filter(bus=bus).order_by('-time')[:limit]
+		logs = BusTravelLog.objects.filter(time__startswith=time).exclude(valid="NO").filter(bus=bus).order_by('-time')[:limit]
 
 	log_list = []
 	hour = 1*60*60
