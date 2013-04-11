@@ -59,7 +59,7 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	p['track-channel'].trigger('bus-moved', data)
 
 	# Custom Socket Function
-	SocketBox.trigger('cbustrack', 'bus-moved', data)
+	SocketBox.trigger('track-channel', 'bus-moved', data)
 
 	return HttpResponse("Success")
 
@@ -93,11 +93,15 @@ def deploy(request):
 
 def socket_test(request):
 	data = {
-		'name' : 'ali asgar',
-		'email' : 'aliasgar@outlook.com'
+		'bus_id': '1',
+		'lat': 12.8980033333,
+		'lon': 12.8980033333,
+		'time': str(datetime.datetime.now())[:19],
+		'speed': '66',
+		'address': '{"address": "G-02, Rose Garden Road, JP Nagar 5th Phase, Bangalore, Karnataka 560078, India"}',
 	}
 	
-	result = SocketBox.trigger('my-channel', 'my-event', data)
+	result = SocketBox.trigger('track-channel', 'bus-moved', data)
 	return HttpResponse(result)
 
 def php_add(request):

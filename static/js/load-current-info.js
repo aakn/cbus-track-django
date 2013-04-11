@@ -25,8 +25,15 @@ $(function(){
 	}
 
 	var socket = new SocketBox('apikey');
-	socket.subscribe('my-channel');
-	socket.bind('my-event', function(data) {
+	socket.subscribe('track-channel');
+	socket.bind('bus-moved', function(data) {
 		console.log(data);
+		console.log("BUS ID="+data.bus_id);
+		console.log("Latitude="+data.lat);
+		console.log("Longitude="+data.lon);
+		var address = JSON.parse(data.address);
+		console.log("Address="+address.address);
+		console.log("Speed="+data.speed);
+		console.log("Time="+data.time);
 	})
 });

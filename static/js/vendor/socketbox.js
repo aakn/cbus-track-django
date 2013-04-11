@@ -36,15 +36,18 @@
 
 	SocketBox.prototype = {
 		bind: function(event_name, callback) {
+			var channel_name = this.channel;
 			
-			this.socket.on(this.channel, function(socket_data) {
+			this.socket.on(channel_name, function(socket_data) {
 				SocketBox.log("Event Received : " + JSON.stringify(socket_data));
 
 				// If both channel name and event name match
-				if(this.channel == socket_data.channel && socket_data.event == event_name) {
-					json_data = JSON.parse(socket_data.data)
+				if(channel_name == socket_data.channel && socket_data.event == event_name) {
+					json_data = JSON.parse(socket_data.data);
+					SocketBox.log("Data Received : " + json_data);
 					callback(json_data);
 				}
+				
 			});
 
 			return this;
