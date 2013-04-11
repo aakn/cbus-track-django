@@ -64,7 +64,7 @@ $(function(){
 
 			marker=new google.maps.Marker({
 				position: currentCenter,
-				icon:'/static/img/bus_position_marker.png',
+				icon:'/static/img/bus_position_marker.png', 
 				//animation:google.maps.Animation.BOUNCE
 			});
 			marker.setMap(map);
@@ -179,6 +179,7 @@ $(function(){
 						time = data.time;
 
 					});	
+					time = parse_time(time);
 					update_table(lat,lon,time,"Last Trip",speed,'');
 					console.log(coord_array); 
 				}
