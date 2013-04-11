@@ -2,7 +2,7 @@ $(function(){
 
 	// Adds to the All buses table
 	window.append_table = function(id, number, address, time) {
-		$('.all-stats-body').append("<tr id='bus"+id+"'><td><button class='btn btn-inverse bus-route-selector' onclick='update_route("+id+");'>"+number+"</button></td><td id='all-stats-table-address" + id + "'>"+address+"</td><td id='all-stats-table-time" + id + "'>"+time+"</td></tr>");			
+		$('.all-stats-body').append("<tr id='bus"+id+"'><td><button style='width:100%;' class='btn btn-inverse bus-route-selector' onclick='update_route("+id+");'>"+number+"</button></td><td id='all-stats-table-address" + id + "'>"+address+"</td><td id='all-stats-table-time" + id + "'>"+time+"</td></tr>");			
 	}
 
 	// Updates the all buses table
