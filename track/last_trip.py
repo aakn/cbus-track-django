@@ -8,7 +8,7 @@ def my_calc_func(bus, limit, return_as_object=False):
 		time = item.time
 	time = time.date()
 	if limit == 0:
-		logs = BusTravelLog.objects.filter(time__startswith=time).exclude(valid="NO").filter(bus=bus).order_by('-time')
+		logs = BusTravelLog.objects.filter(time__startswith=time).filter(valid="YES").filter(bus=bus).order_by('-time')
 	else:
 		logs = BusTravelLog.objects.filter(time__startswith=time).exclude(valid="NO").filter(bus=bus).order_by('-time')[:limit]
 
@@ -22,6 +22,7 @@ def my_calc_func(bus, limit, return_as_object=False):
 			'speed': o.speed, 
 			'lon': o.lon, 
 			'time': str(o.time)[:19],
+			'valid': o.valid,
 		}
 		
 		if prev_time == "":
