@@ -201,6 +201,7 @@ $(function(){
 			$(".progress-ring").hide();
 			hidden = false;
 		}
+		$('.bus-route-selector').removeAttr('disabled');
 	}
 
 
@@ -273,4 +274,7 @@ $(function(){
 		//google.maps.event.addDomListener(window, 'load', initialize);
 		initialize();
 	}
+	$('.bus-route-selector').click(function(){
+		$(this).attr('disabled', 'disabled');
+	});
 });
