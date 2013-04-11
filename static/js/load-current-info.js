@@ -18,9 +18,6 @@ $(function(){
 			$("#address").html(address);
 		$("#lat").html(lat);
 		$("#lon").html(lon);
-		var date = Date.parse(time);
-		time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
-		time = time.replace(/ - 00:/, " - 12:");
 		$("#time").html(time);
 		$("#move").html(moved);
 		$("#speed").html(speed+" KMPH");
@@ -47,5 +44,13 @@ $(function(){
 		console.log("Address="+address.address);
 		console.log("Speed="+data.speed);
 		console.log("Time="+data.time);
-	})
+	});
+
+	// Converts time to appropriate format.
+	window.parse_time = function(time) {
+		var date = Date.parse(time);
+		time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
+		time = time.replace(/ - 00:/, " - 12:"); 	
+		return time;
+	}
 });

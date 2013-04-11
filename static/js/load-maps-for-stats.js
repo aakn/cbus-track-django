@@ -12,13 +12,21 @@ $(function(){
 
 
 	/* PUSHER CODE */
-	var pusher = new Pusher('38c410e14df2239c04ab');
-	var channel = pusher.subscribe('track-channel');
-	channel.bind('bus-moved', function(data) {
-		if(data.bus_id == bus_id)
-			push_data(data);	// Checks if the data is for the same bus route.
-	});
+	// var pusher = new Pusher('38c410e14df2239c04ab');
+	// var channel = pusher.subscribe('track-channel');
+	// channel.bind('bus-moved', function(data) {
+	// 	if(data.bus_id == bus_id)
+	// 		push_data(data);	// Checks if the data is for the same bus route.
+	// });
 	/* PUSHER CODE END */
+
+	/* SOCKETBOX CODE */
+	var socket = new SocketBox('apikey');
+	socket.subscribe('track-channel');
+	socket.bind('bus-moved', function(data) {
+		push_data(data);
+	});
+	/* SOCKETBOX CODE END */
 
 	// Initialization Code for Google Maps
 	function initialize()
@@ -119,6 +127,7 @@ $(function(){
 		lon = data.lon;
 		speed = data.speed;
 		time = data.time;
+		
 		
 
 		if( lat == oldlat && lon == oldlon ) 

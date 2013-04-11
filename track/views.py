@@ -95,7 +95,7 @@ def socket_test(request):
 	data = {
 		'bus_id': '1',
 		'lat': 12.8980033333,
-		'lon': 77.5883583333,
+		'lon': 77.5863583333,
 		'time': str(datetime.datetime.now())[:19],
 		'speed': '66',
 		'address': '{"address": "G-02, Rose Garden Road, JP Nagar 5th Phase, Bangalore, Karnataka 560078, India"}',

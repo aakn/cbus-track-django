@@ -2,6 +2,8 @@
 {% block title %} Tracker | Stats {% endblock %}
 
 {% block scripts %}
+	<script src="/static/js/vendor/socketbox.js"></script>
+	<script src="http://socket.insigniadevs.com:4000/socket.io/socket.io.js"></script>
 	<script src="/static/js/load-stats.js"></script>
 	<script src="/static/js/load-maps-for-stats.js"></script>
 	
@@ -10,17 +12,17 @@
 	<!-- custom scrollbars plugin -->
 	<!-- <script src="/static/js/jquery.mCustomScrollbar.js"></script> -->
 	
-	<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+	<!-- <script src="http://js.pusher.com/1.12/pusher.min.js"></script> -->
 	<!-- <script src="/static/js/index-scrollbar.js"></script> -->
 	<script>
 		$(function(){
 			// Enable pusher logging - don't include this in production
-			Pusher.log = function(message) {
-				if (window.console && window.console.log) window.console.log(message);
-			};
+			// Pusher.log = function(message) {
+			// 	if (window.console && window.console.log) window.console.log(message);
+			// };
 
 			// Flash fallback logging - don't include this in production
-			WEB_SOCKET_DEBUG = true;
+			// WEB_SOCKET_DEBUG = true;
 		});
 	</script>
 {% endblock %}
