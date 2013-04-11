@@ -1,4 +1,5 @@
-  var socket = io.connect('http://50.62.76.127:3000');
+$(function(){  
+  var socket = io.connect('http://50.62.76.127:4000');
   socket.on('cbustrack-busmoved', function (data) {
 
     data=data.replace(/\'/g,"\"");
@@ -12,3 +13,4 @@
     console.log("Time="+data.time);	   
     
   });
+});

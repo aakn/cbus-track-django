@@ -23,4 +23,10 @@ $(function(){
 			$("#address").html(result["address"]);
 		});
 	}
+
+	var socket = new SocketBox('apikey');
+	socket.subscribe('my-channel');
+	socket.bind('my-event', function(data) {
+		console.log(data);
+	})
 });

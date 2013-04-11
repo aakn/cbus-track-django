@@ -4,7 +4,7 @@ from track.models import Balance, BusTravelLog, RouteDetail
 from mapsapi.models import MapsAddressCache
 from track.convert_coordinates import convert
 import pusher, datetime
-from track import Socket
+from track import SocketBox
 
 def stats(request):
 	routes = RouteDetail.objects.all()
@@ -59,7 +59,7 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	p['track-channel'].trigger('bus-moved', data)
 
 	# Custom Socket Function
-	Socket.send_data('cbustrack', 'bus-moved', data)
+	SocketBox.trigger('cbustrack', 'bus-moved', data)
 
 	return HttpResponse("Success")
 
@@ -97,7 +97,7 @@ def socket_test(request):
 		'email' : 'aliasgar@outlook.com'
 	}
 	
-	result = Socket.send_data('my-channel', 'my-event', data)
+	result = SocketBox.trigger('my-channel', 'my-event', data)
 	return HttpResponse(result)
 
 def php_add(request):
