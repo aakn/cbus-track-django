@@ -1,11 +1,21 @@
 $(function(){
 
-		// Just a placeholder function
-	window.append_table = function() {}
+	// Adds to the All buses table
+	window.append_table = function(id, number, address, time) {
+		$('.all-stats-body').append("<tr id='bus"+id+"'><td><button class='btn btn-inverse bus-route-selector' onclick='update_route("+id+");'>"+number+"</button></td><td id='all-stats-table-address" + id + "'>"+address+"</td><td id='all-stats-table-time" + id + "'>"+time+"</td></tr>");			
+	}
 
+	// Updates the all buses table
+	window.update_all_buses_stats = function(id, address, time) {
+		$("#all-stats-table-address"+id).html(address);
+		$("#all-stats-table-time"+id).html(time);
+	}
 	// Adds some data to the table
-	window.update_table = function(lat,lon,time,moved,speed) {
-		update_address(lat,lon);
+	window.update_table = function(lat,lon,time,moved,speed,address) {
+		if(address == '')
+			update_address(lat,lon);
+		else
+			$("#address").html(address);
 		$("#lat").html(lat);
 		$("#lon").html(lon);
 		var date = Date.parse(time);
@@ -14,6 +24,8 @@ $(function(){
 		$("#time").html(time);
 		$("#move").html(moved);
 		$("#speed").html(speed+" KMPH");
+
+		
 	}
 
 	// Updates the address by getting doing a reverse geolocation

@@ -1,4 +1,5 @@
 from track.models import BusTravelLog, BusStop, RouteDetail, User
+from mapsapi.models import MapsAddressCache
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.utils import simplejson
@@ -34,12 +35,21 @@ def buses_status(request):
 	routes = RouteDetail.objects.all()
 	bus_status = []
 	for route in routes:
-		last = BusTravelLog.objects.get_last_trip(route, int(1))	
+		last = BusTravelLog.objects.get_last_trip(route, int(1), True)
+		last = last[0]
+		lat = last['lat']
+		lon = last['lon']	
+		address = MapsAddressCache.objects.get_address(lat, lon)
+
 		#last2=simplejson.loads(last[0])
 		current_route = {
-			'id': route.id,
-			'status' : last,
-			'number' : route.number
+			'id' : route.id,
+			'lat' : lat,
+			'lon' : lon,
+			'speed' : last['speed'],
+			'time' : last['time'],
+			'number' : route.number,
+			'address' : address,
 		}
 		bus_status.append(current_route)
 	json = simplejson.dumps(bus_status, check_circular=False)

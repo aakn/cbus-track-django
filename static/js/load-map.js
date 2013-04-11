@@ -9,56 +9,50 @@ $(function(){
 	var msg_array = new Array();
 	var marker = new Array();
 
+	var buses_list = new Array();
+
 	var i=0;
 	var hidden = true;
 
-	$('.stats').hide();
 	/* PUSHER CODE */
-	var pusher = new Pusher('38c410e14df2239c04ab');
-	var channel = pusher.subscribe('track-channel');
-	channel.bind('bus-moved', function(data) {
-		//if(data.bus_id == bus_id)
-			push_data(data);	// Checks if the data is for the same bus route.
-	});
+	// var pusher = new Pusher('38c410e14df2239c04ab');
+	// var channel = pusher.subscribe('track-channel');
+	// channel.bind('bus-moved', function(data) {
+	// 	//if(data.bus_id == bus_id)
+	// 		push_data(data);	// Checks if the data is for the same bus route.
+	// });
 	/* PUSHER CODE END */
+
+	/* SOCKETBOX CODE */
+	var socket = new SocketBox('apikey');
+	socket.subscribe('track-channel');
+	socket.bind('bus-moved', function(data) {
+		push_data(data);
+	});
+	/* SOCKETBOX CODE END */
 
 	// Initialization Code for Google Maps
 	function initialize()
 	{
 		if(bus_id==0)
 		{
-			currentCenter = coord_array[i-2];
+			currentCenter = coord_array[i-1];
 			var mapProp = {
 				center: currentCenter,
-				zoom:10,
+				zoom:11,
 				zoomControl: true,
 				mapTypeId:google.maps.MapTypeId.ROADMAP
 			};
 			map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-			for(var ctr=0;ctr<i;ctr++)
-			{
+			for(var ctr=0;ctr<i;ctr++) {
 				marker[ctr]=new google.maps.Marker({
-				position: coord_array[ctr],
-				//animation:google.maps.Animation.BOUNCE,
-				title : msg_array[ctr]
-			});
-			marker[ctr].setMap(map);	
+					position: coord_array[ctr],
+					title : msg_array[ctr]
+				});
+				marker[ctr].setMap(map);	
 			}
-			
-
-			/*currentPath=new google.maps.Polyline({
-				path:coord_array,
-				strokeColor:"#0000FF",
-				strokeOpacity:0.8,
-				strokeWeight:2
-			});
-
-			currentPath.setMap(map);*/
-			done_loading();
-
 		}
-		else
-		{
+		else {
 			currentCenter = coord_array[i-1];
 			var mapProp = {
 				center: currentCenter,
@@ -69,7 +63,7 @@ $(function(){
 
 			marker=new google.maps.Marker({
 				position: currentCenter,
-				animation:google.maps.Animation.BOUNCE
+				//animation:google.maps.Animation.BOUNCE
 			});
 			marker.setMap(map);
 
@@ -81,9 +75,10 @@ $(function(){
 			});
 
 			currentPath.setMap(map);
-			done_loading();
 
 		}
+		done_loading();
+
 
 	}
 	function setMarker(pos) {
@@ -95,128 +90,119 @@ $(function(){
 	
 	function get_some_default_values() {
 		// Fills the table during the first run.
-		//Gets around 50 last values from the table.
+		// Gets around 50 last values from the table.
 		if(bus_id==0)
 		{
+			$(".page-header-all-stats").html("<h2>Current State Of All Buses </h2>");
+
 			$.ajax({
-			async: false,
-			dataType: "json",
-			url: "/ajax/buses_status",
-			success: function(data) 
-			{
-				console.log("Status of all buses...");
-		  		$(".page-header-all-stats").html("<h2>Current State Of All Buses </h2>");
-				//data = data.reverse();
-				console.log(data); 
+				async: false,
+				dataType: "json",
+				url: "/ajax/buses_status",
+				success: function(data) 
+				{
+					console.log("Status of all buses...");
+					//data = data.reverse();
+					console.log(data); 
 
-				$(".stats-table-body").html("");
-				coord_array = [];
-				msg_array = [];
-				i=0;
+					$(".stats-table-body").html("");
+					coord_array = [];
+					msg_array = [];
+					i=0;
 
-				$.each(data, function(key,value)
-				 {
-					temp=JSON.parse(value.status);
-					data=temp[0];
-					//alert("key="+key+"value="+temp[0].lat)
-					lat = data.lat;
-					lon = data.lon;
-					speed = data.speed;
-					time = data.time;
-					var date = Date.parse(time);
-					//alert("inhere");
-					time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
-					time = time.replace(/ - 00:/, " - 12:");
-					console.log("time="+time);				
+					$.each(data, function(key,value) {
+						// temp=JSON.parse(value.status);
+						// data=temp[0];
+						//alert("key="+key+"value="+temp[0].lat)
+						lat = value.lat;
+						lon = value.lon;
+						speed = value.speed;
+						time = value.time;
+						address_json_string = value.address;
+						address_json = JSON.parse(address_json_string);
+						address = address_json.address;
 
-					var pos = new google.maps.LatLng(lat,lon);
-					msg_array[i] = "BUS "+value.number+" was last updated on "+time;
-					coord_array[i++] = pos;
-					$.ajaxSetup({
-						async: false
-					});
-					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
-						console.log(result);
-						console.log("hello");
-						//$("#address").html(result["address"]);
-						address=result["address"];
-						//alert("inhere");		
-						//alert("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+time+"</td></tr>");
-						$('#allstatsbody').append("<tr id=\"bus"+value.id+"\"onclick=\"update_route("+value.id+");\"><td>"+value.number+"</td><td>"+address+"</td><td>"+time+"</td></tr>");
-					});
-					$.ajaxSetup({
-						async: true
-					});
-					
-					//append_table(lat,lon,time,"last-trip",speed);
+						current_bus_id = value.id;
+						current_bus_number = value.number;
 
-				});	
-				//update_table(lat,lon,time,"last-trip",speed);
-				console.log(coord_array); 
-			}
-		});
-		}	
-		else
-		{
-			//alert("BUS ID="+bus_id);
-			$.getJSON('/ajax/list_of_routes', function(data) {
-		 
-			  $.each(data, function(key, val) {
-			  if(val.id==bus_id)
-			  	{
-				  	bus_number=val.route_number;
-			  		$(".page-header-stats").html("<h2>Current State - "+bus_number+" </h2>");
-			  	}
-			  });
+						buses_list.push( {
+							id: current_bus_id,
+							number: current_bus_number,
+						});
+
+						var date = Date.parse(time);
+						//alert("inhere");
+						time = date.toString("MMMM d, yyyy - hh:mm:ss tt");
+						time = time.replace(/ - 00:/, " - 12:");
+
+						// onclick='update_route("+value.id+");
+						append_table(current_bus_id, current_bus_number, address, time);
+						//$('.all-stats-body').append("<tr id='bus"+value.id+"><td><button class='bus-route-selector' onclick='update_route("+value.id+");'>"+value.number+"</button></td><td>"+address+"</td><td>"+time+"</td></tr>");			
+
+						var pos = new google.maps.LatLng(lat,lon);
+						msg_array[i] = "BUS "+value.number+" was last updated on "+time;
+						coord_array[i++] = pos;
+						
+						//append_table(lat,lon,time,"last-trip",speed);
+
+					});	
+					//update_table(lat,lon,time,"last-trip",speed);
+					console.log(coord_array); 
+				}
 			});
+		}	
+		else {
 			
-			//alert("BUS NUMBER"+bus_number);
+			$.each(buses_list, function(key,val) {
+				if(val.id==bus_id) {
+					bus_number=val.number;
+					$(".page-header-stats").html("<h2>Current State - "+bus_number+" </h2>");
+				}
+			});
 			$.ajax({
-			async: false,
-			dataType: "json",
-			url: "/ajax/last_trip/"+bus_id,
-			success: function(data) {
-				console.log("Data from the Previous coordinates...");
+				async: false,
+				dataType: "json",
+				url: "/ajax/last_trip/"+bus_id,
+				success: function(data) {
+					console.log("Data from the Previous coordinates...");
 
-				data = data.reverse();
-				console.log(data); 
+					data = data.reverse();
+					console.log(data); 
 
-				$(".stats-table-body").html("");
-				coord_array = [];
-				i=0;
+					coord_array = [];
+					i=0;
 
-				$.each(data, function(key,value) {
-					var pos = new google.maps.LatLng(value.lat,value.lon);
-					coord_array[i++] = pos;
+					$.each(data, function(key,value) {
+						var pos = new google.maps.LatLng(value.lat,value.lon);
+						coord_array[i++] = pos;
 
 
-					var data=value;
+						var data=value;
 
-					lat = data.lat;
-					lon = data.lon;
-					speed = data.speed;
-					time = data.time;
+						lat = data.lat;
+						lon = data.lon;
+						speed = data.speed;
+						time = data.time;
 
-					//append_table(lat,lon,time,"last-trip",speed);
-
-				});	
-				update_table(lat,lon,time,"Last Trip",speed);
-				console.log(coord_array); 
-			}
-		});
-			//alert(bus_number);
-					}
+					});	
+					update_table(lat,lon,time,"Last Trip",speed,'');
+					console.log(coord_array); 
+				}
+			});
+		}
 	}
 
+	//update_route(0);
 	get_some_default_values();
 	console.log("after the synchronous  ajax call...");
 	google.maps.event.addDomListener(window, 'load', initialize);
+
 	// Called after the maps is loaded...
 	// Shows the table, and hides the loading bar.
 	function done_loading() {
 		if(hidden) {
 			$("#loading-bar").hide();
-			$(".stats-table").show();
+			$(".bus-details").show();
 			hidden = false;
 
 		}
@@ -235,96 +221,55 @@ $(function(){
 		lon = data.lon;
 		speed = data.speed;
 		time = data.time;
-		
-		if(bus_id==0)
-		{
-			if( lat == oldlat && lon == oldlon ) 
-			{
-				//update_table(lat,lon,time,"not-moved",speed);				
-		  		$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
-						console.log(result);
-						//$("#address").html(result["address"]);
-						address=result["address"];
-						//alert("inhere");						
-						$.getJSON('/ajax/list_of_routes', function(data2) {
-					 
-						  $.each(data2, function(key, val) {
-						  if(val.id==data.bus_id)
-						  	{
-							  	//bus_number=val.route_number;
-							  //	alert("inhere");
-						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+time+"</td>");						  		
-						  	}
-						  });
-						});
+		current_bus_id = data.bus_id;
 
-						
-				});
+		address_json_string = data.address;
+		address_json = JSON.parse(address_json_string);
+		address = address_json.address;
+		
+
+		if(bus_id==0) {
+
+			update_all_buses_stats(current_bus_id, address, time);
+			
+			if( lat != oldlat || lon != oldlon ) {
+				var newLatLng = new google.maps.LatLng(lat, lon);
+				marker[current_bus_id-1].setPosition(newLatLng);
 				
 			}
-			else 
-			{
-					/*var pos = new google.maps.LatLng(lat,lon);
-					coord_array[data.bus_id-1] = pos;
-					setMarker(pos);*/
-					//update_table(lat,lon,time,"moved",speed);
-					var newLatLng = new google.maps.LatLng(lat, lon);
-    				marker[data.bus_id-1].setPosition(newLatLng);
-					$.getJSON("/maps/get_address/"+lat+"/"+lon+"/", function(result){
-						console.log(result);
-						//$("#address").html(result["address"]);
-						address=result["address"];
-						//alert("inhere");		
-
-						$.getJSON('/ajax/list_of_routes', function(data2) {
-					 
-						  $.each(data2, function(key, val) {
-						  	//alert("VAL ID="+val.id+" BUS ID ="+data.bus_id);
-						  if(val.id==data.bus_id)
-						  	{
-						  		//alert("inhere");
-							  	//bus_number=val.route_number;
-						  		$("#bus"+data.bus_id).html("<td>"+val.route_number+"</td><td>"+address+"</td><td>"+time+"</td>");						  		
-						  	}
-						  });
-						});
-
-						
-				});
-				}
 		}
-		else if(data.bus_id==bus_id)
-		{
+		else if(data.bus_id==bus_id) {
 			if( lat == oldlat && lon == oldlon ) 
-				update_table(lat,lon,time,"Not Moved",speed);
+				update_table(lat,lon,time,"Not Moved",speed,address);
 			else {
 				var pos = new google.maps.LatLng(lat,lon);
 				coord_array[i] = pos;
 				setMarker(pos);
 				i++;
-				update_table(lat,lon,time,"Moved",speed);
-		}
+				update_table(lat,lon,time,"Moved",speed,address);
+			}
 
 		}
 	}	
 
+	
+
 	window.update_route = function(new_id) {
 		bus_id = new_id;
-		if(bus_id==0)
-		{
+		if(bus_id==0) {
 			$('.stats').hide();
-			$('.allstats').show();			
-			$('#allstatsbody').html("");
+			$('.all-stats').show();			
+			$('.all-stats-body').html("");
 
 		}
-		else
-		{
+		else {
 			$('.stats').show();
-			$('.allstats').hide();	
+			$('.all-stats').hide();	
+			$(".stats-table-body").html("");
+
 		}
 		get_some_default_values();
 		//google.maps.event.addDomListener(window, 'load', initialize);
 		initialize();
 	}
-
 });
