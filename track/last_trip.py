@@ -22,7 +22,6 @@ def my_calc_func(bus, limit, return_as_object=False):
 			'speed': o.speed, 
 			'lon': o.lon, 
 			'time': str(o.time)[:19],
-			'valid': o.valid,
 		}
 		
 		if prev_time == "":
