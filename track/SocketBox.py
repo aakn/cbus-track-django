@@ -8,8 +8,8 @@ def trigger(channel, event, data):
 		'data' : simplejson.dumps(data),
 	}
 
-	host = 'http://50.62.76.127';
-	result = urllib2.urlopen(host+'/post/', urllib.urlencode(socket_data))
+	host = 'http://50.62.76.127:4000';
+	result = urllib2.urlopen(host + '/post/', urllib.urlencode(socket_data))
 	content = result.read()
 
 	return content

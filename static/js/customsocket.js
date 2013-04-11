@@ -10,7 +10,7 @@ $(function(){
     console.log("Longitude="+data.lon);
     console.log("Address="+data.address.address);
     console.log("Speed="+data.speed);
-    console.log("Time="+data.time);	   
+    console.log("Time="+data.time);
     
   });
 });
