@@ -14,6 +14,8 @@ $(function(){
 	var i=0;
 	var hidden = true;
 
+	$(".progress-ring").show();
+
 	/* PUSHER CODE */
 	// var pusher = new Pusher('38c410e14df2239c04ab');
 	// var channel = pusher.subscribe('track-channel');
@@ -195,10 +197,9 @@ $(function(){
 	// Shows the table, and hides the loading bar.
 	function done_loading() {
 		if(hidden) {
-			$("#loading-bar").hide();
 			$(".bus-details").show();
+			$(".progress-ring").hide();
 			hidden = false;
-
 		}
 	}
 
@@ -252,6 +253,9 @@ $(function(){
 	
 
 	window.update_route = function(new_id) {
+		$(".progress-ring").show();
+		hidden=true;
+
 		bus_id = new_id;
 		if(bus_id==0) {
 			$('.stats').hide();

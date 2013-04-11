@@ -1,6 +1,14 @@
 {% extends 'track/base.html' %}
 {% block title %} Tracker | About {% endblock %}
 
+{% block scripts %}
+<script>	
+$(function(){
+	$(".progress-ring").hide();
+});
+</script>
+{% endblock %}
+
 {% block page_header_class %} span10 offset1 {% endblock %}
 {% block content_class %} span10 offset1 {% endblock %}
 {% block content %}

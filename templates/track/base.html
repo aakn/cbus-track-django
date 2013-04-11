@@ -59,9 +59,16 @@
 				<div class = "{% block page_header_class %}span10 offset1{% endblock %}">
 					<div class="well well-large page-header">
 						<h1>
-							{% block page_header_title %}
-								PESIT BSC College Bus Tracking System
-							{% endblock %}
+							<div class='row-fluid'>
+							<div class='span10'>
+								{% block page_header_title %}
+									PESIT BSC College Bus Tracking System 
+								{% endblock %}
+							</div>
+							<div class='span2'>
+							{% include 'includes/windows-8-loader.html' %}
+							</div>
+							</div>
 						</h1>
 					</div>
 				</div>

@@ -9,6 +9,8 @@ $(function(){
 
 	var i=0;
 	var hidden = true;
+	
+	$(".progress-ring").show();
 
 
 	/* PUSHER CODE */
@@ -108,7 +110,7 @@ $(function(){
 	// Shows the table, and hides the loading bar.
 	function done_loading() {
 		if(hidden) {
-			$("#loading-bar").hide();
+			$(".progress-ring").hide();
 			$(".stats-table").show();
 			hidden = false;
 
