@@ -41,7 +41,8 @@ $(function(){
 
 		marker=new google.maps.Marker({
 			position: currentCenter,
-			animation:google.maps.Animation.BOUNCE
+			animation:google.maps.Animation.BOUNCE,
+			icon:'/static/img/bus_position_marker.png',
 		});
 		marker.setMap(map);
 
@@ -127,7 +128,7 @@ $(function(){
 		lon = data.lon;
 		speed = data.speed;
 		time = data.time;
-		
+
 		
 
 		if( lat == oldlat && lon == oldlon ) 

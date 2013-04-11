@@ -47,7 +47,8 @@ $(function(){
 			for(var ctr=0;ctr<i;ctr++) {
 				marker[ctr]=new google.maps.Marker({
 					position: coord_array[ctr],
-					title : msg_array[ctr]
+					title : msg_array[ctr],
+					icon:'/static/img/bus_position_marker.png',
 				});
 				marker[ctr].setMap(map);	
 			}
@@ -63,6 +64,7 @@ $(function(){
 
 			marker=new google.maps.Marker({
 				position: currentCenter,
+				icon:'/static/img/bus_position_marker.png',
 				//animation:google.maps.Animation.BOUNCE
 			});
 			marker.setMap(map);
@@ -214,7 +216,7 @@ $(function(){
 		time = data.time;
 
 		time = parse_time(time);
-		
+
 		current_bus_id = data.bus_id;
 
 		address_json_string = data.address;
