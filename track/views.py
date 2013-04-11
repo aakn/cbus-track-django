@@ -4,8 +4,8 @@ from track.models import Balance, BusTravelLog, RouteDetail
 from mapsapi.models import MapsAddressCache
 from track.convert_coordinates import convert
 import pusher, datetime
-import urllib
-import urllib2
+from track import Socket
+
 def stats(request):
 	routes = RouteDetail.objects.all()
 	return render_to_response('track/stats.html', { 'page': 'stats', 'request': request, 'routes': routes, })
@@ -58,19 +58,9 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	p = pusher.Pusher()
 	p['track-channel'].trigger('bus-moved', data)
 
-	#custom socket code starts
-	#data.address=address.address;
-	#data['address']=address['address'];
-	
-	tosend={};
-	tosend["data"]=data;
-	tosend["channel"]="cbustrack";
-	tosend["event"]="busmoved";
-	url_values = urllib.urlencode(tosend)
-	url='http://50.62.76.127:3000/';
-	full_url = url + '?' + url_values
-	data = urllib2.urlopen(full_url)
-	#custom socket code ends
+	# Custom Socket Function
+	Socket.send_data('cbustrack', 'bus-moved', data)
+
 	return HttpResponse("Success")
 
 def deploy(request):
@@ -100,6 +90,15 @@ def deploy(request):
 		# text += str(result)+"<br/>"
 
 	return HttpResponse("%s" % text)
+
+def socket_test(request):
+	data = {
+		'name' : 'ali asgar',
+		'email' : 'aliasgar@outlook.com'
+	}
+	
+	result = Socket.send_data('my-channel', 'my-event', data)
+	return HttpResponse(result)
 
 def php_add(request):
 	if 'id' in request.GET:

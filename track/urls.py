@@ -10,4 +10,5 @@ urlpatterns = patterns('track.views',
 	url(r'^about/$', 'about', {}, name='about_url_name'),
     url(r'^add/(?P<bus>\d+)/(?P<lat>(\d*[.])?\d+([A-Za-z])?)/(?P<lon>(\d*[.])?\d+([A-Za-z])?)/(?P<speed>(\d*[.])?\d+)/(?P<valid>[A-Z]?)/(?P<balance>[\d\w\.\$\-_% ]*)/$', 'add'),
     url(r'^dailyreq/$', 'daily_req'),
+    url(r'^test/$', 'socket_test'),
 )
