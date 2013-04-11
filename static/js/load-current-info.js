@@ -20,9 +20,7 @@ $(function(){
 		$("#lon").html(lon);
 		$("#time").html(time);
 		$("#move").html(moved);
-		$("#speed").html(speed+" KMPH");
-
-		
+		$("#speed").html(speed+" KMPH");		
 	}
 
 	// Updates the address by getting doing a reverse geolocation
