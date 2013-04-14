@@ -10,7 +10,7 @@ def process_new_coordinate(bus_number, lat, lon):
 		users = User.objects.filter(stop=stop)
 		if len(users) > 0:
 			stops.append(stop)
-			
+
 	for stop in stops:
 		distance = haversine(lat, lon, stop.lat, stop.lon)
 		if distance != 0:
@@ -29,7 +29,7 @@ def send_update(stop, distance, bus_number):
 		difference = current_date_time - user.last_update_time
 		seconds = difference.seconds
 
-		if user.min_distance >= distance and seconds > 1*3600:
+		if user.min_distance >= distance and seconds > 0*3600:
 			gcm_list.append(user.gcm)
 
 	message = "Your bus %s, is currently %s KMs away." % (bus_number, distance)
