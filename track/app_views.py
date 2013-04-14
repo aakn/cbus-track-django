@@ -55,9 +55,12 @@ def add_user(request):
 
 @csrf_exempt
 def update_user_stop(request, user_id):
+
+	message = 'method_not_post'
+
 	if request.method == 'POST':
-		if 'stop_id' in request.method:
-			stop_id = request.method['stop_id']
+		if 'stop_id' in request.POST:
+			stop_id = request.POST['stop_id']
 
 			stop = BusStop.objects.get(pk=stop_id)
 			user = User.objects.filter(pk=user_id)
@@ -68,5 +71,10 @@ def update_user_stop(request, user_id):
 			user.update(stop=stop)
 
 			return HttpResponse(simplejson.dumps({'status' : 'success'}))
-	return HttpResponse(simplejson.dumps({'status' : 'fail'}))
+		else:
+			message = 'stop_id not in request.POST'
+	return HttpResponse(simplejson.dumps({
+		'status' : 'fail',
+		'message' : message,
+	}))
 
