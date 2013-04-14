@@ -64,8 +64,8 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	SocketBox.trigger('track-channel', 'bus-moved', data)
 
 	# Process the new coordinate
-	process.process_new_coordinate(route.number, lat, lon)
-	
+	result = process.process_new_coordinate(route.number, lat, lon)
+	return HttpResponse(result)
 	
 
 	return HttpResponse("Success")

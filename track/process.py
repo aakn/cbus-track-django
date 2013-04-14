@@ -6,17 +6,20 @@ from math import radians, cos, sin, asin, sqrt
 def process_new_coordinate(bus_number, lat, lon):
 	allstops = BusStop.objects.all()
 	stops = []
+
+	response = ""
+
 	for stop in allstops:
 		users = User.objects.filter(stop=stop)
 		if len(users) > 0:
 			stops.append(stop)
 
 	for stop in stops:
-		distance = haversine(lat, lon, stop.lat, stop.lon)
+		distance = haversine(lat, lon, float(stop.lat), float(stop.lon))
 		if distance != 0:
-			send_update(stop, distance, bus_number)
+			response = response + " " + send_update(stop, distance, bus_number)
 
-	return "Done"
+	return "response"
 
 def is_close(current_lat, current_lon, stop_lat, stop_lon):
 	return 10
@@ -36,8 +39,10 @@ def send_update(stop, distance, bus_number):
 	data = {
 		'message' : message,
 	}
-	gcm.make_request(gcm_list, data)
+	
 	# Send update via GCM to all the User
+	return gcm.make_request(gcm_list, data)
+	
 
 def haversine(lat1, lon1, lat2, lon2):
     """
