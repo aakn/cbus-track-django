@@ -8,8 +8,5 @@ urlpatterns = patterns('',
     url(r'^maps/', include('mapsapi.urls')),
     url(r'^manager/', include('manager.urls')),
     url(r'', include('track.urls')),
-
-    # added from gcm app (check installed_apps in settings.py)
-    url(r'', include('gcm.urls')),
 )
 

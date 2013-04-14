@@ -141,7 +141,7 @@ INSTALLED_APPS = (
     'admin_bootstrap',
     # GCM django package
     # pip install django-gcm
-    'gcm',
+    # 'gcm',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
