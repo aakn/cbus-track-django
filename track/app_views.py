@@ -63,7 +63,7 @@ def update_user_stop(request, user_id):
 			user = User.objects.filter(pk=user_id)
 
 			if len(user) == 0:
-				return HttpResponse("user_does_not_exist")
+				return HttpResponse(simplejson.dumps({'status' : "user_does_not_exist"}))
 
 			user.update(stop=stop)
 
