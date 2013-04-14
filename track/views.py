@@ -64,7 +64,7 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	SocketBox.trigger('track-channel', 'bus-moved', data)
 
 	# Process the new coordinate
-	result = process.process_new_coordinate(route.number, lat, lon)
+	process.process_new_coordinate(route.number, lat, lon)
 	
 
 	return HttpResponse("Success")
@@ -114,6 +114,13 @@ def gcm_test(request):
 
 	result = process.process_new_coordinate('KA 41 38', 13.01467, 77.555025)
 
+	reg_id = [
+		'APA91bFVPSD2W4cLyg9JLOcHfQyXcbnqdUfPwUMjWVTQsE0N3my5lI_Iyht1fpnFIRAPbwWwK2vhTbaca1FPkP2ZFVih0wKXxpRrrlik6qPsat4GUuAvZ7hcxbL0nQTwylmjfGrRAm1bXISKSGSeVP-5iAVs03rj3g'
+	]
+	data = {
+		"data" : 'hello world',
+	}
+	result = result + "  " + gcm.make_request(reg_id, data)
 	return HttpResponse(result)
 
 def php_add(request):
