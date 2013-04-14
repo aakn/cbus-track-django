@@ -9,11 +9,15 @@ def list_of_stops(request, bus_number):
 	stops = BusStop.objects.filter(bus=route)
 	stops_list = []
 	for stop in stops:
+
+		users = User.objects.filter(stop=stop)
+
 		current_stop = {
 			'id': str(stop.id),
 			'name': str(stop.name),
 			'lat': str(stop.lat),
 			'lon': str(stop.lon),
+			'no_of_users' : len(users),
 		}
 		stops_list.append(current_stop)
 	json = simplejson.dumps(stops_list, check_circular=False)
