@@ -19,7 +19,7 @@ def process_new_coordinate(bus_number, lat, lon):
 		if distance != 0:
 			response = response + " " + send_update(stop, distance, bus_number)
 
-	return "response"
+	return response
 
 def is_close(current_lat, current_lon, stop_lat, stop_lon):
 	return 10
