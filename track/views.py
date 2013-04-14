@@ -111,7 +111,7 @@ def gcm_test(request):
 	data = {
 		'message' : 'hello world',
 	}
-	result = gcm.send_gcm_data(apikey, user_id, data)
+	result = gcm.send_gcm_message(apikey, user_id, data)
 	HttpResponse(result)
 
 def php_add(request):
