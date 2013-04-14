@@ -41,8 +41,8 @@ def send_update(stop, distance, bus_number):
 	}
 	
 	# Send update via GCM to all the User
-	return message + " " + gcm.make_request(gcm_list, data)
-	
+	# return message + " " + gcm.make_request(gcm_list, data)
+	return message
 
 def haversine(lat1, lon1, lat2, lon2):
     """
