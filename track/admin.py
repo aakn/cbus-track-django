@@ -20,7 +20,7 @@ class BusStopAdmin(admin.ModelAdmin):
 	list_display = ('bus', 'name', 'lat', 'lon')
 
 class UserAdmin(admin.ModelAdmin):
-	list_display = ('name', 'stop', 'notify', 'min_distance', 'min_time')
+	list_display = ('name', 'stop', 'notify', 'min_distance', 'min_time', 'last_update_time')
 
 admin.site.register(RouteDetail, RouteDetailAdmin)
 admin.site.register(Balance, BalanceAdmin)
