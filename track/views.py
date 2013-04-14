@@ -65,7 +65,6 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 
 	# Process the new coordinate
 	result = process.process_new_coordinate(route.number, lat, lon)
-	return HttpResponse(result)
 	
 
 	return HttpResponse("Success")
@@ -112,16 +111,9 @@ def socketbox_test(request):
 	return HttpResponse(result)
 
 def gcm_test(request):
-	user_id = [
-		'APA91bFVPSD2W4cLyg9JLOcHfQyXcbnqdUfPwUMjWVTQsE0N3my5lI_Iyht1fpnFIRAPbwWwK2vhTbaca1FPkP2ZFVih0wKXxpRrrlik6qPsat4GUuAvZ7hcxbL0nQTwylmjfGrRAm1bXISKSGSeVP-5iAVs03rj3g'
-		]
 
-	data = {
-		'message' : 'hello world',
-	}
-	# result = gcm.send_gcm_message(apikey, user_id, data)
+	result = process.process_new_coordinate('KA 41 38', 13.01467, 77.555025)
 
-	result = gcm.make_request(user_id, data)
 	return HttpResponse(result)
 
 def php_add(request):
