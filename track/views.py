@@ -91,7 +91,7 @@ def deploy(request):
 
 	return HttpResponse("%s" % text)
 
-def socket_test(request):
+def notification_test(request):
 	data = {
 		'bus_id': '1',
 		'lat': 12.8980033333,

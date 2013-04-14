@@ -139,11 +139,17 @@ INSTALLED_APPS = (
     'mapsapi',
     'track.templatetags',
     'admin_bootstrap',
+    # GCM django package
+    # pip install django-gcm
+    'gcm',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+# GCM API KEY
+GCM_APIKEY = "AIzaSyAEG46KSaG0AtCtflei2Okp3o8nN0Tx5HM"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
