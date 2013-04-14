@@ -106,12 +106,17 @@ def socketbox_test(request):
 	return HttpResponse(result)
 
 def gcm_test(request):
-	user_id = 'APA91bFVPSD2W4cLyg9JLOcHfQyXcbnqdUfPwUMjWVTQsE0N3my5lI_Iyht1fpnFIRAPbwWwK2vhTbaca1FPkP2ZFVih0wKXxpRrrlik6qPsat4GUuAvZ7hcxbL0nQTwylmjfGrRAm1bXISKSGSeVP'
+	user_id = [
+		'APA91bFVPSD2W4cLyg9JLOcHfQyXcbnqdUfPwUMjWVTQsE0N3my5lI_Iyht1fpnFIRAPbwWwK2vhTbaca1FPkP2ZFVih0wKXxpRrrlik6qPsat4GUuAvZ7hcxbL0nQTwylmjfGrRAm1bXISKSGSeVP'
+		]
+
 	apikey = settings.GCM_APIKEY
 	data = {
 		'message' : 'hello world',
 	}
-	result = gcm.send_gcm_message(apikey, user_id, data)
+	# result = gcm.send_gcm_message(apikey, user_id, data)
+
+	result = gcm.make_request(apikey, user_id, data)
 	return HttpResponse(result)
 
 def php_add(request):
