@@ -32,9 +32,9 @@ class BusStop(models.Model):
         return "%s" % (self.name)
 
 class User(models.Model):
-    stop = models.ForeignKey(BusStop)
+    stop = models.ForeignKey(BusStop, blank=True, null=True)
     name = models.CharField(max_length=200)
-    gcm = models.CharField(max_length=200, blank=True, null=True)
+    gcm = models.CharField(max_length=200, blank=True, null=True, unique=True)
 
     def __unicode__(self):
         return "%s@%s" % (self.name, self.stop)

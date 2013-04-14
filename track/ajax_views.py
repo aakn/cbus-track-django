@@ -19,6 +19,7 @@ def list_of_stops(request, bus_number):
 	json = simplejson.dumps(stops_list, check_circular=False)
 	return HttpResponse(json)
 
+
 def list_of_routes(request):
 	routes = RouteDetail.objects.all()
 	route_list = []
@@ -30,6 +31,7 @@ def list_of_routes(request):
 		route_list.append(current_route)
 	json = simplejson.dumps(route_list, check_circular=False)
 	return HttpResponse(json)
+
 
 def buses_status(request):
 	routes = RouteDetail.objects.all()
@@ -56,21 +58,10 @@ def buses_status(request):
 	return HttpResponse(json)
 
 
-def add_bus_stop(request, bus_number, stop_name, lat, lon):
-	route = RouteDetail.objects.get(pk=bus_number)
-	stop = BusStop(route, lat, lon, stop_name)
-	stop.save()
-	return HttpResponse("Done")
-
-def add_user(request, name, stop_id, gcm_id):
-	stop = BusStop.objects.get(pk=stop_id)
-	user = User(stop, name, gcm_id)
-	user.save()
-	return HttpResponse("Done")
-
 def last_trip(request, bus = '1', limit = '0'):
 	last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	return HttpResponse(last)
+
 
 def current_trip(request, bus = '1'):
 	return render_to_response('track/current_trip.html', {'bus': bus})
