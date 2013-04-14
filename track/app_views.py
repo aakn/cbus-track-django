@@ -16,7 +16,7 @@ def add_bus_stop(request):
 	return HttpResponse(simplejson.dumps({'status' : "fail"}))
 
 
-def add_user(request, name, gcm_id):
+def add_user(request):
 	if request.method == 'POST':
 		if 'name' in request.POST and 'gcm_id' in request.POST:
 			name = request.POST['name']
@@ -50,7 +50,7 @@ def add_user(request, name, gcm_id):
 	return HttpResponse(return_json_string)
 
 
-def update_user_stop(request, user_id, stop_id):
+def update_user_stop(request, user_id):
 	if request.method == 'POST':
 		if 'stop_id' in request.method:
 			stop_id = request.method['stop_id']
