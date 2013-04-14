@@ -112,7 +112,7 @@ def gcm_test(request):
 		'message' : 'hello world',
 	}
 	result = gcm.send_gcm_message(apikey, user_id, data)
-	HttpResponse(result)
+	return HttpResponse(result)
 
 def php_add(request):
 	if 'id' in request.GET:
