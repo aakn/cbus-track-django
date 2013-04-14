@@ -4,7 +4,8 @@ from track.models import Balance, BusTravelLog, RouteDetail
 from mapsapi.models import MapsAddressCache
 from track.convert_coordinates import convert
 import pusher, datetime
-from track import SocketBox
+from track import SocketBox, gcm
+from django.conf import settings
 
 def stats(request):
 	routes = RouteDetail.objects.all()
@@ -91,7 +92,7 @@ def deploy(request):
 
 	return HttpResponse("%s" % text)
 
-def notification_test(request):
+def socketbox_test(request):
 	data = {
 		'bus_id': '1',
 		'lat': 12.8980033333,
@@ -103,6 +104,15 @@ def notification_test(request):
 	
 	result = SocketBox.trigger('track-channel', 'bus-moved', data)
 	return HttpResponse(result)
+
+def gcm_test(request):
+	user_id = 'APA91bFVPSD2W4cLyg9JLOcHfQyXcbnqdUfPwUMjWVTQsE0N3my5lI_Iyht1fpnFIRAPbwWwK2vhTbaca1FPkP2ZFVih0wKXxpRrrlik6qPsat4GUuAvZ7hcxbL0nQTwylmjfGrRAm1bXISKSGSeVP'
+	apikey = settings.GCM_APIKEY
+	data = {
+		'message' : 'hello world',
+	}
+	result = gcm.send_gcm_data(apikey, user_id, data)
+	HttpResponse(result)
 
 def php_add(request):
 	if 'id' in request.GET:

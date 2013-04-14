@@ -19,7 +19,8 @@ urlpatterns = patterns('track.views',
 
     # for testing custom sockets
     # remove this during production
-    url(r'^notification_test/$', 'notification_test'),
+    url(r'^socketbox_test/$', 'socketbox_test'),
+    url(r'^gcm_test/$', 'gcm_test'),
 )
 
 urlpatterns += patterns('track.app_views',
