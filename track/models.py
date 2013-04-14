@@ -35,6 +35,9 @@ class User(models.Model):
     stop = models.ForeignKey(BusStop, blank=True, null=True)
     name = models.CharField(max_length=200)
     gcm = models.CharField(max_length=200, blank=True, null=True, unique=True)
+    notify = models.BooleanField(default=True)
+    min_distance = models.CharField(max_length=10, default="2")
+    min_time = models.CharField(max_length=10, default="5")
 
     def __unicode__(self):
         return "%s@%s" % (self.name, self.stop)

@@ -78,3 +78,38 @@ def update_user_stop(request, user_id):
 		'message' : message,
 	}))
 
+
+@csrf_exempt
+def update_user_preference(request, user_id):
+
+	message = 'method_not_post'
+
+	if request.method == 'POST':
+		if 'distance' in request.POST:
+			distance = request.POST['distance']
+
+			user = User.objects.filter(pk=user_id)
+
+			if len(user) == 0:
+				return HttpResponse(simplejson.dumps({'status' : "user_does_not_exist"}))
+
+			user.update(min_distance=distance)
+
+			return HttpResponse(simplejson.dumps({'status' : 'success'}))
+		if 'notify' in request.POST:
+			notify = request.POST['notify']
+
+			user = User.objects.filter(pk=user_id)
+
+			if len(user) == 0:
+				return HttpResponse(simplejson.dumps({'status' : "user_does_not_exist"}))
+
+			user.update(notify=notify)
+
+			return HttpResponse(simplejson.dumps({'status' : 'success'}))
+			
+	return HttpResponse(simplejson.dumps({
+		'status' : 'fail',
+		'message' : message,
+	}))
+

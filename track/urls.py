@@ -26,4 +26,5 @@ urlpatterns += patterns('track.app_views',
 	url(r'^bus_stop/add/$', 'add_bus_stop'),
     url(r'^user/add/$', 'add_user'),
     url(r'^user/(?P<user_id>\d+)/update/stop/$', 'update_user_stop'),
+    url(r'^user/(?P<user_id>\d+)/update/preference/$', 'update_user_preference'),
 )
