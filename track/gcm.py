@@ -1,6 +1,7 @@
 import urllib
 import urllib2
 from django.utils import simplejson
+from django.conf import settings
 
 def send_gcm_message(api_key, reg_id, data, collapse_key=None):
 
@@ -28,13 +29,13 @@ def send_gcm_message(api_key, reg_id, data, collapse_key=None):
 	return result
 
 
-def make_request(api_key, reg_id, data, collapse_key=None):
+def make_request(reg_id, data, collapse_key=None):
 	json_data = {"collapse_key" : "msg", 
 			"data" : data, 
 		"registration_ids": reg_id,
 	}
 	url = 'https://android.googleapis.com/gcm/send'
-	myKey = api_key
+	myKey = settings.GCM_APIKEY
 	data = simplejson.dumps(json_data)
 	headers = {'Content-Type': 'application/json', 'Authorization': 'key=%s' % myKey}
 	req = urllib2.Request(url, data, headers)

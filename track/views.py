@@ -4,8 +4,8 @@ from track.models import Balance, BusTravelLog, RouteDetail
 from mapsapi.models import MapsAddressCache
 from track.convert_coordinates import convert
 import pusher, datetime
-from track import SocketBox, gcm
-from django.conf import settings
+from track import SocketBox, gcm, process
+
 
 def stats(request):
 	routes = RouteDetail.objects.all()
@@ -59,8 +59,14 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	p = pusher.Pusher()
 	p['track-channel'].trigger('bus-moved', data)
 
+
 	# Custom Socket Function
 	SocketBox.trigger('track-channel', 'bus-moved', data)
+
+	# Process the new coordinate
+	process.process_new_coordinate(route.number, lat, lon)
+	
+	
 
 	return HttpResponse("Success")
 
@@ -107,16 +113,15 @@ def socketbox_test(request):
 
 def gcm_test(request):
 	user_id = [
-		'APA91bFVPSD2W4cLyg9JLOcHfQyXcbnqdUfPwUMjWVTQsE0N3my5lI_Iyht1fpnFIRAPbwWwK2vhTbaca1FPkP2ZFVih0wKXxpRrrlik6qPsat4GUuAvZ7hcxbL0nQTwylmjfGrRAm1bXISKSGSeVP'
+		'APA91bFVPSD2W4cLyg9JLOcHfQyXcbnqdUfPwUMjWVTQsE0N3my5lI_Iyht1fpnFIRAPbwWwK2vhTbaca1FPkP2ZFVih0wKXxpRrrlik6qPsat4GUuAvZ7hcxbL0nQTwylmjfGrRAm1bXISKSGSeVP-5iAVs03rj3g'
 		]
 
-	apikey = settings.GCM_APIKEY
 	data = {
 		'message' : 'hello world',
 	}
 	# result = gcm.send_gcm_message(apikey, user_id, data)
 
-	result = gcm.make_request(apikey, user_id, data)
+	result = gcm.make_request(user_id, data)
 	return HttpResponse(result)
 
 def php_add(request):
