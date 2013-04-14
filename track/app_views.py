@@ -12,7 +12,7 @@ def add_bus_stop(request):
 			lng = request.POST['lng']
 			stop_name = request.POST['stop_name']
 			route = RouteDetail.objects.get(pk=bus_id)
-			stop = BusStop(route, lat, lng, stop_name)
+			stop = BusStop(bus=route, lat=lat, lon=lng, name=stop_name)
 			stop.save()
 			return HttpResponse(simplejson.dumps({'status' : "success"}))
 	return HttpResponse(simplejson.dumps({'status' : "fail"}))
