@@ -149,7 +149,7 @@ INSTALLED_APPS = (
 )
 
 # GCM API KEY
-GCM_APIKEY = "AIzaSyAEG46KSaG0AtCtflei2Okp3o8nN0Tx5HM"
+GCM_APIKEY = "AIzaSyAfV86YhqMUF5DtraXW72Jx74fCs1yoSXw"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
