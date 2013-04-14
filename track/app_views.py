@@ -23,7 +23,7 @@ def add_user(request):
 	if request.method == 'POST':
 		if 'name' in request.POST and 'gcm_id' in request.POST:
 			name = request.POST['name']
-			gcm_id = request.POST['stop_id']
+			gcm_id = request.POST['gcm_id']
 
 			user = User.objects.filter(gcm=gcm_id)
 
