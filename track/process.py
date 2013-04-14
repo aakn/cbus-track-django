@@ -35,14 +35,18 @@ def send_update(stop, distance, bus_number):
 		if float(user.min_distance) >= float(distance) and seconds > 0*3600:
 			gcm_list.append(user.gcm)
 
+	
+	if len(gcm_list) == 0:
+		return "No one is close enough"
+
 	message = "Your bus %s, is currently %s KMs away." % (bus_number, distance)
 	data = {
 		'message' : message,
 	}
-	
+
 	# Send update via GCM to all the User
-	# return message + " " + gcm.make_request(gcm_list, data)
-	return message
+	return message + " " + gcm.make_request(gcm_list, data)
+	# return message
 
 def haversine(lat1, lon1, lat2, lon2):
     """
