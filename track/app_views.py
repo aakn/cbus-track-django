@@ -1,6 +1,8 @@
 from track.models import BusStop, RouteDetail, User
 from django.http import HttpResponse
 from django.utils import simplejson
+from django.views.decorators.csrf import csrf_exempt                                          
+@csrf_exempt
 
 def add_bus_stop(request):
 	if request.method == 'POST':
