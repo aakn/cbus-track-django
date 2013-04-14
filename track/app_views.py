@@ -12,8 +12,8 @@ def add_bus_stop(request):
 			route = RouteDetail.objects.get(pk=bus_id)
 			stop = BusStop(route, lat, lng, stop_name)
 			stop.save()
-			return HttpResponse("success")
-	return HttpResponse("fail")
+			return HttpResponse(simplejson.dumps({'status' : "success"}))
+	return HttpResponse(simplejson.dumps({'status' : "fail"}))
 
 
 def add_user(request, name, gcm_id):
@@ -35,7 +35,7 @@ def add_user(request, name, gcm_id):
 
 			user_id = user[0].id
 			return_json_object = {
-				'success' : 'success',
+				'status' : 'success',
 				'user_id' : user_id,
 			}
 			return_json_string = simplejson.dumps(return_json_object)
@@ -43,7 +43,7 @@ def add_user(request, name, gcm_id):
 			return HttpResponse(return_json_string)
 
 	return_json_object = {
-		'success' : 'fail',
+		'status' : 'fail',
 	}
 	return_json_string = simplejson.dumps(return_json_object)
 
@@ -63,6 +63,6 @@ def update_user_stop(request, user_id, stop_id):
 
 			user.update(stop=stop)
 
-			return HttpResponse('success')
-	return HttpResponse('fail')
+			return HttpResponse(simplejson.dumps({'status' : 'success'}))
+	return HttpResponse(simplejson.dumps({'status' : 'fail'}))
 
