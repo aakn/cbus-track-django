@@ -28,9 +28,19 @@ def list_of_routes(request):
 	routes = RouteDetail.objects.all()
 	route_list = []
 	for route in routes:
+
+		stops = BusStop.objects.filter(bus=route)
+		no_of_users = 0
+
+		for stop in stops:
+			users = User.objects.filter(stop=stop)
+			no_of_users = no_of_users + len(users)
+
 		current_route = {
 			'id': route.id,
 			'route_number': str(route.number),
+			'no_of_stops' : len(stops),
+			'no_of_users' : no_of_users
 		}
 		route_list.append(current_route)
 	json = simplejson.dumps(route_list, check_circular=False)
