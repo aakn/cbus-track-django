@@ -2,8 +2,8 @@ from track.models import BusStop, RouteDetail, User
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt                                          
-@csrf_exempt
 
+@csrf_exempt
 def add_bus_stop(request):
 	if request.method == 'POST':
 		if 'bus_id' in request.POST and 'lat' in request.POST and 'lng' in request.POST and 'stop_name' in request.POST:
@@ -18,6 +18,7 @@ def add_bus_stop(request):
 	return HttpResponse(simplejson.dumps({'status' : "fail"}))
 
 
+@csrf_exempt
 def add_user(request):
 	if request.method == 'POST':
 		if 'name' in request.POST and 'gcm_id' in request.POST:
@@ -52,6 +53,7 @@ def add_user(request):
 	return HttpResponse(return_json_string)
 
 
+@csrf_exempt
 def update_user_stop(request, user_id):
 	if request.method == 'POST':
 		if 'stop_id' in request.method:
