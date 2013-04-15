@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         # Changing field 'User.last_update_time'
-        db.alter_column(u'track_user', 'last_update_time', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, null=True))
+        db.alter_column(u'track_user', 'last_update_time', self.gf('django.db.models.fields.DateTimeField')())
 
     def backwards(self, orm):
 
@@ -52,7 +52,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'User'},
             'gcm': ('django.db.models.fields.CharField', [], {'max_length': '200', 'unique': 'True', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_update_time': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'null': 'True', 'blank': 'True'}),
+            'last_update_time': ('django.db.models.fields.DateTimeField', [], {'default': "'2012-01-01 01:00'"}),
             'min_distance': ('django.db.models.fields.CharField', [], {'default': "'2'", 'max_length': '10'}),
             'min_time': ('django.db.models.fields.CharField', [], {'default': "'5'", 'max_length': '10'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
