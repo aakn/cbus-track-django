@@ -119,6 +119,7 @@ def gcm_test(request):
 	]
 	data = {
 		"data" : 'hello world',
+		"message": "a message",
 	}
 	result = result + "  " + gcm.make_request(reg_id, data)
 	return HttpResponse(result)

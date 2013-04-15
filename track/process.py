@@ -42,6 +42,7 @@ def send_update(stop, distance, bus_number):
 	message = "Your bus %s, is currently %s KMs away." % (bus_number, distance)
 	data = {
 		'data' : message,
+		'message' : message,
 	}
 
 	# Send update via GCM to all the User
