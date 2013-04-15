@@ -34,6 +34,7 @@ def send_update(stop, distance, bus_number):
 
 		if float(user.min_distance) >= float(distance) and seconds > 0*3600:
 			gcm_list.append(user.gcm)
+			User.objects.filter(pk=user.id).update(last_update_time=current_date_time)
 
 	
 	if len(gcm_list) == 0:
