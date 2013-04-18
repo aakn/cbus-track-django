@@ -23,7 +23,7 @@
 	<div class = "span6">
 		<div class="well well-small">
 			<div id="choosetrip">
-				<form>
+				
 				Route : <select id=bus>
 				{% for route in routes %}
 					<option value='{{route.id}}'>{{route.number}}</option>
@@ -31,8 +31,9 @@
 				</select><br>
 				Date : <input type="date" id="tripdate">
 				<br>
-				<input type="submit" value="GET TRIP" onclick="show_trip()">
-				</form>
+				<input type="button" id="submit"
+ value="GET TRIP" onclick="show_trip()">
+				
 			</div>
 		</div>
 	</div>
