@@ -26,7 +26,7 @@
 				<form>
 				Route : <select id=bus>
 				{% for route in routes %}
-					<option value='{{route.id}}'>{{route.number}}<option>
+					<option value='{{route.id}}'>{{route.number}}</option>
 				{% endfor %}
 				</select><br>
 				Date : <input type="date" id="tripdate" onblur="alert(this.value)">
