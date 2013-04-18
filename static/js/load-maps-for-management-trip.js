@@ -85,7 +85,7 @@ $(function(){
 	}
 	function show_trip()
 	{
-		var date=document.getElementById("datepicker");
+		var date=document.getElementById("tripdate");
 		alert(date.value);
 		/*get_some_default_values();
 		console.log("after the synchronous ajax call...");
