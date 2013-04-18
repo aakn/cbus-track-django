@@ -1,4 +1,5 @@
-$(function(){
+function show_trip()
+	{
 
 	var bus_id = 1;
 	var date="2013-04-17";
@@ -83,14 +84,13 @@ $(function(){
 			}
 		});
 	}
-	function show_trip()
-	{
+	
 		var date=document.getElementById("tripdate");
 		alert(date.value);
 		/*get_some_default_values();
 		console.log("after the synchronous ajax call...");
 		google.maps.event.addDomListener(window, 'load', initialize);*/
-	}
+	
 	
 	// Called after the maps is loaded...
 	// Shows the table, and hides the loading bar.
@@ -102,4 +102,4 @@ $(function(){
 
 		}
 	}
-});
+}
