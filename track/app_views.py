@@ -104,7 +104,12 @@ def update_user_preference(request, user_id):
 			if len(user) == 0:
 				return HttpResponse(simplejson.dumps({'status' : "user_does_not_exist"}))
 
-			user.update(notify=notify)
+			notify_boolean=False
+
+			if notify == 'true':
+				notify_boolean=True
+				
+			user.update(notify=notify_boolean)
 
 			return HttpResponse(simplejson.dumps({'status' : 'success'}))
 			

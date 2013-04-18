@@ -38,6 +38,7 @@ class User(models.Model):
     notify = models.BooleanField(default=True)
     min_distance = models.CharField(max_length=10, default="2")
     min_time = models.CharField(max_length=10, default="5")
+    last_update_time = models.DateTimeField(default='2012-01-01 01:00')
 
     def __unicode__(self):
         return "%s@%s" % (self.name, self.stop)

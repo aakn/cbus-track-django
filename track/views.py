@@ -4,7 +4,8 @@ from track.models import Balance, BusTravelLog, RouteDetail
 from mapsapi.models import MapsAddressCache
 from track.convert_coordinates import convert
 import pusher, datetime
-from track import SocketBox
+from track import SocketBox, gcm, process
+
 
 def stats(request):
 	routes = RouteDetail.objects.all()
@@ -58,8 +59,13 @@ def add(request, bus, lat, lon, speed, balance, valid='A'):
 	p = pusher.Pusher()
 	p['track-channel'].trigger('bus-moved', data)
 
+
 	# Custom Socket Function
 	SocketBox.trigger('track-channel', 'bus-moved', data)
+
+	# Process the new coordinate
+	process.process_new_coordinate(route.number, lat, lon)
+	
 
 	return HttpResponse("Success")
 
@@ -91,7 +97,7 @@ def deploy(request):
 
 	return HttpResponse("%s" % text)
 
-def socket_test(request):
+def socketbox_test(request):
 	data = {
 		'bus_id': '1',
 		'lat': 12.8980033333,
@@ -102,6 +108,20 @@ def socket_test(request):
 	}
 	
 	result = SocketBox.trigger('track-channel', 'bus-moved', data)
+	return HttpResponse(result)
+
+def gcm_test(request):
+
+	result = process.process_new_coordinate('KA 41 38', 13.01467, 77.555025)
+
+	# reg_id = [
+	# 	'APA91bFVPSD2W4cLyg9JLOcHfQyXcbnqdUfPwUMjWVTQsE0N3my5lI_Iyht1fpnFIRAPbwWwK2vhTbaca1FPkP2ZFVih0wKXxpRrrlik6qPsat4GUuAvZ7hcxbL0nQTwylmjfGrRAm1bXISKSGSeVP-5iAVs03rj3g'
+	# ]
+	# data = {
+	# 	"data" : 'hello world',
+	# 	"message": "a message",
+	# }
+	# result = result + "  " + gcm.make_request(reg_id, data)
 	return HttpResponse(result)
 
 def php_add(request):

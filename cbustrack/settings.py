@@ -1,6 +1,6 @@
 # Django settings for cbustrack project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -139,11 +139,17 @@ INSTALLED_APPS = (
     'mapsapi',
     'track.templatetags',
     'admin_bootstrap',
+    # GCM django package
+    # pip install django-gcm
+    # 'gcm',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+# GCM API KEY
+GCM_APIKEY = "AIzaSyAfV86YhqMUF5DtraXW72Jx74fCs1yoSXw"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
