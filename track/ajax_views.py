@@ -77,10 +77,17 @@ def last_trip(request, bus = '1', limit = '0'):
 	return HttpResponse(last)
 	
 
-def trip(request, bus = '1', date='2013-04-18'):
+def trip(request, bus = '1', date='2013-04-18',morn_even='0'):
 	#last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	#return HttpResponse(last)
-	result = BusTravelLog.objects.filter(time__startswith=date).filter(bus_id=bus).filter(valid="YES").order_by('-time')
+	dateobj=datetime.datetime.strptime(date, "%Y-%m-%d").date()
+	if(morn_even == '0'):
+		lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
+		upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
+	else:
+		lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
+		upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)
+	result = BusTravelLog.objects.filter(time__gt=lower_threshold).filter(time__lt=upper_threshold).filter(bus_id=bus).filter(valid="YES").order_by('-time')
 	log_list=[]
 	for o in result:
 		curr = {
