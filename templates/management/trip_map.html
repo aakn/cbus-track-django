@@ -3,13 +3,7 @@
 
 {% block scripts %}
 
-<script>
-
-		$(function(){
-			$( "#datepicker" ).datepicker();
-		});
-	</script>	
-	<!-- mousewheel plugin -->
+		<!-- mousewheel plugin -->
 	<!-- <script src="/static/js/jquery.mousewheel.min.js"></script> -->
 	<!-- custom scrollbars plugin -->
 	<!-- <script src="/static/js/jquery.mCustomScrollbar.js"></script> -->
@@ -37,14 +31,21 @@
 {% endblock %}
 
 {% block head_scripts %}
+
+{% endblock %}
   	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 	<script src="/static/js/load-maps-for-management-trip.js"></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAEG46KSaG0AtCtflei2Okp3o8nN0Tx5HM&sensor=true">
 </script>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+	<script>
 
-{% endblock %}
+		$(function(){
+			$( "#datepicker" ).datepicker();
+		});
+	</script>	
+
 
 {% block page_header_class %} span12 {% endblock %}
 {% block content_class %} span12 {% endblock %}
