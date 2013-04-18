@@ -2,7 +2,13 @@
 {% block title %} Tracker | Management {% endblock %}
 
 {% block scripts %}
-	
+
+<script>
+
+		$(function(){
+			$( "#datepicker" ).datepicker();
+		});
+	</script>	
 	<!-- mousewheel plugin -->
 	<!-- <script src="/static/js/jquery.mousewheel.min.js"></script> -->
 	<!-- custom scrollbars plugin -->
@@ -38,12 +44,6 @@
 </script>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 
-<script>
-
-		$(function(){
-			$( "#datepicker" ).datepicker();
-		});
-	</script>
 {% endblock %}
 
 {% block page_header_class %} span12 {% endblock %}
