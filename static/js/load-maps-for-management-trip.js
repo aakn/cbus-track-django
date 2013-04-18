@@ -54,7 +54,7 @@ function show_trip()
 		$.ajax({
 			async: false,
 			dataType: "json",
-			url: "/ajax/trip/"+bus_id+"/"+date+"/"+morn_even,
+			url: "/ajax/trip/"+bus_id+"/"+date.value+"/"+morn_even,
 			success: function(data) {
 				console.log("Data from the Previous coordinates...");
 
