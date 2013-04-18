@@ -81,6 +81,8 @@ def trip(request, bus = '1', date='2013-04-18',morn_even='0'):
 	#last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	#return HttpResponse(last)
 	dateobj=datetime.datetime.strptime(date, "%Y-%m-%d").date()
+	dateobj = datetime.datetime.now()
+
 	if(morn_even == '0'):
 		lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
 		upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
