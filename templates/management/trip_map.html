@@ -29,7 +29,9 @@
 					<option value='{{route.id}}'>{{route.number}}</option>
 				{% endfor %}
 				</select><br>
-				Date : <input type="date" id="tripdate" onblur="alert(this.value)">
+				Date : <input type="date" id="tripdate">
+				<br>
+				<input type="submit" value="GET TRIP" onclick="show_trip()">
 				</form>
 			</div>
 		</div>
