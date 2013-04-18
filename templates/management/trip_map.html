@@ -3,7 +3,14 @@
 {% block title %} Tracker | Management {% endblock %}
 
 {% block scripts %}
-	
+ 	<script src="/static/js/load-maps-for-management-trip.js"></script>	
+		<script>
+
+		$(function(){
+			$( "#datepicker" ).datepicker();
+		});
+	</script>	
+
 {% endblock %}
 
 {% block css %}
@@ -11,16 +18,8 @@
 {% endblock %}
 
 {% block head_scripts %}
-  	<script src="/static/js/load-maps-for-management-trip.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAEG46KSaG0AtCtflei2Okp3o8nN0Tx5HM&sensor=true">
+ <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAEG46KSaG0AtCtflei2Okp3o8nN0Tx5HM&sensor=true">
 </script>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-	<script>
-
-		$(function(){
-			$( "#datepicker" ).datepicker();
-		});
-	</script>	
 
 {% endblock %}
 {% block page_header_class %} span12 {% endblock %}
