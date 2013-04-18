@@ -4,7 +4,10 @@
 {% block scripts %}
 	<script src="/static/js/load-stats.js"></script>
 	<script src="/static/js/load-maps-for-management-trip.js"></script>
-	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  	<link rel="stylesheet" href="/resources/demos/style.css" />
 	<!-- mousewheel plugin -->
 	<!-- <script src="/static/js/jquery.mousewheel.min.js"></script> -->
 	<!-- custom scrollbars plugin -->
@@ -14,6 +17,8 @@
 	<!-- <script src="/static/js/index-scrollbar.js"></script> -->
 	<script>
 		$(function(){
+			$( "#datepicker" ).datepicker();
+
 			// Enable pusher logging - don't include this in production
 			// Pusher.log = function(message) {
 			// 	if (window.console && window.console.log) window.console.log(message);
@@ -55,7 +60,7 @@
 		<div class="well well-small">
 			<div id="choosetrip">
 				<form>
-				<input type="text" name="day" id="day">
+					<p>Date: <input type="text" id="datepicker" /></p>
 				</form>
 			</div>
 		</div>
