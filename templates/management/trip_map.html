@@ -24,10 +24,11 @@
 		<div class="well well-small">
 			<div id="choosetrip">
 				<form>
-				<select id=bus>
+				Route : <select id=bus>
 				{% for route in routes %}
 					<option value='{{route.id}}'>{{route.number}}<option>
 				{% endfor %}
+				</select><br>
 				Date :	<p><input type="date" id="tripdate" onblur="alert(this.value)"></p>
 				</form>
 			</div>
