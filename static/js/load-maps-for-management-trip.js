@@ -1,7 +1,7 @@
 function show_trip()
 	{
 
-	var bus_id = 1;
+	var bus_id;
 	var date;
 	var morn_even=0;
 	var lat,lon;
@@ -16,7 +16,6 @@ function show_trip()
 	// Initialization Code for Google Maps
 	function initialize()
 	{
-		alert("initialize");
 		currentCenter = coord_array[i-1];
 		var mapProp = {
 			center: currentCenter,
@@ -89,6 +88,8 @@ function show_trip()
 		date=document.getElementById("tripdate");
 		//alert(date.value);
 		get_some_default_values();
+		bus_id=document.getElementById("bus").value;
+
 		console.log("after the synchronous ajax call...");
 		//google.maps.event.addDomListener(window, 'load', initialize);
 		initialize();
