@@ -80,7 +80,7 @@ def last_trip(request, bus = '1', limit = '0'):
 def trip(request, bus = '1', date='2013-04-18'):
 	#last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	#return HttpResponse(last)
-	result = BusTravelLog.objects.filter(time__startswith=date).filter(bus_id=bus)
+	result = BusTravelLog.objects.filter(time__startswith=date).filter(bus_id=bus).filter(valid="YES").order_by('-time')
 	log_list=[]
 	for o in result:
 		curr = {
