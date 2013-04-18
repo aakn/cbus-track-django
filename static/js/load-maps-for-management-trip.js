@@ -1,7 +1,7 @@
 $(function(){
 
 	var bus_id = 1;
-	var date;
+	var date="2013-04-17";
 	var morn_even=0;
 	var lat,lon;
 	var map,marker,currentCenter,currentPath;
