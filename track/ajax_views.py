@@ -81,7 +81,17 @@ def trip(request, bus = '1', date='2013',limit = '0'):
 	#last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	#return HttpResponse(last)
 	result = BusTravelLog.objects.filter(time__startswith=date).filter(bus_id=bus)[:limit]
-	return HttpResponse(result)
+	log_list=[]
+	for o in result:
+		curr = {
+			'lat': o.lat, 
+			'speed': o.speed, 
+			'lon': o.lon, 
+			'time': str(o.time)[:19],
+		}
+		log_list.append(curr)
+	json = simplejson.dumps(log_list, check_circular=False)	
+	return HttpResponse(json)
 
 def current_trip(request, bus = '1'):
 	return render_to_response('track/current_trip.html', {'bus': bus})
