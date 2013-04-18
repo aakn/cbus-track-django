@@ -4,15 +4,7 @@
 
 {% block scripts %}
  	<script src="/static/js/load-maps-for-management-trip.js"></script>	
-	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
-		<script>
-
-		$(function(){
-			$( "#datepicker" ).datepicker();
-		});
-	</script>	
-
+	
 {% endblock %}
 
 {% block css %}
@@ -32,8 +24,7 @@
 		<div class="well well-small">
 			<div id="choosetrip">
 				<form>
-					<p>Date: <input type="text" id="datepicker" onblur="alert(this.value)" /></p>
-				</form>
+	<input type="date" name="bday">			</form>
 			</div>
 		</div>
 	</div>
