@@ -16,6 +16,7 @@ function show_trip()
 	// Initialization Code for Google Maps
 	function initialize()
 	{
+		alert("initialize");
 		currentCenter = coord_array[i-1];
 		var mapProp = {
 			center: currentCenter,
