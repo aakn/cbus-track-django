@@ -14,7 +14,7 @@
 {% block head_scripts %}
  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAEG46KSaG0AtCtflei2Okp3o8nN0Tx5HM&sensor=true">
 </script>
- 	
+
 {% endblock %}
 {% block page_header_class %} span12 {% endblock %}
 {% block content_class %} span12 {% endblock %}
@@ -31,6 +31,8 @@
 				</select><br>
 				Date : <input type="date" id="tripdate">
 				<br>
+				Time : <input type="radio" id="time" value="0">Morning<br>
+<input type="radio" name="time" value="1">Evening
 				<input type="button" id="submit"
  value="GET TRIP" onclick="show_trip()">
 				
