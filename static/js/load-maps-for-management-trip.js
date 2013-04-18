@@ -89,7 +89,7 @@ function show_trip()
 		//alert(date.value);
 		get_some_default_values();
 		bus_id=document.getElementById("bus").value;
-
+		alert("busid="+bus_id);
 		console.log("after the synchronous ajax call...");
 		//google.maps.event.addDomListener(window, 'load', initialize);
 		initialize();
