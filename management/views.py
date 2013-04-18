@@ -8,4 +8,5 @@ from track.convert_coordinates import convert
 import pusher, datetime
 
 def show_stats(request):# Create your views here.
-	return render_to_response('management/trip_map.html')
+	routes = RouteDetail.objects.all()
+	return render_to_response('management/trip_map.html',{ 'page': 'stats', 'request': request, 'routes': routes, })
