@@ -9,7 +9,9 @@ def trigger(channel, event, data):
 	}
 
 	host = 'http://socket.insigniadevs.com:4000';
-	result = urllib2.urlopen(host + '/post/', urllib.urlencode(socket_data))
-	content = result.read()
-
+	try:
+		result = urllib2.urlopen(host + '/post/', urllib.urlencode(socket_data))
+		content = result.read()
+	except Exception:
+		content = "FAIL"
 	return content
