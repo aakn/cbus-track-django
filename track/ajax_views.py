@@ -72,16 +72,16 @@ def buses_status(request):
 	return HttpResponse(json)
 
 
-def last_trip(request, bus = '1',date='2013', limit = '0'):
+def last_trip(request, bus = '1', limit = '0'):
+	last = BusTravelLog.objects.get_last_trip(bus, int(limit))
+	return HttpResponse(last)
+	
+
+def trip(request, bus = '1', date='2013',limit = '0'):
 	#last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	#return HttpResponse(last)
 	result = BusTravelLog.objects.filter(time__startswith=date).filter(bus_id=bus)[:limit]
 	return HttpResponse(result)
-
-def trip(request, bus = '1', date,limit = '0'):
-	last = BusTravelLog.objects.get_last_trip(bus, int(limit))
-	return HttpResponse(last)
-
 
 def current_trip(request, bus = '1'):
 	return render_to_response('track/current_trip.html', {'bus': bus})
