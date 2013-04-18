@@ -7,6 +7,8 @@ urlpatterns = patterns('',
     url(r'^ajax/', include('track.ajax_urls')),
     url(r'^maps/', include('mapsapi.urls')),
     url(r'^manager/', include('manager.urls')),
+    url(r'^management/', include('management.urls')),
+
     url(r'', include('track.urls')),
 )
 
