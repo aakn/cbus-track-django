@@ -77,7 +77,7 @@ def last_trip(request, bus = '1', limit = '0'):
 	return HttpResponse(last)
 	
 
-def trip(request, bus = '1', date='2013',limit = '0'):
+def trip(request, bus = '1', date='2013-04-18',limit = '0'):
 	#last = BusTravelLog.objects.get_last_trip(bus, int(limit))
 	#return HttpResponse(last)
 	result = BusTravelLog.objects.filter(time__startswith=date).filter(bus_id=bus)[:limit]
