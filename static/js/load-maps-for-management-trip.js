@@ -96,9 +96,12 @@ $(function() {
 					if(lat === undefined || lon === undefined || lastlat === undefined || lastlon === undefined ) {	}
 					else {
 						var val=computedisplacement(lat, lon, lastlat, lastlon);
+						
+						if(isNaN(val)) val = 0;
+
 						dist=parseFloat(dist)+parseFloat(val);
 
-						//if( val === undefined || dist === undefined)
+						if( isNaN(val)  || dist === isNaN(undefined))
 							console.log("Distance : " + dist + "  Val : " + val + "   Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
 						
 					}
