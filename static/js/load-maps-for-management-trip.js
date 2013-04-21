@@ -12,8 +12,6 @@ $(function() {
 	var hidden = true;
 
 	
-		
-	$(".progress-ring").show();
 
 	$('#dp1').datepicker({
 		format: 'dd-mm-yyyy',
@@ -122,7 +120,10 @@ $(function() {
 	}
 	
 	window.reload = function () {
+		$(".progress-ring").show();
+		$('#reloadButton').attr("disabled", true);
 		get_some_default_values();
+		$('#reloadButton').attr("disabled", false);
 		console.log("after the synchronous ajax call...");
 		initialize();
 	}
