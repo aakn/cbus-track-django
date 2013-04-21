@@ -85,10 +85,10 @@ def trip(request, bus = '1', date='18-04-2013',morn_even='0'):
 
 	if(morn_even == '0'):
 		lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
-		upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
+		upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,13,00)
 	else:
-		lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
-		upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)
+		lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,13,00)
+		upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,21,00)
 	result = BusTravelLog.objects.filter(time__gt=lower_threshold).filter(time__lt=upper_threshold).filter(bus_id=bus).filter(valid="YES").order_by('-time')
 	log_list=[]
 	for o in result:

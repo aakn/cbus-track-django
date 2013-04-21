@@ -78,34 +78,29 @@ $(function() {
 				$(".stats-table-body").html("");
 				coord_array = [];
 				i=0;
-				var dist;
+				var dist = 0;
 				var lastlat,lastlon;
 				$.each(data, function(key,value) {
-					var pos = new google.maps.LatLng(value.lat,value.lon);
-					coord_array[i++] = pos;
-					if(i==0)
-					{
-						lastlat=lat;
-						latlon=lon;
-						dist=parseFloat(0.0);
-					}
-					else
-					{
-						var val=computedisplacement(lat,lon,lastlat,lastlon);
-						console.log("val="+parseFloat(val));
-						dist=parseFloat(dist)+parseFloat(val);
-						console.log("dist="+parseFloat(dist));
-						lastlat=lat;
-						lastlon=lon;
-					}
-					console.log("coord="+pos);
-					console.log("distance="+dist);
+
 					var data=value;
 
 					lat = data.lat;
 					lon = data.lon;
 					speed = data.speed;
 					time = data.time;
+
+
+					if(lat === undefined || lon === undefined || lastlat === undefined || lastlon === undefined ) {	}
+					else {
+						var val=computedisplacement(lat, lon, lastlat, lastlon);
+						//console.log("Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
+						dist=parseFloat(dist)+parseFloat(val);
+					}
+					lastlat=lat;
+					lastlon=lon;
+
+					var pos = new google.maps.LatLng(lat,lon);
+					coord_array[i++] = pos;
 
 					append_table(lat,lon,time,"last-trip",speed);
 
@@ -138,7 +133,6 @@ $(function() {
 	//displacement function for co ordinates
 	function computedisplacement(lat1,lon1,lat2,lon2) {
 		var theta=lon1-lon2;
-		console.log("theta="+theta);
 		var dist= Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
 		dist = Math.acos(dist);
 		dist = rad2deg(dist);
