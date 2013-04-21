@@ -40,7 +40,8 @@ def send_update(stop, distance, bus_number):
 	if len(gcm_list) == 0:
 		return "No one is close enough"
 
-	message = "Your bus %s, is currently %s KMs away." % (bus_number, distance)
+	rounded_of_distance = "{0:.2f}".format(round(distance,2))
+	message = "Your bus %s, is currently %s KMs away." % (bus_number, rounded_of_distance)
 	data = {
 		'data' : message,
 		'message' : message,

@@ -4,7 +4,7 @@ from track.models import Balance, BusTravelLog, RouteDetail
 from mapsapi.models import MapsAddressCache
 from track.convert_coordinates import convert
 import pusher, datetime
-from track import SocketBox, gcm, process
+from track import SocketBox, process
 
 
 def stats(request):
