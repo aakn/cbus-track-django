@@ -73,7 +73,7 @@ function show_trip()
 					{
 						lastlat=lat;
 						latlon=lon;
-						dist=0;
+						dist=0.0;
 					}
 					else
 					{
