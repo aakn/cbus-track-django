@@ -122,9 +122,9 @@ $(function() {
 	window.reload = function () {
 		hidden = true;
 		$(".progress-ring").show();
-		$('#reloadButton').attr("disabled", true);
+		$('#reloadButton').addClass("disabled");
 		get_some_default_values();
-		$('#reloadButton').attr("disabled", false);
+		$('#reloadButton').removeClass("disabled");
 		console.log("after the synchronous ajax call...");
 		initialize();
 	}
