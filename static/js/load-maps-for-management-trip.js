@@ -77,7 +77,11 @@ function show_trip()
 					}
 					else
 					{
-						dist=dist+computedisplacement(lat,lon,lastlat,lastlon);
+						
+						var val=computedisplacement(lat,lon,lastlat,lastlon);
+						console.log("val="+val);
+						dist=dist+val;
+						console.log("dist="+dist);
 						lastlat=lat;
 						lastlon=lon;
 					}
@@ -130,8 +134,6 @@ function show_trip()
 		dist = rad2deg(dist);
 		dist = dist * 60 * 1.1515;
 		dist = dist * 1.609344;
-		console.log("dist="+dist);
-
 		return dist;
 	}
 	function deg2rad(deg) {
