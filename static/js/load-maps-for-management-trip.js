@@ -120,6 +120,7 @@ $(function() {
 	}
 	
 	window.reload = function () {
+		hidden = true;
 		$(".progress-ring").show();
 		$('#reloadButton').attr("disabled", true);
 		get_some_default_values();
