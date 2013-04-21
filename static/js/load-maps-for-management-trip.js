@@ -79,7 +79,7 @@ function show_trip()
 					{
 						
 						var val=computedisplacement(lat,lon,lastlat,lastlon);
-						console.log("val="+val);
+						console.log("val="+parseFloat(val));
 						dist=dist+parseFloat(val);
 						console.log("dist="+dist);
 						lastlat=lat;
