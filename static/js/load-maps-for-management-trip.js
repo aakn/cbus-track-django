@@ -78,7 +78,7 @@ $(function() {
 				$(".stats-table-body").html("");
 				coord_array = [];
 				i=0;
-				var dist = 0;
+				var dist = 0.0;
 				var lastlat,lastlon;
 				$.each(data, function(key,value) {
 
@@ -93,9 +93,11 @@ $(function() {
 					if(lat === undefined || lon === undefined || lastlat === undefined || lastlon === undefined ) {	}
 					else {
 						var val=computedisplacement(lat, lon, lastlat, lastlon);
-						if( val === undefined)
-							console.log("Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
 						dist=parseFloat(dist)+parseFloat(val);
+
+						if( val === undefined || dist === undefined)
+							console.log("Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
+						
 					}
 					lastlat=lat;
 					lastlon=lon;
