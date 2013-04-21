@@ -99,7 +99,7 @@ $(function() {
 						dist=parseFloat(dist)+parseFloat(val);
 
 						//if( val === undefined || dist === undefined)
-							console.log("Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
+							console.log("Distance : " + dist + "   Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
 						
 					}
 					lastlat=lat;
