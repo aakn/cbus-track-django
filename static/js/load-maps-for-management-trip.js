@@ -110,7 +110,7 @@ $(function() {
 					append_table(lat,lon,time,"last-trip",speed);
 
 				});	
-				update_table(lat,lon,time,"last-trip",speed);
+				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
 				console.log("distance="+dist);
 			}
