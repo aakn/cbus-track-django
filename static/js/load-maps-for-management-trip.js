@@ -93,7 +93,8 @@ $(function() {
 					if(lat === undefined || lon === undefined || lastlat === undefined || lastlon === undefined ) {	}
 					else {
 						var val=computedisplacement(lat, lon, lastlat, lastlon);
-						//console.log("Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
+						if( val === undefined)
+							console.log("Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
 						dist=parseFloat(dist)+parseFloat(val);
 					}
 					lastlat=lat;
