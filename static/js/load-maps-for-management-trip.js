@@ -64,7 +64,7 @@ function show_trip()
 				$(".stats-table-body").html("");
 				coord_array = [];
 				i=0;
-				var dist=0.0;
+				var dist;
 				var lastlat,lastlon;
 				$.each(data, function(key,value) {
 					var pos = new google.maps.LatLng(value.lat,value.lon);
@@ -73,14 +73,14 @@ function show_trip()
 					{
 						lastlat=lat;
 						latlon=lon;
-						dist=0.0;
+						dist=parseFloat(0.0);
 					}
 					else
 					{
 						
 						var val=computedisplacement(lat,lon,lastlat,lastlon);
 						console.log("val="+parseFloat(val));
-						dist=dist+parseFloat(val);
+						dist=parseFloat(dist)+parseFloat(val);
 						console.log("dist="+parseFloat(dist));
 						lastlat=lat;
 						lastlon=lon;
