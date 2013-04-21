@@ -1,8 +1,7 @@
-function show_trip()
-	{
+$(function() {
 
 	var bus_id;
-	var date;
+	var date = parseDate(new Date());
 	var morn_even=0;
 	var lat,lon;
 	var map,marker,currentCenter,currentPath;
@@ -11,8 +10,23 @@ function show_trip()
 
 	var i=0;
 	var hidden = true;
-	
+
+	bus_id=$("#bus").val();
+	morn_even=$("#time").val();
+		
 	$(".progress-ring").show();
+
+	$('#dp1').datepicker({
+		format: 'dd-mm-yyyy',
+		todayBtn: 'linked',
+	})
+	.on('changeDate', function(ev){
+		date = parseDate(ev.date);
+		console.log(ev);
+		console.log("Date picked : " + ev.date);
+	});
+	$('#dp1').datepicker('update', date);
+
 	// Initialization Code for Google Maps
 	function initialize()
 	{
@@ -54,7 +68,7 @@ function show_trip()
 		$.ajax({
 			async: false,
 			dataType: "json",
-			url: "/ajax/trip/"+bus_id+"/"+date.value+"/"+morn_even,
+			url: "/ajax/trip/"+bus_id+"/"+date+"/"+morn_even,
 			success: function(data) {
 				console.log("Data from the Previous coordinates...");
 
@@ -104,15 +118,10 @@ function show_trip()
 		});
 	}
 	
-		date=document.getElementById("tripdate");
-		//alert(date.value);
-		bus_id=document.getElementById("bus").value;
-		morn_even=document.getElementById("time").value;
-		//alert("busid="+morn_even);
-		get_some_default_values();
-			console.log("after the synchronous ajax call...");
-		//google.maps.event.addDomListener(window, 'load', initialize);
-		initialize();
+	
+	get_some_default_values();
+	console.log("after the synchronous ajax call...");
+	initialize();
 	
 	// Called after the maps is loaded...
 	// Shows the table, and hides the loading bar.
@@ -142,4 +151,8 @@ function show_trip()
 	function rad2deg(rad) {
 		return (rad * 180.0 / Math.PI);
 	}
-}
+
+	function parseDate(date) {
+		return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+	}
+});

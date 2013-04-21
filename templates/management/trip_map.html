@@ -1,14 +1,22 @@
-{% extends 'track/base_management.html' %}
+{% extends 'management/base_management.html' %}
 
 {% block title %} Tracker | Management {% endblock %}
 
 {% block scripts %}
+ 	<script src="/static/js/vendor/bootstrap-datepicker.js"></script>
+ 	<script>
+ 	$(function(){
+		 
+	});
+	</script>
+
 	<script src="/static/js/load-maps-for-management-trip.js"></script>	
  	<script src="/static/js/load-stats.js"></script>
+
 {% endblock %}
 
 {% block css %}
-
+	<link href="/static/css/datepicker.css" rel="stylesheet">
 {% endblock %}
 
 {% block head_scripts %}
@@ -20,7 +28,7 @@
 {% block content_class %} span12 {% endblock %}
 {% block content %}
 <div class="row-fluid">
-	<div class = "span6">
+	<div class = "span12">
 		<div class="well well-small">
 			<div id="choosetrip">
 				
@@ -28,19 +36,19 @@
 				{% for route in routes %}
 					<option value='{{route.id}}'>{{route.number}}</option>
 				{% endfor %}
-				</select><br>
-				Date : <input type="date" id="tripdate">
-				<br>
+				</select>
+				Date : <input type="text" class="span2" id="dp1" >
 				Time : <select id=time>
 				<option value=0>Morning</option>
 				<option value=1>Evening</option>
-				</select><br>
-				<input type="button" id="submit"
- value="GET TRIP" onclick="show_trip()">
+				</select>  
+				<button id="submit" class='btn btn-primary btn-large' onclick="show_trip()">Show Trip</button>
 				
 			</div>
 		</div>
 	</div>
+</div>
+<div class="row-fluid">
 	<div class = "span6">
 		<div class="well well-small">
 			<div id="googleMap" style="width: 100%; height: 380px;"></div>
