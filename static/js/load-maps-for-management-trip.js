@@ -91,7 +91,6 @@ $(function() {
 					}
 					else
 					{
-						
 						var val=computedisplacement(lat,lon,lastlat,lastlon);
 						console.log("val="+parseFloat(val));
 						dist=parseFloat(dist)+parseFloat(val);
@@ -118,10 +117,12 @@ $(function() {
 		});
 	}
 	
-	
-	get_some_default_values();
-	console.log("after the synchronous ajax call...");
-	initialize();
+	window.reload = function () {
+		get_some_default_values();
+		console.log("after the synchronous ajax call...");
+		initialize();
+	}
+	reload();
 	
 	// Called after the maps is loaded...
 	// Shows the table, and hides the loading bar.
