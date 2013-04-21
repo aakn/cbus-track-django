@@ -98,7 +98,7 @@ $(function() {
 						var val=computedisplacement(lat, lon, lastlat, lastlon);
 						dist=parseFloat(dist)+parseFloat(val);
 
-						if( val === undefined || dist === undefined)
+						//if( val === undefined || dist === undefined)
 							console.log("Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
 						
 					}
