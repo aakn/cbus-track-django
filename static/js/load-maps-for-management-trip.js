@@ -115,6 +115,7 @@ $(function() {
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
 				console.log("distance="+dist);
+				updateMiniStats(dist,0);
 			}
 		});
 	}
@@ -160,5 +161,9 @@ $(function() {
 
 	function parseDate(date) {
 		return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+	}
+	function updateMiniStats(distance, time = 0) {
+		var to_append = "<tr><th>Distance</th><td>"+ distance +"</td></tr>";
+		$(".mini-stats-body").html(to_append);
 	}
 });
