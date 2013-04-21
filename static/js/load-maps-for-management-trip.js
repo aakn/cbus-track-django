@@ -82,6 +82,7 @@ function show_trip()
 						lastlon=lon;
 					}
 					console.log("coord="+pos);
+					console.log("distance="+dist);
 					var data=value;
 
 					lat = data.lat;
