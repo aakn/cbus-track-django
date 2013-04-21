@@ -81,6 +81,12 @@ $(function() {
 				i=0;
 				var dist = 0.0;
 				var lastlat,lastlon;
+
+				var initial_time;
+				if ( data[0] !== undefined )
+					initial_time = data[0].time;
+				time = initial_time;
+
 				$.each(data, function(key,value) {
 
 					var data=value;
@@ -112,10 +118,14 @@ $(function() {
 					append_table(lat,lon,time,"last-trip",speed);
 
 				});	
+
+				var final_time = time;
+
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
 				console.log("distance="+dist);
-				updateMiniStats(dist,0);
+				if( final_time !== undefined || initial_time !== undefined )
+					updateMiniStats(dist, getTravelTime(initial_time, final_time));
 			}
 		});
 	}
@@ -162,8 +172,23 @@ $(function() {
 	function parseDate(date) {
 		return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 	}
-	function updateMiniStats(distance, time = 0) {
-		var to_append = "<tr><th>Distance</th><td>"+ distance +"</td></tr>";
+	function getTravelTime(initial, final) {
+		var d1 = Date.parse(initial);
+		var d2 = Date.parse(final);
+		var diff = d2 - d1;
+		var minutes = parseInt(diff/1000/60);
+		var hours = parseInt(minutes/60);
+		minutes = minutes % 60;
+		console.log("Difference between : " + initial + " and " + final);
+		console.log(diff);
+
+		return hours + " hrs " + minutes + " mins"
+
+
+	}
+	function updateMiniStats(distance, time) {
+		var to_append = "<tr><th style='width:25%;'>Distance</th><td>"+ distance +" KM</td></tr>";
+		to_append += "<tr><th>Time</th><td>"+ time +"</td></tr>";
 		$(".mini-stats-body").html(to_append);
 	}
 });
