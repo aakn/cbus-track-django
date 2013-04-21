@@ -11,8 +11,7 @@ $(function() {
 	var i=0;
 	var hidden = true;
 
-	bus_id=$("#bus").val();
-	morn_even=$("#time").val();
+	
 		
 	$(".progress-ring").show();
 
@@ -65,6 +64,10 @@ $(function() {
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
+
+		bus_id=$("#bus").val();
+		morn_even=$("#time").val();
+
 		$.ajax({
 			async: false,
 			dataType: "json",
