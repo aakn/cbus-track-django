@@ -64,7 +64,7 @@ function show_trip()
 				$(".stats-table-body").html("");
 				coord_array = [];
 				i=0;
-				var dist=0;
+				var dist=0.0;
 				var lastlat,lastlon;
 				$.each(data, function(key,value) {
 					var pos = new google.maps.LatLng(value.lat,value.lon);
