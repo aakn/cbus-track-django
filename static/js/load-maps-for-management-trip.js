@@ -64,10 +64,22 @@ function show_trip()
 				$(".stats-table-body").html("");
 				coord_array = [];
 				i=0;
-
+				dist=0;
 				$.each(data, function(key,value) {
 					var pos = new google.maps.LatLng(value.lat,value.lon);
 					coord_array[i++] = pos;
+					if(i==0)
+					{
+						lastlat=lat;
+						latlon=lon;
+						dist=0;
+					}
+					else
+					{
+						dist=dist+computedisplacement(lat,lon,lastlat,lastlon);
+						lastlat=lat;
+						lastlon=lon;
+					}
 					console.log("coord="+pos);
 					var data=value;
 
@@ -81,6 +93,7 @@ function show_trip()
 				});	
 				update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
+				console.log("distance="+dist);
 			}
 		});
 	}
@@ -97,6 +110,7 @@ function show_trip()
 	
 	// Called after the maps is loaded...
 	// Shows the table, and hides the loading bar.
+
 	function done_loading() {
 		if(hidden) {
 			$(".progress-ring").hide();
@@ -104,5 +118,21 @@ function show_trip()
 			hidden = false;
 
 		}
+	}
+	//displacement function for co ordinates
+	function computedisplacement(lat1,lon1,lat2,lon2) {
+		var theta=lon1-lon2;
+		var distance= Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+		dist = Math.acos(dist);
+		dist = rad2deg(dist);
+		dist = dist * 60 * 1.1515;
+		dist = dist * 1.609344;
+		return dist;
+	}
+	function deg2rad(deg) {
+		return (deg * Math.PI / 180.0);
+	}
+	function rad2deg(rad) {
+		return (rad * 180.0 / Math.PI);
 	}
 }
