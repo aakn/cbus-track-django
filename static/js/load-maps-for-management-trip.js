@@ -68,7 +68,7 @@ function show_trip()
 				$.each(data, function(key,value) {
 					var pos = new google.maps.LatLng(value.lat,value.lon);
 					coord_array[i++] = pos;
-
+					console.log("coord="+pos);
 					var data=value;
 
 					lat = data.lat;
