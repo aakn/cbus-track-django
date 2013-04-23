@@ -60,13 +60,16 @@ def daily_stats(request):
 				if counter == 0 :
 					lastlat=ctr2.lat
 					lastlon=ctr2.lon
+					start_time=ctr2.time
 				else :
 					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
 					lastlat=ctr2.lat
 					lastlon=ctr2.lon
 					temp.append(str(ctr2.lat)+" "+str(ctr2.lon)+" "+lastlat+" "+lastlon+" "+str(val))
+					end_time=ctr2.time
 				counter=counter+1
+			morn_time=end_time-start_time	
 			even_dist=0;	
 			counter=0;	
 			temp.append("**************************"+str(dateobj)+" morning = "+str(morn_dist))
@@ -76,13 +79,16 @@ def daily_stats(request):
 				if counter == 0 :
 					lastlat=ctr2.lat
 					lastlon=ctr2.lon
+					start_time=ctr2.time
 				else :
 					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					even_dist=even_dist+val
 					lastlat=ctr2.lat
 					lastlon=ctr2.lon
+					end_time=ctr2.time
 					temp.append(str(ctr2.lat)+" "+str(ctr2.lon)+" "+lastlat+" "+lastlon+" "+str(val))
 				counter=counter+1
+			even_time=end_time-start_time
 			temp.append("**************************"+str(dateobj)+" evening = "+str(even_dist))
 			morn_dist=math.ceil(morn_dist*100)/100
 			even_dist=math.ceil(even_dist*100)/100	
@@ -91,6 +97,8 @@ def daily_stats(request):
 				'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
 				'morning' : morn_dist,
 				'evening' : even_dist,
+				'morningtime' : morn_time,
+				'eveningtime' : even_time,
 			}
 			dateobj = dateobj + delta
 			log_per_day.append(data)
