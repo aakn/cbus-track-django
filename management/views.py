@@ -22,7 +22,7 @@ def rad2deg(rad):
 def computedisplacement(lat1,lon1,lat2,lon2):
 	theta=float(lon1)-float(lon2)
 	dist= math.sin(deg2rad(lat1)) * math.sin(deg2rad(lat2)) + math.cos(deg2rad(lat1)) * math.cos(deg2rad(lat2)) * math.cos(deg2rad(theta))
-	dist=math.ceil(dist*100)/100
+	dist=math.floor(dist*100)/100
 	dist = math.acos(dist)
 	dist = rad2deg(dist)
 	dist = dist * 60 * 1.1515
