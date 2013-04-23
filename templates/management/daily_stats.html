@@ -1,0 +1,37 @@
+{% extends 'track/base.html' %}
+{% block title %} Tracker | Manager Page {% endblock %}
+
+{% block page_header_class %} span10 offset1 {% endblock %}
+{% block content_class %} span10 offset1 {% endblock %}
+{% block content %}
+<div class="row-fluid">
+	<div class="span10 offset1">
+		<div class="stats">
+			<div class="page-header">
+				<h2>Daily Requests Counter</h2>
+			</div>
+			{% for count in buslog %} 
+				<h3>Bus : {{count.name}}</h3> 
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Morning Count </th>
+								<th>Evening Count </th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for ctr in count.buslogger %}
+								<tr>
+									<td> {{ctr.date}}</td>
+									<td> {{ctr.morning}}</td>
+									<td> {{ctr.evening}}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+			{% endfor %} 
+		</div>
+	</div>
+</div>
+{% endblock %}
