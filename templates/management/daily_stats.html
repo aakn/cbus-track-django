@@ -8,7 +8,7 @@
 	<div class="span10 offset1">
 		<div class="stats">
 			<div class="page-header">
-				<h2>Daily Requests Counter</h2>
+				<h2>Distance Travelled</h2>
 			</div>
 			{% for count in buslog %} 
 				<h3>Bus : {{count.name}}</h3> 
@@ -16,8 +16,8 @@
 						<thead>
 							<tr>
 								<th>Date</th>
-								<th>Morning Count </th>
-								<th>Evening Count </th>
+								<th>Morning(in kms) </th>
+								<th>Evening(in kms) </th>
 							</tr>
 						</thead>
 						<tbody>
