@@ -55,7 +55,7 @@ def daily_stats(request):
 				if counter == 0 :
 					lastlat=morning_query.lat
 					lastlon=morning_query.lon
-				else
+				else :
 					val=computedisplacement(morning_query.lat, morning_query.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
 				counter++;	
@@ -65,7 +65,7 @@ def daily_stats(request):
 				if counter == 0 :
 					lastlat=morning_query.lat
 					lastlon=morning_query.lon
-				else
+				else :
 					val=computedisplacement(morning_query.lat, morning_query.lon, lastlat, lastlon)
 					even_dist=even_dist+val
 				counter++;
