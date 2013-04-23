@@ -88,5 +88,5 @@ def daily_stats(request):
 
 		}
 		log_per_bus.append(final_log)
-		return HttpResponse("<br>".join(temp))
-#	return render_to_response('management/daily_stats.html', {'buslog': log_per_bus, 'request':request,})
+#		return HttpResponse("<br>".join(temp))
+	return render_to_response('management/daily_stats.html', {'buslog': log_per_bus, 'request':request,})
