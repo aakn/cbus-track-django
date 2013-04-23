@@ -13,7 +13,7 @@ def show_stats(request):# Create your views here.
 	return render_to_response('management/trip_map.html',{ 'page': 'stats', 'request': request, 'routes': routes, })
 
 def deg2rad(deg):
-		return (float(float(deg) * float(math.pi)) / float(180.0));
+		return (deg * float(math.pi)/ float(180.0));
 
 def rad2deg(rad):
 		return (rad * 180.0 / math.pi);
