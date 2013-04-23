@@ -98,7 +98,7 @@ def daily_stats(request):
 			temp.append("**************************"+str(dateobj)+" evening = "+str(even_dist))
 			morn_dist=math.ceil(morn_dist*100)/100
 			even_dist=math.ceil(even_dist*100)/100	
-			morn_time=morn_time.hour+" hours "+morn_time.minute+" minutes"
+			#morn_time=morn_time.hour+" hours "+morn_time.minute+" minutes"
 			data = {
 				'name' : str(bus_name.number),
 				'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
