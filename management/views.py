@@ -72,8 +72,8 @@ def daily_stats(request):
 			data = {
 				'name' : str(bus_name.number),
 				'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
-				'morning' : morn_dist,
-				'evening' : even_dist,
+				'morning' : morn_dist/1000,
+				'evening' : even_dist/1000,
 			}
 			dateobj = dateobj + delta
 			log_per_day.append(data)
