@@ -58,7 +58,7 @@ def daily_stats(request):
 				else :
 					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
-					temp.append(str(val))
+					temp.append(str(ctr2.lat)+" "+str(ctr2.lon)+" "+lastlat+" "+lastlon+" "+str(val))
 				counter=counter+1
 			even_dist=0;	
 			counter=0;	
@@ -70,7 +70,7 @@ def daily_stats(request):
 				else :
 					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					even_dist=even_dist+val
-					temp.append(str(val))
+					temp.append(str(ctr2.lat)+" "+str(ctr2.lon)+" "+lastlat+" "+lastlon+" "+str(val))
 				counter=counter+1
 			data = {
 				'name' : str(bus_name.number),
