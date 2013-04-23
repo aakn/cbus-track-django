@@ -99,14 +99,20 @@ def daily_stats(request):
 			morn_dist=math.ceil(morn_dist*100)/100
 			even_dist=math.ceil(even_dist*100)/100	
 			#morn_time=morn_time.hour+" hours "+morn_time.minute+" minutes"
-			seconds=morn_time.seconds
-			m, s = divmod(seconds, 60)
-			h, m = divmod(m, 60)
-			morn_time=h+" hours and "+m+" minutes"
-			seconds=even_time.seconds
-			m, s = divmod(seconds, 60)
-			h, m = divmod(m, 60)
-			even_time=h+" hours and "+m+" minutes"
+			if morn_time.seconds > 0 :
+				seconds=morn_time.seconds
+				m, s = divmod(seconds, 60)
+				h, m = divmod(m, 60)
+				morn_time=h+" hours and "+m+" minutes"
+			else :
+				morn_time="Not travelled"
+			if even_time.seconds > 0 :
+				seconds=even_time.seconds
+				m, s = divmod(seconds, 60)
+				h, m = divmod(m, 60)
+				even_time=h+" hours and "+m+" minutes"
+			else :
+				even_time="Not Travelled"
 			data = {
 				'name' : str(bus_name.number),
 				'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
