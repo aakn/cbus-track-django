@@ -63,6 +63,8 @@ def daily_stats(request):
 				else :
 					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
+					lastlat=ctr2.lat
+					lastlon=ctr2.lon
 					temp.append(str(ctr2.lat)+" "+str(ctr2.lon)+" "+lastlat+" "+lastlon+" "+str(val))
 				counter=counter+1
 			even_dist=0;	
