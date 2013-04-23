@@ -67,6 +67,8 @@ def daily_stats(request):
 				counter=counter+1
 			even_dist=0;	
 			counter=0;	
+			temp.append("**************************"+str(dateobj)+" morning = "+morn_dist)
+
 			temp.append(str(dateobj)+" evening")
 			for ctr2 in evening_query:
 				if counter == 0 :
@@ -79,6 +81,8 @@ def daily_stats(request):
 					lastlon=ctr2.lon
 					temp.append(str(ctr2.lat)+" "+str(ctr2.lon)+" "+lastlat+" "+lastlon+" "+str(val))
 				counter=counter+1
+			temp.append("**************************"+str(dateobj)+" evening = "+even_dist)
+
 			data = {
 				'name' : str(bus_name.number),
 				'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
