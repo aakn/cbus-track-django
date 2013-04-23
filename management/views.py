@@ -99,6 +99,14 @@ def daily_stats(request):
 			morn_dist=math.ceil(morn_dist*100)/100
 			even_dist=math.ceil(even_dist*100)/100	
 			#morn_time=morn_time.hour+" hours "+morn_time.minute+" minutes"
+			seconds=morn_time.seconds
+			m, s = divmod(seconds, 60)
+			h, m = divmod(m, 60)
+			morn_time=h+" hours and "+m+" minutes"
+			seconds=even_time.seconds
+			m, s = divmod(seconds, 60)
+			h, m = divmod(m, 60)
+			even_time=h+" hours and "+m+" minutes"
 			data = {
 				'name' : str(bus_name.number),
 				'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
