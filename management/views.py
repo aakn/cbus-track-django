@@ -52,21 +52,23 @@ def daily_stats(request):
 			counter=0;
 			morn_dist=0;
 			for ctr in morning_query:
-				if(counter == 0) :
+				if counter == 0 :
 					lastlat=morning_query.lat
 					lastlon=morning_query.lon
 				else
 					val=computedisplacement(morning_query.lat, morning_query.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
-
-			even_dist=0;		
+				counter++;	
+			even_dist=0;	
+			counter=0;	
 			for ctr in evening_query:
-				if(counter == 0) :
+				if counter == 0 :
 					lastlat=morning_query.lat
 					lastlon=morning_query.lon
 				else
 					val=computedisplacement(morning_query.lat, morning_query.lon, lastlat, lastlon)
 					even_dist=even_dist+val
+				counter++;
 			data = {
 				'name' : str(bus_name.number),
 				'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
