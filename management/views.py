@@ -58,7 +58,7 @@ def daily_stats(request):
 				else :
 					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
-					temp.append(val)
+					temp.append(str(val))
 				counter=counter+1
 			even_dist=0;	
 			counter=0;	
@@ -70,7 +70,7 @@ def daily_stats(request):
 				else :
 					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					even_dist=even_dist+val
-					temp.append(val)
+					temp.append(str(val))
 				counter=counter+1
 			data = {
 				'name' : str(bus_name.number),
@@ -86,5 +86,5 @@ def daily_stats(request):
 
 		}
 		log_per_bus.append(final_log)
-		return HttpResponse(join(temp))
+		return HttpResponse("<br>".join(temp))
 #	return render_to_response('management/daily_stats.html', {'buslog': log_per_bus, 'request':request,})
