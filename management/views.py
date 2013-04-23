@@ -51,22 +51,22 @@ def daily_stats(request):
 			evening_query = BusTravelLog.objects.filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).filter(bus_id=ctr)
 			counter=0;
 			morn_dist=0;
-			for ctr in morning_query:
+			for ctr2 in morning_query:
 				if counter == 0 :
-					lastlat=ctr.lat
-					lastlon=ctr.lon
+					lastlat=ctr2.lat
+					lastlon=ctr2.lon
 				else :
-					val=computedisplacement(ctr.lat, ctr.lon, lastlat, lastlon)
+					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
 				counter=counter+1
 			even_dist=0;	
 			counter=0;	
-			for ctr in evening_query:
+			for ctr2 in evening_query:
 				if counter == 0 :
-					lastlat=ctr.lat
-					lastlon=ctr.lon
+					lastlat=ctr2.lat
+					lastlon=ctr2.lon
 				else :
-					val=computedisplacement(ctr.lat, ctr.lon, lastlat, lastlon)
+					val=computedisplacement(ctr2.lat, ctr2.lon, lastlat, lastlon)
 					even_dist=even_dist+val
 				counter=counter+1
 			data = {
