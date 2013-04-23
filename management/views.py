@@ -53,20 +53,20 @@ def daily_stats(request):
 			morn_dist=0;
 			for ctr in morning_query:
 				if counter == 0 :
-					lastlat=morning_query.lat
-					lastlon=morning_query.lon
+					lastlat=ctr.lat
+					lastlon=ctr.lon
 				else :
-					val=computedisplacement(morning_query.lat, morning_query.lon, lastlat, lastlon)
+					val=computedisplacement(ctr.lat, ctr.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
 				counter=counter+1
 			even_dist=0;	
 			counter=0;	
 			for ctr in evening_query:
 				if counter == 0 :
-					lastlat=morning_query.lat
-					lastlon=morning_query.lon
+					lastlat=ctr.lat
+					lastlon=ctr.lon
 				else :
-					val=computedisplacement(morning_query.lat, morning_query.lon, lastlat, lastlon)
+					val=computedisplacement(ctr.lat, ctr.lon, lastlat, lastlon)
 					even_dist=even_dist+val
 				counter=counter+1
 			data = {
