@@ -67,7 +67,7 @@ def daily_stats(request):
 				counter=counter+1
 			even_dist=0;	
 			counter=0;	
-			temp.append(dateobj+" morning")
+			temp.append(dateobj+" evening")
 			for ctr2 in evening_query:
 				if counter == 0 :
 					lastlat=ctr2.lat
