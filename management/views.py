@@ -55,6 +55,7 @@ def daily_stats(request):
 			evening_query = BusTravelLog.objects.filter(time__gt=evening_lower_threshold).filter(valid="YES").filter(time__lt=evening_upper_threshold).filter(bus_id=ctr)
 			counter=0;
 			morn_dist=0;
+			temp.append(dateobj+" morning")
 			for ctr2 in morning_query:
 				if counter == 0 :
 					lastlat=ctr2.lat
@@ -66,7 +67,7 @@ def daily_stats(request):
 				counter=counter+1
 			even_dist=0;	
 			counter=0;	
-			temp.append("zzzzz")
+			temp.append(dateobj+" morning")
 			for ctr2 in evening_query:
 				if counter == 0 :
 					lastlat=ctr2.lat
