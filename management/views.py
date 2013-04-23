@@ -72,7 +72,7 @@ def daily_stats(request):
 			if counter > 0 :	
 				morn_time=end_time-start_time	
 			else :
-				morn_time=0
+				morn_time=dateobj-dateobj
 			even_dist=0;	
 			counter=0;	
 			temp.append("**************************"+str(dateobj)+" morning = "+str(morn_dist))
@@ -94,7 +94,7 @@ def daily_stats(request):
 			if counter > 0 :
 				even_time=end_time-start_time
 			else :
-				even_time=0
+				even_time=dateobj-dateobj
 			temp.append("**************************"+str(dateobj)+" evening = "+str(even_dist))
 			morn_dist=math.ceil(morn_dist*100)/100
 			even_dist=math.ceil(even_dist*100)/100	
