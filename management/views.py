@@ -20,13 +20,13 @@ def rad2deg(rad):
 
 
 def computedisplacement(lat1,lon1,lat2,lon2):
-	theta=lon1-lon2;
-	dist= math.sin(deg2rad(lat1)) * math.sin(deg2rad(lat2)) + math.cos(deg2rad(lat1)) * math.cos(deg2rad(lat2)) * math.cos(deg2rad(theta));
-	dist = math.acos(dist);
-	dist = rad2deg(dist);
-	dist = dist * 60 * 1.1515;
-	dist = dist * 1.609344;
-	return dist;
+	theta=lon1-lon2
+	dist= math.sin(deg2rad(lat1)) * math.sin(deg2rad(lat2)) + math.cos(deg2rad(lat1)) * math.cos(deg2rad(lat2)) * math.cos(deg2rad(theta))
+	dist = math.acos(dist)
+	dist = rad2deg(dist)
+	dist = dist * 60 * 1.1515
+	dist = dist * 1.609344
+	return dist
 
 def daily_stats(request):
 	log_per_day = []
