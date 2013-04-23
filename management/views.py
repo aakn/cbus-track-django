@@ -103,14 +103,14 @@ def daily_stats(request):
 				seconds=morn_time.seconds
 				m, s = divmod(seconds, 60)
 				h, m = divmod(m, 60)
-				morn_time=h+" hours and "+m+" minutes"
+				morn_time=str(h)+" hours and "+str(m)+" minutes"
 			else :
 				morn_time="Not travelled"
 			if even_time.seconds > 0 :
 				seconds=even_time.seconds
 				m, s = divmod(seconds, 60)
 				h, m = divmod(m, 60)
-				even_time=h+" hours and "+m+" minutes"
+				even_time=str(h)+" hours and "+str(m)+" minutes"
 			else :
 				even_time="Not Travelled"
 			data = {
