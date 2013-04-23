@@ -58,7 +58,7 @@ def daily_stats(request):
 				else :
 					val=computedisplacement(morning_query.lat, morning_query.lon, lastlat, lastlon)
 					morn_dist=morn_dist+val
-				counter++;	
+				counter=counter+1
 			even_dist=0;	
 			counter=0;	
 			for ctr in evening_query:
@@ -68,7 +68,7 @@ def daily_stats(request):
 				else :
 					val=computedisplacement(morning_query.lat, morning_query.lon, lastlat, lastlon)
 					even_dist=even_dist+val
-				counter++;
+				counter=counter+1
 			data = {
 				'name' : str(bus_name.number),
 				'date' : str(evening_upper_threshold.strftime("%B %d, %Y")),
