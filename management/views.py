@@ -47,8 +47,8 @@ def daily_stats(request):
 			evening_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
 
 			bus_name=RouteDetail.objects.get(pk=ctr)
-			morning_query = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).filter(bus_id=ctr)
-			evening_query = BusTravelLog.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).filter(bus_id=ctr)
+			morning_query = BusTravelLog.objects.filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).filter(bus_id=ctr)
+			evening_query = BusTravelLog.objects.filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).filter(bus_id=ctr)
 			counter=0;
 			morn_dist=0;
 			for ctr in morning_query:
