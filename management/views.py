@@ -69,7 +69,10 @@ def daily_stats(request):
 					temp.append(str(ctr2.lat)+" "+str(ctr2.lon)+" "+lastlat+" "+lastlon+" "+str(val))
 					end_time=ctr2.time
 				counter=counter+1
-			morn_time=end_time-start_time	
+			if counter > 0 :	
+				morn_time=end_time-start_time	
+			else :
+				morn_time=0
 			even_dist=0;	
 			counter=0;	
 			temp.append("**************************"+str(dateobj)+" morning = "+str(morn_dist))
@@ -88,7 +91,10 @@ def daily_stats(request):
 					end_time=ctr2.time
 					temp.append(str(ctr2.lat)+" "+str(ctr2.lon)+" "+lastlat+" "+lastlon+" "+str(val))
 				counter=counter+1
-			even_time=end_time-start_time
+			if counter > 0 :
+				even_time=end_time-start_time
+			else :
+				even_time=0
 			temp.append("**************************"+str(dateobj)+" evening = "+str(even_dist))
 			morn_dist=math.ceil(morn_dist*100)/100
 			even_dist=math.ceil(even_dist*100)/100	
