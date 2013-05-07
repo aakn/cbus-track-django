@@ -64,7 +64,7 @@ $(function() {
 			dataType: "json",
 			url: "/ajax/trip/"+bus_id+"/"+date+"/"+morn_even,
 			success: function(data) {
-				console.log("Data from the Previous coordinates...");
+				//console.log("Data from the Previous coordinates...");
 
 				data = data.reverse();
 				console.log(data); 
@@ -103,8 +103,8 @@ $(function() {
 
 						dist=parseFloat(dist)+parseFloat(val);
 
-						if( isNaN(val)  || dist === isNaN(undefined))
-							console.log("Distance : " + dist + "  Val : " + val + "   Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
+					//	if( isNaN(val)  || dist === isNaN(undefined))
+						//	console.log("Distance : " + dist + "  Val : " + val + "   Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
 						
 					}
 					lastlat=lat;
@@ -121,11 +121,12 @@ $(function() {
 
 				//update_table(lat,lon,time,"last-trip",speed);
 				//console.log(coord_array); 
-				console.log("distance="+dist);
-				console.log("MAXSPEED="+maxspeed);
+				//console.log("distance="+dist);
+				//console.log("MAXSPEED="+maxspeed);
 				if( final_time !== undefined || initial_time !== undefined )
-					//updateMiniStats(dist, getTravelTime(initial_time, final_time),maxspeed);
 					console.log("DIST="+dist+" travel time = "+getTravelTime(initial_time, final_time)+" max speed = "+maxspeed);
+				else
+					console.log("NO TRIP");
 			}
 		});
 
@@ -134,7 +135,7 @@ $(function() {
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
-		
+		var d = new Date();
 		$.ajax({
 			async: false,
 			dataType: "json",
@@ -144,20 +145,22 @@ $(function() {
 
 					var data=value;
 					console.log("busid="+data.id);
+					for( var i =0;i<5;i++)
+					{
+						var month = d.getUTCMonth()+1;
+						var day = d.getUTCDate();
+						var year = d.getUTCFullYear();
+						var datestr=pad2(day)+"-"+pad2(month)+"-"+pad2(year);
+						console.log("datestr="+datestr);
+						get_value(data.id,0,datestr);
+						get_value(data.id,1,datestr);
+
+						d.setDate(d.getDate()-1);				
+					}
 				});
 			}
 		});
-		var d = new Date();
-		for( var i =0;i<5;i++)
-		{
-			var month = d.getUTCMonth()+1;
-			var day = d.getUTCDate();
-			var year = d.getUTCFullYear();
-			var datestr=pad2(day)+"-"+pad2(month)+"-"+pad2(year);
-			console.log("datestr="+datestr);
-			get_value(2,0,datestr);
-			d.setDate(d.getDate()-1);				
-		}
+		
 
 		bus_id=$("#bus").val();
 		morn_even=$("#time").val();
