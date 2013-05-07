@@ -134,10 +134,11 @@ $(function() {
 				}	
 				else
 				{
-					if(morn_even==0)
+					/*(if(morn_even==0)
 						updateMornEvenStats(route,date,"Morning",0.000000, "NO TRIP","NO TRIP");
 					else
 						updateMornEvenStats(route,date,"Evening",0.000000, "NO TRIP","NO TRIP");
+					*/
 				}
 			}
 		});
