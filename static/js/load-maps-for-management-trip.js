@@ -59,9 +59,9 @@ $(function() {
 	}
 	
 	function get_last_few_values() {
-		bus_id=1;
+		bus_id=2;
 		morn_even=0;
-		date="2013-05-07";
+		date="07-05-2013";
 		$.ajax({
 			async: false,
 			dataType: "json",
