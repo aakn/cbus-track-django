@@ -95,11 +95,11 @@ $(function() {
 					lon = data.lon;
 					speed = data.speed;
 					time = data.time;
-					console.log("CHECKING.. SPEED="+speed+" and maxspeed="+maxspeed);
+					//console.log("CHECKING.. SPEED="+speed+" and maxspeed="+maxspeed);
 					if(parseFloat(maxspeed)<parseFloat(speed))
 					{
 						maxspeed=speed;
-						console.log("MAXSPEED="+maxspeed);
+						//console.log("MAXSPEED="+maxspeed);
 					}
 						
 					if(lat === undefined || lon === undefined || lastlat === undefined || lastlon === undefined ) {	}
@@ -193,7 +193,7 @@ $(function() {
 
 	}
 	function updateMiniStats(distance, time,maxspeed) {
-		console.log("in mini maxspeed="+maxspeed);
+		//console.log("in mini maxspeed="+maxspeed);
 		var to_append = "<tr><th style='width:25%;'>Distance</th><td>"+ distance.toFixed(3) +" KM</td></tr>";
 		to_append += "<tr><th>Time</th><td>"+ time +"</td></tr>";
 		to_append += "<tr><th>Maximum Speed</th><td>"+ maxspeed +" km/hr</td></tr>";
