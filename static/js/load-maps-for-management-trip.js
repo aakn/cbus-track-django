@@ -125,6 +125,7 @@ $(function() {
 				//update_table(lat,lon,time,"last-trip",speed);
 				console.log(coord_array); 
 				console.log("distance="+dist);
+				console.log("MAXSPEED="+maxspeed);
 				if( final_time !== undefined || initial_time !== undefined )
 					updateMiniStats(dist, getTravelTime(initial_time, final_time,maxspeed));
 			}
