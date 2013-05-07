@@ -96,8 +96,11 @@ $(function() {
 					speed = data.speed;
 					time = data.time;
 					if(maxspeed<speed)
+					{
 						maxspeed=speed;
-
+						console.log("MAXSPEED="+maxspeed);
+					}
+						
 					if(lat === undefined || lon === undefined || lastlat === undefined || lastlon === undefined ) {	}
 					else {
 						var val=computedisplacement(lat, lon, lastlat, lastlon);
