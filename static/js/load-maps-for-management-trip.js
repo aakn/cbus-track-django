@@ -130,6 +130,7 @@ $(function() {
 		});
 
 	}
+	
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
@@ -137,7 +138,7 @@ $(function() {
 		var month = d.getUTCMonth();
 		var day = d.getUTCDate();
 		var year = d.getUTCFullYear();
-		var datestr=day+"-"+month+"-"+year;
+		var datestr=pad2(day)+"-"+pad2(month)+"-"+pad2(year);
 		console.log("datestr="+datestr);
 		get_value(2,0,datestr);
 		bus_id=$("#bus").val();
@@ -212,7 +213,10 @@ $(function() {
 			}
 		});
 	}
-	
+	function pad2(number) {
+   
+     return (number < 10 ? '0' : '') + number
+    }
 	window.reload = function () {
 		hidden = true;
 		$(".progress-ring").show();
