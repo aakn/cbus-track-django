@@ -135,7 +135,7 @@ $(function() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
 		var d = new Date();
-		var month = d.getUTCMonth();
+		var month = d.getUTCMonth()+1;
 		var day = d.getUTCDate();
 		var year = d.getUTCFullYear();
 		var datestr=pad2(day)+"-"+pad2(month)+"-"+pad2(year);
