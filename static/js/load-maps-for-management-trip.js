@@ -138,6 +138,7 @@ $(function() {
 		var day = d.getUTCDate();
 		var year = d.getUTCFullYear();
 		var datestr=day+"-"+month+"-"+year;
+		console.log("datestr="+datestr);
 		get_value(2,0,datestr);
 		bus_id=$("#bus").val();
 		morn_even=$("#time").val();
