@@ -135,12 +135,17 @@ $(function() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
 		var d = new Date();
-		var month = d.getUTCMonth()+1;
-		var day = d.getUTCDate();
-		var year = d.getUTCFullYear();
-		var datestr=pad2(day)+"-"+pad2(month)+"-"+pad2(year);
-		console.log("datestr="+datestr);
-		get_value(2,0,datestr);
+		for( var i =0;i<5;i++)
+		{
+			var month = d.getUTCMonth()+1;
+			var day = d.getUTCDate();
+			var year = d.getUTCFullYear();
+			var datestr=pad2(day)+"-"+pad2(month)+"-"+pad2(year);
+			console.log("datestr="+datestr);
+			get_value(2,0,datestr);
+			d.setDate(d.getDate()-1);				
+		}
+
 		bus_id=$("#bus").val();
 		morn_even=$("#time").val();
 
