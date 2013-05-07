@@ -58,7 +58,81 @@ $(function() {
 		marker.setPosition(pos);
 	}
 	
-	
+	function get_last_few_values() {
+		bus_id=1;
+		morn_even=0;
+		date=2013-05-07;
+		$.ajax({
+			async: false,
+			dataType: "json",
+			url: "/ajax/trip/"+bus_id+"/"+date+"/"+morn_even,
+			success: function(data) {
+				console.log("Data from the Previous coordinates...");
+
+				data = data.reverse();
+				console.log(data); 
+
+				//$(".stats-table-body").html("");
+				//coord_array = [];
+				i=0;
+				var dist = 0.0;
+				var lastlat,lastlon;
+				var maxspeed=0.0;
+				var initial_time;
+				if ( data[0] !== undefined )
+					initial_time = data[0].time;
+				time = initial_time;
+
+				$.each(data, function(key,value) {
+
+					var data=value;
+
+					lat = data.lat;
+					lon = data.lon;
+					speed = data.speed;
+					time = data.time;
+					//console.log("CHECKING.. SPEED="+speed+" and maxspeed="+maxspeed);
+					if(parseFloat(maxspeed)<parseFloat(speed))
+					{
+						maxspeed=speed;
+						//console.log("MAXSPEED="+maxspeed);
+					}
+						
+					if(lat === undefined || lon === undefined || lastlat === undefined || lastlon === undefined ) {	}
+					else {
+						var val=computedisplacement(lat, lon, lastlat, lastlon);
+						
+						if(isNaN(val)) val = 0;
+
+						dist=parseFloat(dist)+parseFloat(val);
+
+						if( isNaN(val)  || dist === isNaN(undefined))
+							console.log("Distance : " + dist + "  Val : " + val + "   Comparing - " + lat + " " + lon + " " + lastlat + " " + lastlon);
+						
+					}
+					lastlat=lat;
+					lastlon=lon;
+
+					//var pos = new google.maps.LatLng(lat,lon);
+					//coord_array[i++] = pos;
+
+					//append_table(lat,lon,time,"last-trip",speed);
+
+				});	
+
+				var final_time = time;
+
+				//update_table(lat,lon,time,"last-trip",speed);
+				//console.log(coord_array); 
+				console.log("distance="+dist);
+				console.log("MAXSPEED="+maxspeed);
+				if( final_time !== undefined || initial_time !== undefined )
+					//updateMiniStats(dist, getTravelTime(initial_time, final_time),maxspeed);
+					console.log("DIST="+dist+" travel time = "+getTravelTime(initial_time, final_time)+" max speed = "+maxspeed);
+			}
+		});
+
+	}
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
