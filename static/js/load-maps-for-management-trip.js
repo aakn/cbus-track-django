@@ -136,7 +136,7 @@ $(function() {
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
-
+		get_last_few_values();
 		bus_id=$("#bus").val();
 		morn_even=$("#time").val();
 
