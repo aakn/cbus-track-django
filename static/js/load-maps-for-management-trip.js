@@ -135,8 +135,9 @@ $(function() {
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
+
 		$.ajax({
-			async: false,
+			async: true,
 			dataType: "json",
 			url: "/ajax/list_of_routes",
 			success: function(data) {
