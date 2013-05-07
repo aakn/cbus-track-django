@@ -136,8 +136,8 @@ $(function() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
 
-		$.ajax({
-			async: true,
+		/*$.ajax({
+			async: false,
 			dataType: "json",
 			url: "/ajax/list_of_routes",
 			success: function(data) {
@@ -162,7 +162,7 @@ $(function() {
 				});
 			}
 		});
-		
+		*/
 
 		bus_id=$("#bus").val();
 		morn_even=$("#time").val();
