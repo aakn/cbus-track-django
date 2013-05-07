@@ -133,7 +133,12 @@ $(function() {
 
 				}	
 				else
-					console.log("NO TRIP");
+				{
+					if(morn_even==0)
+						updateMornEvenStats(date,"Morning","NO TRIP", "NO TRIP","NO TRIP");
+					else
+						updateMornEvenStats(date,"Evening","NO TRIP", "NO TRIP","NO TRIP");
+				}
 			}
 		});
 
