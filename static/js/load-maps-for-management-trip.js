@@ -127,9 +127,9 @@ $(function() {
 				{
 					console.log("DIST="+dist+" travel time = "+getTravelTime(initial_time, final_time)+" max speed = "+maxspeed);	
 					if(morn_even==0)
-						updateMorningStats(date,dist, getTravelTime(initial_time, final_time),maxspeed);
+						updateMornEvenStats(date,"Morning",dist, getTravelTime(initial_time, final_time),maxspeed);
 					else
-						updateEveningStats(date,dist, getTravelTime(initial_time, final_time),maxspeed);
+						updateMornEvenStats(date,"Evening",dist, getTravelTime(initial_time, final_time),maxspeed);
 
 				}	
 				else
@@ -310,27 +310,18 @@ $(function() {
 		to_append += "<tr><th>Maximum Speed</th><td>"+ maxspeed +" km/hr</td></tr>";
 		$(".mini-stats-body").html(to_append);
 	}
-	function updateMorningStats(date,distance, time,maxspeed) {
+	function updateMornEvenStats(date,morneven,distance, time,maxspeed) {
 		//console.log("in mini maxspeed="+maxspeed);
 		/*var to_append = "<tr><th style='width:25%;'>Distance</th><td>"+ distance.toFixed(3) +" KM</td></tr>";
 		to_append += "<tr><th>Time</th><td>"+ time +"</td></tr>";
 		to_append += "<tr><th>Maximum Speed</th><td>"+ maxspeed +" km/hr</td></tr>";*/
 		var to_append="<tr>"
 		to_append+="<td>"+date+"</td>";
+		to_append+="<td>"+morneven+"</td>";
 		to_append+="<td>"+distance+"</td>";
 		to_append+="<td>"+time+"</td>";
 		to_append+="<td>"+maxspeed+"</td>";
 		to_append+="</tr>";
-		$(".stats-table-body-morning").append(to_append);
-	}
-	function updateEveningStats(date,distance, time,maxspeed) {
-		//console.log("in mini maxspeed="+maxspeed);
-		var to_append="<tr>"
-		to_append+="<td>"+date+"</td>";
-		to_append+="<td>"+distance+"</td>";
-		to_append+="<td>"+time+"</td>";
-		to_append+="<td>"+maxspeed+"</td>";
-		to_append+="</tr>";
-		$(".stats-table-body-evening").append(to_append);
+		$(".stats-table-body-morn-even").append(to_append);
 	}
 });
