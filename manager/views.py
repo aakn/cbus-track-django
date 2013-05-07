@@ -27,7 +27,7 @@ def show_stats(request):
 		for i in range(5):
 			morning_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
 			morning_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
-			evening_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
+			evening_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,13,00)
 			evening_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
 
 			bus_name=RouteDetail.objects.get(pk=ctr)
@@ -66,7 +66,7 @@ def show_stats(request):
 	for i in range(5):
 		morning_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,05,00)
 		morning_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,9,00)
-		evening_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,15,00)
+		evening_lower_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,13,00)
 		evening_upper_threshold = datetime.datetime(dateobj.year,dateobj.month,dateobj.day,20,00)	
 		morning_maps_query = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=morning_lower_threshold).filter(time__lt=morning_upper_threshold).annotate(counter=Count('id')).order_by('-id')[:5]
 		evening_maps_query = MapsAPIUsageCounter.objects.extra({'date' : "date(time)"}).values('date').filter(time__gt=evening_lower_threshold).filter(time__lt=evening_upper_threshold).annotate(counter=Count('id')).order_by('-id')[:5]
