@@ -58,7 +58,7 @@ $(function() {
 		marker.setPosition(pos);
 	}
 	
-	function get_value(bus_id,morn_even,date) {
+	function get_value(bus_id,route,morn_even,date) {
 		$.ajax({
 			async: false,
 			dataType: "json",
@@ -127,17 +127,17 @@ $(function() {
 				{
 					console.log("DIST="+dist+" travel time = "+getTravelTime(initial_time, final_time)+" max speed = "+maxspeed);	
 					if(morn_even==0)
-						updateMornEvenStats(date,"Morning",dist, getTravelTime(initial_time, final_time),maxspeed);
+						updateMornEvenStats(route,date,"Morning",dist, getTravelTime(initial_time, final_time),maxspeed);
 					else
-						updateMornEvenStats(date,"Evening",dist, getTravelTime(initial_time, final_time),maxspeed);
+						updateMornEvenStats(route,date,"Evening",dist, getTravelTime(initial_time, final_time),maxspeed);
 
 				}	
 				else
 				{
 					if(morn_even==0)
-						updateMornEvenStats(date,"Morning","NO TRIP", "NO TRIP","NO TRIP");
+						updateMornEvenStats(route,date,"Morning","NO TRIP", "NO TRIP","NO TRIP");
 					else
-						updateMornEvenStats(date,"Evening","NO TRIP", "NO TRIP","NO TRIP");
+						updateMornEvenStats(route,date,"Evening","NO TRIP", "NO TRIP","NO TRIP");
 				}
 			}
 		});
@@ -166,8 +166,8 @@ $(function() {
 						var year = d.getUTCFullYear();
 						var datestr=pad2(day)+"-"+pad2(month)+"-"+pad2(year);
 						console.log("datestr="+datestr);
-						get_value(data.id,0,datestr);
-						get_value(data.id,1,datestr);
+						get_value(data.id,data.route_number,0,datestr);
+						get_value(data.id,data.route_number,1,datestr);
 
 						d.setDate(d.getDate()-1);				
 					}
@@ -315,12 +315,13 @@ $(function() {
 		to_append += "<tr><th>Maximum Speed</th><td>"+ maxspeed +" km/hr</td></tr>";
 		$(".mini-stats-body").html(to_append);
 	}
-	function updateMornEvenStats(date,morneven,distance, time,maxspeed) {
+	function updateMornEvenStats(route,date,morneven,distance, time,maxspeed) {
 		//console.log("in mini maxspeed="+maxspeed);
 		/*var to_append = "<tr><th style='width:25%;'>Distance</th><td>"+ distance.toFixed(3) +" KM</td></tr>";
 		to_append += "<tr><th>Time</th><td>"+ time +"</td></tr>";
 		to_append += "<tr><th>Maximum Speed</th><td>"+ maxspeed +" km/hr</td></tr>";*/
 		var to_append="<tr>"
+		to_append+="<td>"+route+"</td>";
 		to_append+="<td>"+date+"</td>";
 		to_append+="<td>"+morneven+"</td>";
 		to_append+="<td>"+distance+"</td>";
