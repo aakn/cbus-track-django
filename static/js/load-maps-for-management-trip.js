@@ -95,6 +95,7 @@ $(function() {
 					lon = data.lon;
 					speed = data.speed;
 					time = data.time;
+					console.log("CHECKING.. SPEED="+speed+" and maxspeed="+maxspeed);
 					if(maxspeed<speed)
 					{
 						maxspeed=speed;
