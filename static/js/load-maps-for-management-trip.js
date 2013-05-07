@@ -321,7 +321,7 @@ $(function() {
 		to_append+="<td>"+time+"</td>";
 		to_append+="<td>"+maxspeed+"</td>";
 		to_append+="</tr>";
-		$(".stats-table-body-morning").html(to_append);
+		$(".stats-table-body-morning").append(to_append);
 	}
 	function updateEveningStats(date,distance, time,maxspeed) {
 		//console.log("in mini maxspeed="+maxspeed);
@@ -331,6 +331,6 @@ $(function() {
 		to_append+="<td>"+time+"</td>";
 		to_append+="<td>"+maxspeed+"</td>";
 		to_append+="</tr>";
-		$(".stats-table-body-evening").html(to_append);
+		$(".stats-table-body-evening").append(to_append);
 	}
 });
