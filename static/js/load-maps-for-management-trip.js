@@ -193,6 +193,7 @@ $(function() {
 
 	}
 	function updateMiniStats(distance, time,maxspeed) {
+		console.log("in mini maxspeed="+maxspeed);
 		var to_append = "<tr><th style='width:25%;'>Distance</th><td>"+ distance.toFixed(3) +" KM</td></tr>";
 		to_append += "<tr><th>Time</th><td>"+ time +"</td></tr>";
 		to_append += "<tr><th>Maximum Speed</th><td>"+ maxspeed +"</td></tr>";
