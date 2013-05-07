@@ -131,7 +131,7 @@ $(function() {
 				console.log("distance="+dist);
 				console.log("MAXSPEED="+maxspeed);
 				if( final_time !== undefined || initial_time !== undefined )
-					updateMiniStats(dist, getTravelTime(initial_time, final_time,maxspeed));
+					updateMiniStats(dist, getTravelTime(initial_time, final_time),maxspeed);
 			}
 		});
 	}
