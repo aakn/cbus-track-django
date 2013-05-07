@@ -96,7 +96,7 @@ $(function() {
 					speed = data.speed;
 					time = data.time;
 					console.log("CHECKING.. SPEED="+speed+" and maxspeed="+maxspeed);
-					if(maxspeed<speed)
+					if(float(maxspeed)<float(speed))
 					{
 						maxspeed=speed;
 						console.log("MAXSPEED="+maxspeed);
