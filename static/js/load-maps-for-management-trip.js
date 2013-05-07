@@ -134,6 +134,19 @@ $(function() {
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
+		
+		$.ajax({
+			async: false,
+			dataType: "json",
+			url: "/ajax/list_of_routes",
+			success: function(data) {
+				$.each(data, function(key,value) {
+
+					var data=value;
+					console.log("busid="+data.id);
+				});
+			}
+		});
 		var d = new Date();
 		for( var i =0;i<5;i++)
 		{
