@@ -135,7 +135,6 @@ $(function() {
 	function get_some_default_values() {
 		// Fills the table during the first run.
 		//Gets around 50 last values from the table.
-		var d = new Date();
 		$.ajax({
 			async: false,
 			dataType: "json",
@@ -145,6 +144,8 @@ $(function() {
 
 					var data=value;
 					console.log("busid="+data.id);
+					var d = new Date();
+
 					for( var i =0;i<5;i++)
 					{
 						var month = d.getUTCMonth()+1;
