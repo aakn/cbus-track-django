@@ -81,7 +81,7 @@ $(function() {
 				i=0;
 				var dist = 0.0;
 				var lastlat,lastlon;
-
+				var maxspeed=0.0;
 				var initial_time;
 				if ( data[0] !== undefined )
 					initial_time = data[0].time;
@@ -95,7 +95,8 @@ $(function() {
 					lon = data.lon;
 					speed = data.speed;
 					time = data.time;
-
+					if(maxspeed<speed)
+						maxspeed=speed;
 
 					if(lat === undefined || lon === undefined || lastlat === undefined || lastlon === undefined ) {	}
 					else {
@@ -125,7 +126,7 @@ $(function() {
 				console.log(coord_array); 
 				console.log("distance="+dist);
 				if( final_time !== undefined || initial_time !== undefined )
-					updateMiniStats(dist, getTravelTime(initial_time, final_time));
+					updateMiniStats(dist, getTravelTime(initial_time, final_time,maxspeed));
 			}
 		});
 	}
@@ -186,9 +187,10 @@ $(function() {
 
 
 	}
-	function updateMiniStats(distance, time) {
+	function updateMiniStats(distance, time,speed) {
 		var to_append = "<tr><th style='width:25%;'>Distance</th><td>"+ distance.toFixed(3) +" KM</td></tr>";
 		to_append += "<tr><th>Time</th><td>"+ time +"</td></tr>";
+		to_append += "<tr><th>Maximum Speed</th><td>"+ speed +"</td></tr>";
 		$(".mini-stats-body").html(to_append);
 	}
 });
