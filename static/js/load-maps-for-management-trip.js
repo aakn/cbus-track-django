@@ -67,7 +67,7 @@ $(function() {
 				//console.log("Data from the Previous coordinates...");
 
 				data = data.reverse();
-				console.log(data); 
+			//	console.log(data); 
 
 				//$(".stats-table-body").html("");
 				//coord_array = [];
@@ -173,7 +173,7 @@ $(function() {
 				console.log("Data from the Previous coordinates...");
 
 				data = data.reverse();
-				console.log(data); 
+				//console.log(data); 
 
 				$(".stats-table-body").html("");
 				coord_array = [];
@@ -287,8 +287,8 @@ $(function() {
 		var minutes = parseInt(diff/1000/60);
 		var hours = parseInt(minutes/60);
 		minutes = minutes % 60;
-		console.log("Difference between : " + initial + " and " + final);
-		console.log(diff);
+		//console.log("Difference between : " + initial + " and " + final);
+		//console.log(diff);
 
 		return hours + " hrs " + minutes + " mins"
 
