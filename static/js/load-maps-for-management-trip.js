@@ -324,7 +324,7 @@ $(function() {
 		to_append+="<td>"+route+"</td>";
 		to_append+="<td>"+date+"</td>";
 		to_append+="<td>"+morneven+"</td>";
-		to_append+="<td>"+distance+"</td>";
+		to_append+="<td>"+distance.toFixed(3)+"</td>";
 		to_append+="<td>"+time+"</td>";
 		to_append+="<td>"+maxspeed+"</td>";
 		to_append+="</tr>";
