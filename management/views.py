@@ -154,5 +154,5 @@ def fetch_daily_stats(start_date):
 
 def daily_stats(request):
 
-    log_per_bus = fetch_daily_stats("2013-06-21")
+    log_per_bus = fetch_daily_stats(None)
     return render_to_response('management/daily_stats.html', {'bus_log': log_per_bus, 'request':request})
