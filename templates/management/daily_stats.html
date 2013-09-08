@@ -3,6 +3,13 @@
 
 {% block page_header_class %} span10 offset1 {% endblock %}
 {% block content_class %} span10 offset1 {% endblock %}
+{% block scripts %}
+<script>
+    $(function(){
+        $(".progress-ring").addClass("hidden");
+    });
+</script>
+{% endblock %}
 {% block content %}
 <div class="row-fluid">
 	<div class="span10 offset1">
@@ -10,7 +17,7 @@
 			<div class="page-header">
 				<h2>Bus Statistics</h2>
 			</div>
-			{% for count in buslog %} 
+			{% for count in bus_log %}
 				<h3>Bus : {{count.name}}</h3> 
 					<table class="table table-bordered table-striped">
 						<thead>
@@ -18,18 +25,22 @@
 								<th>Date</th>
 								<th>Morning(in kms) </th>
 								<th>Morning Travel Time </th>
+                                <th>Morning Top Speed</th>
 								<th>Evening(in kms) </th>
 								<th>Evening Travel Time </th>
+								<th>Evening Top Speed</th>
 							</tr>
 						</thead>
 						<tbody>
-							{% for ctr in count.buslogger %}
+							{% for ctr in count.bus_logger %}
 								<tr>
 									<td> {{ctr.date}}</td>
 									<td> {{ctr.morning}}</td>
-									<td> {{ctr.morningtime}}</td>									
+									<td> {{ctr.morning_time}}</td>
+									<td> {{ctr.morn_speed}} km/h</td>
 									<td> {{ctr.evening}}</td>
-									<td> {{ctr.eveningtime}}</td>
+									<td> {{ctr.evening_time}}</td>
+									<td> {{ctr.even_speed}} km/h</td>
 								</tr>
 							{% endfor %}
 						</tbody>
@@ -38,4 +49,7 @@
 		</div>
 	</div>
 </div>
+<script>
+
+</script>
 {% endblock %}

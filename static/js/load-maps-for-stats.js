@@ -111,6 +111,7 @@ $(function(){
 	function done_loading() {
 		if(hidden) {
 			$(".progress-ring").hide();
+            $(".progress-ring").addClass("hidden");
 			$(".stats-table").show();
 			hidden = false;
 

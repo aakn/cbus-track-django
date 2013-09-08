@@ -199,6 +199,7 @@ $(function(){
 		if(hidden) {
 			$(".bus-details").show();
 			$(".progress-ring").hide();
+            $(".progress-ring").addClass("hidden");
 			hidden = false;
 		}
 		$('.bus-route-selector').removeAttr('disabled');

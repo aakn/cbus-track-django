@@ -4,3 +4,5 @@
 local_settings.py
 settings_production.py
 .DS_STORE
+.idea/*
+*.iml
